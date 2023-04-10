@@ -1,5 +1,7 @@
 {
-  "name": "ionic-app-base",
-  "integrations": {},
+  "name": "Kush's Portfolio",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
