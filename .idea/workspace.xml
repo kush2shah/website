@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="347468bd-3fb2-4c7b-8070-3e087fff12f5" name="Changes" comment="" />
+    <list default="true" id="347468bd-3fb2-4c7b-8070-3e087fff12f5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/kushs-org/src/assets/SF-Pro-Rounded.otf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="NxDevToolsSettings">
     <node-interpreter value="project" />
@@ -25,17 +36,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/kush/Documents/repositories/kushs-org",
+    "last_opened_file_path": "/Users/kush/Documents/repositories/website",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "/Users/kush/Documents/repositories/kushs-org/frontend/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/kush/Documents/repositories/website/kushs-org/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/kushs-org/src/assets" />
+    </key>
+  </component>
   <component name="RunManager" selected="Docker.Container">
     <configuration name="Build" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
@@ -73,6 +89,7 @@
       <workItem from="1681140185578" duration="448000" />
       <workItem from="1681140710693" duration="558000" />
       <workItem from="1681141277751" duration="573000" />
+      <workItem from="1681142169279" duration="953000" />
     </task>
     <servers />
   </component>
