@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="347468bd-3fb2-4c7b-8070-3e087fff12f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/kushs-org/src/assets/SF-Pro-Rounded.otf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kushs-org/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kushs-org/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kushs-org/src/app/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/kushs-org/src/app/navigation/navigation.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +84,7 @@
       <workItem from="1681140185578" duration="448000" />
       <workItem from="1681140710693" duration="558000" />
       <workItem from="1681141277751" duration="573000" />
-      <workItem from="1681142169279" duration="953000" />
+      <workItem from="1681142169279" duration="1754000" />
     </task>
     <servers />
   </component>
