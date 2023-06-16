@@ -4,9 +4,9 @@ const Home: React.FC = () => {
     return (
         <div className="Home">
         <header className="Home-header">
-            <p>
+            <h1>
             Home
-            </p>
+            </h1>
         </header>
         </div>
     );
