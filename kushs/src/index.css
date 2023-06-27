@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #4B9CD3;
+  --secondary-color: #13294B;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +15,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.icon-link {
+  color: var(--primary-color);
+  padding: 10px;
+}
+
+.icon-link:hover {
+  color: var(--secondary-color);
 }

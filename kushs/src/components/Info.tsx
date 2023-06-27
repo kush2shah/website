@@ -1,5 +1,6 @@
 import React from 'react';
-import LinkedInLogo from '../assets/linkedin.png'
+import { FaLinkedinIn } from 'react-icons/fa';
+import { TiSocialInstagram } from 'react-icons/ti';
 
 const Info: React.FC = () => {
     return (
@@ -12,11 +13,12 @@ const Info: React.FC = () => {
                 Howdy! I am a Senior at the University of North Carolina
                 at Chapel Hill studying Computer Science and Business.
             </p>
-            <a href="https://www.linkedin.com/in/kushsha/" target="_blank" rel="noopener noreferrer">
-                <img src='https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg' alt="LinkedIn" className="logo" />
+            <a href="https://www.linkedin.com/in/kushsha/" target="_blank" rel="noopener noreferrer" className='icon-link'>
+                <FaLinkedinIn size={64} />
             </a>
-            <a href="https://www.instagram.com/kushspictures/" target="_blank" rel="noopener noreferrer">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" className="logo" />
+            
+            <a href="https://www.instagram.com/kushspictures/" target="_blank" rel="noopener noreferrer" className="icon-link">
+                <TiSocialInstagram size={64} />
             </a>
         </header>
         </div>
