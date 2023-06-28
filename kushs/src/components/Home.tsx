@@ -13,6 +13,7 @@ const Home: React.FC = () => {
             </h1>
             <a>
                 Feel free to follow along by checking back regularly.
+                This build was pushed on June 28, 2023 at 11:25am.
             </a>
         </header>
             <body>
