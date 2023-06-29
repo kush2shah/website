@@ -43,26 +43,26 @@ function NavBar() {
                             <Link to='/analog'>Analog</Link>
                         </li>
                         <li>
-                            <Link to='/'>Digital</Link>
+                            <Link to='/digital'>Digital</Link>
                         </li>
                         <li>
-                            <Link to='/'>Aerial</Link>
+                            <Link to='/aerial'>Aerial</Link>
                         </li>
                     </ul>
                 </li>
                 <li>
                 <li>
-                    <Link to='/'>Experience</Link>
+                    <Link to='/experience'>Experience</Link>
                 </li>
                     <ul>
                         <li>
-                            <Link to='/'>Education</Link>
+                            <Link to='/education'>Education</Link>
                         </li>
                         <li>
-                            <Link to='/'>Work Experience</Link>
+                            <Link to='/work'>Work Experience</Link>
                         </li>
                         <li>
-                            <Link to='/'>Extracurriculars</Link>
+                            <Link to='/clubs'>Extracurriculars</Link>
                         </li>
                     </ul>
                 </li>
