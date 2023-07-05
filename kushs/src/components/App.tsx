@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/photography" element={<Photography />} />
-              <Route path="/analog" element={<Analog />} />
+              <Route path="/film" element={<Analog />} />
               <Route path="/digital" element={<Digital />} />
               <Route path="/aerial" element={<Aerial />} />
             <Route path="/experience" element={<Experience />} />

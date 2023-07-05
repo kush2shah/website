@@ -39,6 +39,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run deploy`
+
+This website is configured to build and deploy using GitHub Pages to a custom domain. By running `run deploy`, GitHub Actions will deploy the version of the website on the local machine to kushs.org. The machine must be configured to deploy using the `gh-pages` sh script. This script is not included in the repository for security reasons. To configure the machine, follow the instructions in the [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site). The script should be placed in the root directory of the repository. This will not commit the repository to GitHub.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

@@ -1,70 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 import './NavBar.css';
 
 function NavBar() {
-    const [isScrolled, setScrolled] = useState(false);
+    const [isMenuOpen, setMenuOpen] = useState(false);
 
-    const handleScroll = () => {
-        const offset = window.scrollY;
-        if (offset > 200) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
+    const handleMenuToggle = () => {
+        setMenuOpen(!isMenuOpen);
     };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     let navbarClasses = ['NavBar'];
-    if (isScrolled) {
-        navbarClasses.push('scrolled');
+    if (isMenuOpen) {
+        navbarClasses.push('open');
     }
     return (
 
-        <nav className={navbarClasses.join('')}>
+        <nav className={isMenuOpen ? "open" : "NavBar"}>
             <ul>
                 <li>
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <li>
-                        <Link to='/photography'>Photography</Link>
-                    </li>
-                    <ul>
-                        <li>
-                            <Link to='/analog'>Analog</Link>
-                        </li>
-                        <li>
-                            <Link to='/digital'>Digital</Link>
-                        </li>
-                        <li>
-                            <Link to='/aerial'>Aerial</Link>
-                        </li>
-                    </ul>
+                    <Link to='/photography'>Photography</Link>
                 </li>
-                <li>
                 <li>
                     <Link to='/experience'>Experience</Link>
-                </li>
-                    <ul>
-                        <li>
-                            <Link to='/education'>Education</Link>
-                        </li>
-                        <li>
-                            <Link to='/work'>Work Experience</Link>
-                        </li>
-                        <li>
-                            <Link to='/clubs'>Extracurriculars</Link>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <Link to="/info">Info</Link>
