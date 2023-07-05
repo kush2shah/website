@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FaGithub } from 'react-icons/fa';
+
 const Home: React.FC = () => {
     const imageStyle = {
         width: "200px",
@@ -12,7 +14,7 @@ const Home: React.FC = () => {
             Hey there, I'm building this website from scratch right now.
             </h1>
             <a>
-                Feel free to follow along by checking back regularly.
+                Feel free to follow along by checking back regularly. <br></br>
                 This build was pushed July 4, 2023 at 6:18pm.
             </a>
         </header>
@@ -26,6 +28,9 @@ const Home: React.FC = () => {
         <a>
             With love from NC (c) 2023 Kush Shah
         </a>
+            <a href="https://github.com/kush2shah/website" target="_blank" rel="noopener noreferrer" className="icon-link">
+                <FaGithub />
+            </a>
         </div>
     );
 }
