@@ -1,0 +1,36 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* adjust as needed */
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  
+  .image-container img {
+    max-width: 100%;  /* makes sure the image is never bigger than its container */
+    max-height: 100%;  /* also need this to prevent overflow */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease; /* This is for smooth transition */
+    background-color: rgba(0,0,0,0.5); /* You can adjust color and transparency */
+    display: flex;
+    justify-content: center; /* This is to center your text horizontally */
+    align-items: center; /* This is to center your text vertically */
+    color: white; /* This is your text color */
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
