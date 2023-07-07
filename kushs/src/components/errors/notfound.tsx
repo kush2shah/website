@@ -20,7 +20,7 @@ function NotFound() {
                 <h3>Sorry about this, there's nothing here yet</h3>
                 <p>If you think there should be, let me know</p>
                 <br></br>
-                <a href='/' className='home-link'>Let's go home?</a>
+                <a href='/' className='link'>Let's go home?</a>
 
             <div className='image-container'>
                 {dogImage && (

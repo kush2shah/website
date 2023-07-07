@@ -21,11 +21,11 @@
     object-fit: contain;
 }
 
-.home-link {
+.link {
     color: #13294B; /* Navy for text */
     transition: color 0.3s ease;
 }
 
-.home-link:hover {
+.link:hover {
     color: #4B9CD3; /* Carolina Blue for hover effect */
 }
