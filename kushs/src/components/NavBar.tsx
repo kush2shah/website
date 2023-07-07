@@ -1,36 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { FiMenu } from "react-icons/fi"; // Hamburger Menu Icon
+import { CgClose } from "react-icons/cg"; // Close Menu Icon
 import './NavBar.css';
 
-function NavBar() {
-    const [isMenuOpen, setMenuOpen] = useState(false);
+const NavBar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-    const handleMenuToggle = () => {
-        setMenuOpen(!isMenuOpen);
-    };
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        });
+    }, []);
 
-    let navbarClasses = ['NavBar'];
-    if (isMenuOpen) {
-        navbarClasses.push('open');
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
     }
-    return (
 
-        <nav className={isMenuOpen ? "open" : "NavBar"}>
-            <ul>
+    return (
+        <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+            <div></div>
+
+            <ul className={`navbar-menu ${isMenuOpen ? "show-menu" : ""}`}>
                 <li>
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to='/photography'>Photography</Link>
+                    <Link to="/photography">Photography</Link>
                 </li>
                 <li>
-                    <Link to='/experience'>Experience</Link>
+                    <Link to="/experience">Experience</Link>
                 </li>
                 <li>
                     <Link to="/info">Info</Link>
                 </li>
             </ul>
+
+            <button onClick={toggleMenu} className="menu-icon">
+                {isMenuOpen ? <CgClose /> : <FiMenu />}
+            </button>
         </nav>
     );
 }

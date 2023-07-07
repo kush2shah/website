@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Info from './Info';
 import NavBar from './NavBar';
 import './App.css';
+
+import Home from './Home';
 
 import Photography from "./photography/photography";
 import Analog from "./photography/analog";
@@ -15,6 +15,9 @@ import Education from "./experience/education";
 import Work from "./experience/work";
 import Clubs from "./experience/clubs";
 
+import Info from './Info';
+
+import NotFound from './errors/notfound';
 
 function App() {
   return (
@@ -32,8 +35,7 @@ function App() {
               <Route path="/work" element={<Work />} />
               <Route path="/clubs" element={<Clubs />} />
             <Route path="/info" element={<Info />} />
-
-
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
         

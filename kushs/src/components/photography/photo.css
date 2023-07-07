@@ -2,35 +2,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* Allow images to wrap if they don't fit in one line */
     height: calc(100vh - 100px); /* adjust as needed */
-    padding: 50px;
     box-sizing: border-box;
-  }
-  
-  .image-container img {
-    max-width: 100%;  /* makes sure the image is never bigger than its container */
-    max-height: 100%;  /* also need this to prevent overflow */
+    padding: 10px; /* padding to prevent images from touching the edges */
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 10px; /* Add margin to individual image wrapper */
+    display: inline-block; /* Treat each image wrapper as an inline element */
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-  }
-  
+}
 
-  .overlay {
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    right: 0; /* Make sure the overlay covers the entire image */
+    bottom: 5px; /* Make sure the overlay covers the entire image */
     opacity: 0;
-    transition: .5s ease; /* This is for smooth transition */
-    background-color: rgba(0,0,0,0.5); /* You can adjust color and transparency */
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0.5);
     display: flex;
-    justify-content: center; /* This is to center your text horizontally */
-    align-items: center; /* This is to center your text vertically */
-    color: white; /* This is your text color */
+    justify-content: center;
+    align-items: center;
+    color: var(--sandstone);
+    text-align: center;
+    font-size: 1.5em;
 }
 
-.image-container:hover .overlay {
+.image-wrapper:hover .overlay {
     opacity: 1;
 }
