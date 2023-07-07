@@ -1,4 +1,5 @@
 from typing import Union
+from static_files import StaticFileMiddleware
 
 from fastapi import FastAPI
 
@@ -9,6 +10,7 @@ page = [
     "https://kushs.org/",
 ]
 
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -18,6 +20,7 @@ app.add_middleware(
     allow_headers=page,
 )
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -26,3 +29,6 @@ def read_root():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
+
+
+app.mount("/", StaticFileMiddleware("../static", "index.html"))
