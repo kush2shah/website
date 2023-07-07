@@ -15,7 +15,7 @@ const Home: React.FC = () => {
             </h1>
             <p>
                 Feel free to follow along by checking back regularly. <br></br>
-                This build was deployed July 6, 2023 at 9:29pm.
+                This build was deployed July 7, 2023 at 2:34 AM EST.
             </p>
         </header>
             <body>
