@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
+
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+
+import axios from 'axios';
+
+axios.get('http://kushs.org/api')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
