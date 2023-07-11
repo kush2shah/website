@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-import './error.css'
+import '../../css/error.css'
 
 function NotFound() {
     const [dogImage, setDogImage] = useState(null);
