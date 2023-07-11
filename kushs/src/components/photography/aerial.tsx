@@ -1,4 +1,9 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import { app, analytics } from '../../firebase/firebase';
+
+import BudaCastle from '../../assets/buda_castle.jpeg';
+import Budapest from '../../assets/budapest_aerial.jpeg'
 
 import './photo.css'
 
@@ -11,13 +16,13 @@ function Aerial() {
 
             <div className="image-container">
                 <div className="image-wrapper">
-                    <img src="https://kmsresources.blob.core.windows.net/$web/buda_castle.JPG" alt="Buda Castle" />
+                    <img src={BudaCastle} alt="Buda Castle" />
                     <div className="overlay">
                         <p>DJI Mavic Air 2 <br></br> Budapest, Hungary </p>
                     </div>
                 </div>
                 <div className="image-wrapper">
-                    <img src="https://kmsresources.blob.core.windows.net/$web/budapest_aerial.jpg" alt="Budapest Aerial" />
+                    <img src={Budapest} alt="Budapest Aerial" />
                     <div className="overlay">
                         <p>Your second image's text</p>
                     </div>

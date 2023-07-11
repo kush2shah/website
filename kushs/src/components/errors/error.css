@@ -22,10 +22,12 @@
 }
 
 .link {
-    color: #13294B; /* Navy for text */
+    color: var(--navy); /* Navy for text */
     transition: color 0.3s ease;
 }
 
 .link:hover {
-    color: #4B9CD3; /* Carolina Blue for hover effect */
+    color: var(--carolina-blue); /* Carolina Blue for hover effect */
 }
+
+

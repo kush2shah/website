@@ -35,3 +35,32 @@ a {
 .icon-link:hover {
   color: var(--sandstone);
 }
+
+button {
+  display: inline-block;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--carolina-blue) 0%, var(--navy) 100%); /* Gradient from Navy to Carolina Blue */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Add some shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button a {
+  color: white;
+  text-decoration: none; 
+}
+
+button:hover {
+  transform: translateY(-3px); /* Move the button up slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase the shadow size */
+}
+
+button:active {
+  transform: translateY(1px); /* Move the button down slightly */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Decrease the shadow size */
+}
