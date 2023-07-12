@@ -6,7 +6,15 @@ function Photography() {
             <h1>Photography</h1>
 
             <div className={'link'}>
-                <a href={'/aerial'}>Aerial</a>
+                <a href={'/aerial'}>
+                    <button>Aerial</button>
+                </a>
+            </div>
+            <br></br>
+            <div>
+                <a href={'/digital'}>
+                    <button>Digital</button>
+                </a>
             </div>
         </div>
     );
