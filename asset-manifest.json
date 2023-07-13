@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.a83a299d.css",
-    "main.js": "/static/js/main.1e7967c4.js",
+    "main.css": "/static/css/main.61760a68.css",
+    "main.js": "/static/js/main.0e13cc3c.js",
     "static/js/787.28821193.chunk.js": "/static/js/787.28821193.chunk.js",
+    "static/media/budapest_aerial.jpeg": "/static/media/budapest_aerial.b02236671b4588de0cd9.jpeg",
+    "static/media/buda_castle.jpeg": "/static/media/buda_castle.75cdbfcc25a44e693e1b.jpeg",
+    "static/media/mirror_hannah.jpeg": "/static/media/mirror_hannah.ee1af6a9e9aa734d9af9.jpeg",
+    "static/media/mirror_brushing.jpeg": "/static/media/mirror_brushing.1426b6bdfbd4b2ee7ffe.jpeg",
     "index.html": "/index.html",
-    "main.a83a299d.css.map": "/static/css/main.a83a299d.css.map",
-    "main.1e7967c4.js.map": "/static/js/main.1e7967c4.js.map",
+    "main.61760a68.css.map": "/static/css/main.61760a68.css.map",
+    "main.0e13cc3c.js.map": "/static/js/main.0e13cc3c.js.map",
     "787.28821193.chunk.js.map": "/static/js/787.28821193.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a83a299d.css",
-    "static/js/main.1e7967c4.js"
+    "static/css/main.61760a68.css",
+    "static/js/main.0e13cc3c.js"
   ]
 }
