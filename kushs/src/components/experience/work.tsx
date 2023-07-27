@@ -1,12 +1,15 @@
 import React from 'react';
 
+import '../../css/work.css'
+import cisco from '../../assets/logos/cisco_logo.png'
+
 function Work() {
     return (
-        <div>
+        <div className='work'>
             <div>
                 <h1>Work Experience</h1>
             </div>
-            <div>
+            <div className='willowtree'>
                 <h2>WillowTree</h2>
                 <h3>Product Analyst Intern</h3>
                 <p>
@@ -17,8 +20,11 @@ function Work() {
                 </p>
             </div>
 
-            <div>
-                <h2>Cisco Systems</h2>
+            <div className='cisco'>
+                <img src={cisco}></img>
+                <br></br>
+                <h3>Marketing Specialist</h3>
+                {/* <h2>Cisco Systems</h2> */}
                 <p>
                     My primary project in this role was creating the holy grail on Influencer Marketing campaigns, 
                     particularly, how a B2B corporation like Cisco can embrace and use this novel kind of marketing to 
