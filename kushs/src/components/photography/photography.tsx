@@ -16,6 +16,12 @@ function Photography() {
                     <button>Digital</button>
                 </a>
             </div>
+            <br></br>
+            <div>
+                <a href={'/film'}>
+                    <button>Film</button>
+                </a>
+            </div>
         </div>
     );
 }

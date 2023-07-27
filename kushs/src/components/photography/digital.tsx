@@ -19,9 +19,9 @@ function Digital() {
                     </div>
                 </div>
                 <div className="image-wrapper">
-                    <img src={hannah} alt="Budapest Aerial" />
+                    <img src={hannah} alt="Black and white photo of someone getting ready" />
                     <div className="overlay">
-                        <p>DJI Mavic Air 2<br></br>Budapest, Hungary</p>
+                        <p>FUJIFILM FinePix X100<br></br>Chapel Hill, NC</p>
                     </div>
                 </div>
             </div>

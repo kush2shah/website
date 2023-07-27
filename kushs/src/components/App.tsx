@@ -1,23 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
-import '../css/App.css';
+import '../css/app.css';
 
 import Home from './Home';
 
-import Photography from "./photography/photography";
-import Analog from "./photography/analog";
-import Digital from "./photography/digital";
-import Aerial from "./photography/aerial";
+import Photography from "./photography/Photography";
+import Film from "./photography/Film";
+import Digital from "./photography/Digital";
+import Aerial from "./photography/Aerial";
 
-import Experience from "./experience/experience";
-import Education from "./experience/education";
-import Work from "./experience/work";
-import Clubs from "./experience/clubs";
+import Experience from "./experience/Experience";
+import Education from "./experience/Education";
+import Work from "./experience/Work";
+import Clubs from "./experience/Clubs";
 
 import Info from './Info';
 
-import NotFound from './errors/notfound';
+import NotFound from './errors/NotFound';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/photography" element={<Photography />} />
-              <Route path="/film" element={<Analog />} />
+              <Route path="/film" element={<Film />} />
               <Route path="/digital" element={<Digital />} />
               <Route path="/aerial" element={<Aerial />} />
             <Route path="/experience" element={<Experience />} />

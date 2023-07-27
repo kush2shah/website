@@ -29,3 +29,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.App-paragraph {
+  font-family: -apple-system, 'Futura', 'Nunito', 'Roboto', sans-serif;
+  color: #FFFFFF; /* White */
+  font-size: calc(10px + 2vmin);
+  line-height: 1.5;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

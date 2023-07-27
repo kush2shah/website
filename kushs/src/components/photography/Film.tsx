@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Analog() {
+function Film() {
     return (
         <div>
-            <h1>Analog</h1>
+            <h1>Film</h1>
         </div>
     );
 }
 
-export default Analog;
+export default Film;
