@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../../css/work.css'
 import cisco from '../../assets/logos/cisco_logo.png'
-import wt from '../../assets/logos/wt_logo.png'
+import wt from '../../assets/logos/wt_logo.svg'
 
 function Work() {
     return (
@@ -11,7 +11,7 @@ function Work() {
                 <h1>Work Experience</h1>
             </div>
             <div className='willowtree'>
-                <img src={wt} alt={'WillowTree logo'}><img/>
+                <img src={wt} alt={'WillowTree logo'}></img>
                 <h3>Product Analyst Intern</h3>
                 <p>
                     As a product analyst at WillowTree, I worked on a project for a major telecommunications company. Throughout my time
