@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.61760a68.css",
-    "main.js": "/static/js/main.ef29e870.js",
+    "main.css": "/static/css/main.7ed37ad6.css",
+    "main.js": "/static/js/main.f900a33b.js",
     "static/js/787.28821193.chunk.js": "/static/js/787.28821193.chunk.js",
     "static/media/budapest_aerial.jpeg": "/static/media/budapest_aerial.b02236671b4588de0cd9.jpeg",
     "static/media/buda_castle.jpeg": "/static/media/buda_castle.75cdbfcc25a44e693e1b.jpeg",
     "static/media/mirror_hannah.jpeg": "/static/media/mirror_hannah.ee1af6a9e9aa734d9af9.jpeg",
     "static/media/mirror_brushing.jpeg": "/static/media/mirror_brushing.1426b6bdfbd4b2ee7ffe.jpeg",
+    "static/media/cisco_logo.png": "/static/media/cisco_logo.04519cb1fffa03b5186e.png",
     "index.html": "/index.html",
-    "main.61760a68.css.map": "/static/css/main.61760a68.css.map",
-    "main.ef29e870.js.map": "/static/js/main.ef29e870.js.map",
+    "main.7ed37ad6.css.map": "/static/css/main.7ed37ad6.css.map",
+    "main.f900a33b.js.map": "/static/js/main.f900a33b.js.map",
     "787.28821193.chunk.js.map": "/static/js/787.28821193.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.61760a68.css",
-    "static/js/main.ef29e870.js"
+    "static/css/main.7ed37ad6.css",
+    "static/js/main.f900a33b.js"
   ]
 }
