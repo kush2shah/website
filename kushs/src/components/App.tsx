@@ -6,6 +6,7 @@ import '../css/app.css';
 import Home from './Home';
 
 import Photography from "./photography/Photography";
+import Graduation from './photography/Graduation';
 import Film from "./photography/Film";
 import Digital from "./photography/Digital";
 import Aerial from "./photography/Aerial";
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/photography" element={<Photography />} />
+              <Route path="/grad" element={<Graduation />} />
               <Route path="/film" element={<Film />} />
               <Route path="/digital" element={<Digital />} />
               <Route path="/aerial" element={<Aerial />} />

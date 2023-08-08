@@ -2,8 +2,8 @@ import React from 'react';
 import firebase from 'firebase/app';
 import { app, analytics } from '../../firebase/firebase';
 
-import BudaCastle from '../../assets/aerial/buda_castle.jpeg';
-import Budapest from '../../assets/aerial/budapest_aerial.jpeg'
+import BudaCastle from '../../assets/aerial/budapest/buda_castle.jpeg';
+import Budapest from '../../assets/aerial/budapest/budapest_aerial.jpeg'
 
 import '../../css/photo.css'
 
