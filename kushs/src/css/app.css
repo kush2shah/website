@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: -apple-system, 'Futura', 'Nunito', 'Roboto', sans-serif;
+  font-family: -apple-system, Inter, system-ui;
   font-weight: 300;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -31,7 +31,7 @@ body {
 }
 
 .App-paragraph {
-  font-family: -apple-system, 'Futura', 'Nunito', 'Roboto', sans-serif;
+  font-family: -apple-system, Inter, system-ui;
   color: #FFFFFF; /* White */
   font-size: calc(10px + 2vmin);
   line-height: 1.5;

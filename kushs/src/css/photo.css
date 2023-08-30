@@ -42,3 +42,25 @@
 .image-wrapper:hover .overlay {
     opacity: 1;
 }
+
+/* Use CSS Grid for the image container */
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;  /* Reduced gap */
+    padding: 0;  /* Remove padding if any */
+}
+
+/* Set a minimum size for images */
+.image-wrapper img {
+    min-width: 100px;
+    min-height: 100px;
+    margin: 0;  /* Remove margin if any */
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .image-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

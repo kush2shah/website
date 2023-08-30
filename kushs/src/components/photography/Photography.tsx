@@ -10,11 +10,16 @@ function Photography() {
     return (
         <div>
             <h1>Photography</h1>
-            
+            <div>
+                <h3>
+                    What's in my camera bag?
+                </h3>
+                <p>I shoot with a SONY Alpha a7R III, Fujifilm FinePix X100, DJI Mavic Air 2, Nikon FE, and my iPhone 13 Pro Max.</p>
+            </div>
             <div className="image-container">
             <a href="/grad">
                     <div className="image-wrapper">
-                        <img src={gradImage} alt="Graduation photo" />
+                        <img src={gradImage} alt="Graduates" />
                         <div className="overlay">
                             <p>Grad Photos</p>
                         </div>
@@ -23,7 +28,7 @@ function Photography() {
 
                 <a href="/aerial">
                     <div className="image-wrapper">
-                        <img src={aerialImage} alt="Aerial photo" />
+                        <img src={aerialImage} alt="Aerial of Budapest" />
                         <div className="overlay">
                             <p>Aerial</p>
                         </div>
@@ -32,7 +37,7 @@ function Photography() {
                 
                 <a href="/digital">
                     <div className="image-wrapper">
-                        <img src={digitalImage} alt="Digital photo" />
+                        <img src={digitalImage} alt="Digital of friends" />
                         <div className="overlay">
                             <p>Digital</p>
                         </div>
@@ -41,7 +46,7 @@ function Photography() {
                 
                 <a href="/film">
                     <div className="image-wrapper">
-                        <img src={filmImage} alt="Film photo" />
+                        <img src={filmImage} alt="Film of people on a beach" />
                         <div className="overlay">
                             <p>Film</p>
                         </div>

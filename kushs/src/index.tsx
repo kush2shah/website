@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './css/index.css';
+import './assets/fonts/Inter/inter.css'
 
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
