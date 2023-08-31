@@ -4,7 +4,7 @@ import aerialImage from '../../assets/aerial/budapest/budapest_aerial.jpeg';
 import digitalImage from '../../assets/digital/x100/mirror_brushing.jpeg';
 import filmImage from '../../assets/film/portra_160/beach_walk.jpeg';
 
-import '../../css/photo.css'
+import '../../css/photo.scss'
 
 function Photography() {
     return (

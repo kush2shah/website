@@ -1,0 +1,66 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow images to wrap if they don't fit in one line */
+    height: calc(100vh - 100px); /* adjust as needed */
+    box-sizing: border-box;
+    padding: 10px; /* padding to prevent images from touching the edges */
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 10px; /* Add margin to individual image wrapper */
+    display: inline-block; /* Treat each image wrapper as an inline element */
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; /* Make sure the overlay covers the entire image */
+    bottom: 5px; /* Make sure the overlay covers the entire image */
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--sandstone);
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.image-wrapper:hover .overlay {
+    opacity: 1;
+}
+
+/* Use CSS Grid for the image container */
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;  /* Reduced gap */
+    padding: 0;  /* Remove padding if any */
+}
+
+/* Set a minimum size for images */
+.image-wrapper img {
+    min-width: 100px;
+    min-height: 100px;
+    margin: 0;  /* Remove margin if any */
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .image-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

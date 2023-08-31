@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../css/work.css'
+import '../../css/work.scss'
 import cisco from '../../assets/logos/cisco_logo.png'
 import wt from '../../assets/logos/wt_logo.svg'
 

@@ -1,48 +1,49 @@
 .work p {
-    font-family: -apple-system;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--navy);
-    margin: 20px;
-    text-align: left;
-    clear: both;
+  font-family: -apple-system;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--navy);
+  margin: 20px;
+  text-align: left;
+  clear: both;
 }
 
 .work h1 {
-    color: var(--carolina-blue);
-    text-align: center;
+  color: var(--carolina-blue);
+  text-align: center;
 }
 
 .work h2 {
-    color: var(--navy);
-    text-align: left;
-    margin: 20px;
+  color: var(--navy);
+  text-align: left;
+  margin: 20px;
 }
 
 .work h3 {
-    color: var(--dark-gray);
-    font-style: italic;
-    text-align: left;
-    margin: 20px;
-    clear: both;
+  color: var(--dark-gray);
+  font-style: italic;
+  text-align: left;
+  margin: 20px;
+  clear: both;
 }
 
 .work img {
-    max-width: 15%;
-    max-height: 15%;
-    width: auto;
-    height: auto;
-    float: left;
-    align-items: left;
-    margin-left: 20px;
+  max-width: 15%;
+  max-height: 15%;
+  width: auto;
+  height: auto;
+  float: left;
+  align-items: left;
+  margin-left: 20px;
 }
 
 .cisco h3 {
-    color: #049fd9;
+  color: #049fd9;
 }
-
 
 .willowtree h2 {
-    color: #19B39F;
-    text-align: left;
+  color: #19B39F;
+  text-align: left;
 }
+
+/*# sourceMappingURL=work.css.map */

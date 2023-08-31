@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-import '../../css/error.css'
+import '../../css/error.scss'
+import '../../css/github-button.scss'
 
 function NotFound() {
     const [dogImage, setDogImage] = useState(null);
@@ -21,7 +22,7 @@ function NotFound() {
                 <p>If you think there should be, let me know</p>
                 <br></br>
                 <a href='/' className='link'>
-                    <button>
+                    <button className={'gh-button'}>
                         Let's go home?
                     </button>
                 </a>

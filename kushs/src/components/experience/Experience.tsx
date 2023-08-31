@@ -2,7 +2,7 @@ import React from 'react';
 
 import wt from '../../assets/experience/wt_library.jpeg'
 
-import '../../css/photo.css'
+import '../../css/photo.scss'
 function Experience() {
     return (
         <div>

@@ -5,7 +5,7 @@ import { app, analytics } from '../../firebase/firebase';
 import BudaCastle from '../../assets/aerial/budapest/buda_castle.jpeg';
 import Budapest from '../../assets/aerial/budapest/budapest_aerial.jpeg'
 
-import '../../css/photo.css'
+import '../../css/photo.scss'
 
 function Aerial() {
     return (

@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
-import '../css/app.css';
+import '../css/app.scss';
 
 import Home from './Home';
 
 import Photography from "./photography/Photography";
 import Graduation from './photography/Graduation';
+import Booking from "./photography/Booking";
 import Film from "./photography/Film";
 import Digital from "./photography/Digital";
 import Aerial from "./photography/Aerial";
@@ -20,6 +21,7 @@ import Info from './Info';
 
 import NotFound from './errors/NotFound';
 
+
 function App() {
   return (
     <div className="App">
@@ -29,6 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/photography" element={<Photography />} />
               <Route path="/grad" element={<Graduation />} />
+                <Route path="/book" element={<Booking />} />
               <Route path="/film" element={<Film />} />
               <Route path="/digital" element={<Digital />} />
               <Route path="/aerial" element={<Aerial />} />

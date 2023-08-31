@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import brushing from '../../assets/digital/x100/mirror_brushing.jpeg';
 import hannah from '../../assets/digital/x100/mirror_hannah.jpeg';
 
-import '../../css/photo.css'
+import '../../css/photo.scss'
 
 function Digital() {
     return (
