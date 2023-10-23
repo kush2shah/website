@@ -1,22 +1,25 @@
-# Frontend build
-FROM node:16 as build
-WORKDIR /workspace/frontend
-COPY ./kushs/package.json /workspace/frontend/
-COPY ./kushs/tsconfig.json /workspace/frontend/
+# Build frontend
+FROM node:16 as frontend
+
+COPY ./kushs /workspace
+
+WORKDIR /workspace
+
 RUN npm install
-COPY ./kushs/src /workspace/frontend/src
+
 RUN npm run build
 
-# Backend build 
-FROM python:3.10
-WORKDIR /workspace/backend
-COPY ./kushs/backend/requirements.txt /workspace/backend/
+# Build backend
+FROM python:3.10 as backend
+WORKDIR /workspace
+COPY ./kushs/backend/requirements.txt /workspace/
 RUN pip install --no-cache-dir -r requirements.txt
-COPY ./kushs/backend /workspace/backend
+COPY ./kushs/backend /workspace
 
-# Bring frontend build into image
-COPY --from=build /workspace/frontend/build /workspace/frontend/build
-
-# Setup commands
+# Bring it all together
+FROM python:3.10
+WORKDIR /app
+COPY --from=frontend /workspace/build /app/build
+COPY --from=backend /workspace /app
 CMD ["python", "main.py"]
 EXPOSE 8080
