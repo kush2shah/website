@@ -1,12 +1,10 @@
 # Build frontend
 FROM node:16 as frontend
-
-COPY ./kushs /workspace
-
 WORKDIR /workspace
-
+COPY ./kushs/package.json /workspace/
 RUN npm install
-
+COPY ./kushs/public /workspace/public
+COPY ./kushs/src /workspace/src
 RUN npm run build
 
 # Build backend
