@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7fc7b873.css",
-    "main.js": "/static/js/main.ef3912e1.js",
+    "main.js": "/static/js/main.87c1dfc3.js",
     "static/js/787.28821193.chunk.js": "/static/js/787.28821193.chunk.js",
     "static/media/beach_walk.jpeg": "/static/media/beach_walk.0b02d3770f8ec1b0c24e.jpeg",
     "static/media/Inter.var.woff2?v=3.19": "/static/media/Inter.var.c2fe3cb2b7c746f7966a.woff2",
@@ -50,14 +50,15 @@
     "static/media/Inter-Thin.woff2?v=3.19": "/static/media/Inter-Thin.fff2a096db014f6239d4.woff2",
     "static/media/Inter-Regular.woff2?v=3.19": "/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
     "static/media/wt_logo.svg": "/static/media/wt_logo.f861b170df22dd225ac824bbc37acdb1.svg",
+    "static/media/trc_logo.png": "/static/media/trc_logo.9a3e83e80f5b88a3341a.png",
     "static/media/cisco_logo.png": "/static/media/cisco_logo.04519cb1fffa03b5186e.png",
     "index.html": "/index.html",
     "main.7fc7b873.css.map": "/static/css/main.7fc7b873.css.map",
-    "main.ef3912e1.js.map": "/static/js/main.ef3912e1.js.map",
+    "main.87c1dfc3.js.map": "/static/js/main.87c1dfc3.js.map",
     "787.28821193.chunk.js.map": "/static/js/787.28821193.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7fc7b873.css",
-    "static/js/main.ef3912e1.js"
+    "static/js/main.87c1dfc3.js"
   ]
 }
