@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7fc7b873.css",
-    "main.js": "/static/js/main.87c1dfc3.js",
+    "main.js": "/static/js/main.b0c3dd93.js",
     "static/js/787.28821193.chunk.js": "/static/js/787.28821193.chunk.js",
     "static/media/beach_walk.jpeg": "/static/media/beach_walk.0b02d3770f8ec1b0c24e.jpeg",
     "static/media/Inter.var.woff2?v=3.19": "/static/media/Inter.var.c2fe3cb2b7c746f7966a.woff2",
@@ -10,7 +10,9 @@
     "static/media/buda_castle.jpeg": "/static/media/buda_castle.75cdbfcc25a44e693e1b.jpeg",
     "static/media/McCauley_Cap_Throw.jpeg": "/static/media/McCauley_Cap_Throw.fdb382e89185755b9f4f.jpeg",
     "static/media/Inter-roman.var.woff2?v=3.19": "/static/media/Inter-roman.var.ba4caefcdf5b36b438db.woff2",
+    "static/media/golden_gate.jpeg": "/static/media/golden_gate.d422543857109db5a47b.jpeg",
     "static/media/mirror_hannah.jpeg": "/static/media/mirror_hannah.ee1af6a9e9aa734d9af9.jpeg",
+    "static/media/balboa.jpeg": "/static/media/balboa.f44cf3b076289979dc96.jpeg",
     "static/media/Inter-SemiBoldItalic.woff?v=3.19": "/static/media/Inter-SemiBoldItalic.463bdbfb28abad0fa6df.woff",
     "static/media/Inter-BoldItalic.woff?v=3.19": "/static/media/Inter-BoldItalic.b376885042f6c961a541.woff",
     "static/media/Inter-MediumItalic.woff?v=3.19": "/static/media/Inter-MediumItalic.3d0107dd43d0101274d3.woff",
@@ -54,11 +56,11 @@
     "static/media/cisco_logo.png": "/static/media/cisco_logo.04519cb1fffa03b5186e.png",
     "index.html": "/index.html",
     "main.7fc7b873.css.map": "/static/css/main.7fc7b873.css.map",
-    "main.87c1dfc3.js.map": "/static/js/main.87c1dfc3.js.map",
+    "main.b0c3dd93.js.map": "/static/js/main.b0c3dd93.js.map",
     "787.28821193.chunk.js.map": "/static/js/787.28821193.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7fc7b873.css",
-    "static/js/main.87c1dfc3.js"
+    "static/js/main.b0c3dd93.js"
   ]
 }
