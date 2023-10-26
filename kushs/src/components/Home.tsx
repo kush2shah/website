@@ -8,6 +8,7 @@ const Home: React.FC = () => {
         width: "200px",
         height: 'auto',
     }
+    const time = new Date()
     return (
         <div className="Home">
             <header className="Home-header">
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
                 </h1>
                 <p>
                     Feel free to follow along by clicking the menu links. <br></br>
-                    This build was deployed September 1, 2023 at 7:13 PM EST.
+                    This build was deployed October 25, 2023 at 2025 EST.
                 </p>
 
             </header>
@@ -30,9 +31,11 @@ const Home: React.FC = () => {
                 Change Log
             </h3>
             <p>
-                - Fixed mobile navigation bug where the menu would overlay every page<br></br>
-                - Fixed menu appearing to the side on mobile<br></br>
-                - Added skeleton of Graduation booking form<br></br>
+                - Behind the scenes work of implementing a backend using RedHat OpenShift<br></br>
+                - Added more work history<br></br>
+                - Change favicon <br></br>
+                - Add graduation photo preregistration form<br></br>
+                - Update photography page with new photos<br></br>
             </p>
         <div className="credit">
             <p>
