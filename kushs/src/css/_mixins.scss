@@ -1,0 +1,19 @@
+/* Collaborated with Anthropic's Claude */
+
+@mixin light-mode {
+  background: #fff;
+  color: #222;
+}
+
+@mixin dark-mode {
+  background: #222;
+  color: #fff;
+}
+
+body {
+  @include light-mode;
+
+  &.dark-theme {
+    @include dark-mode;
+  }
+}

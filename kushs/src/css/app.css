@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: var(--navy);  /* Navy */
+  background-color: var(--navy); /* Navy */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 .App-link {
-  color: #4B9CD3;  /* Carolina Blue */
+  color: #4B9CD3; /* Carolina Blue */
 }
 
 body {
@@ -38,7 +38,6 @@ body {
     color: #FFF;
   }
 }
-
 .App-paragraph {
   font-family: -apple-system, Inter, system-ui;
   color: #FFF;
@@ -50,3 +49,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*# sourceMappingURL=app.css.map */

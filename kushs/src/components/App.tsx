@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { PhotoProvider, PhotoView} from "react-photo-view";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 
@@ -27,29 +26,42 @@ import NotFound from './errors/NotFound';
 
 
 function App() {
-  return (
-    <div className="App">
-        <Router>
-        <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/photography" element={<Photography />} />
-              <Route path="/grad" element={<Graduation />} />
-                <Route path="/book" element={<Booking />} />
-              <Route path="/film" element={<Film />} />
-              <Route path="/digital" element={<Digital />} />
-              <Route path="/aerial" element={<Aerial />} />
-            <Route path="/experience" element={<Experience />} />
-              <Route path="/education" element={<Education />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/clubs" element={<Clubs />} />
-            <Route path="/info" element={<Info />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-        
-    </div>
-  );
+
+    interface AppProps {
+        darkMode: boolean;
+    }
+
+    const [darkMode, setDarkMode] = React.useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+      };
+
+
+
+      return (
+        <div className="App">
+            <Router>
+            <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/photography" element={<Photography />} />
+                  <Route path="/grad" element={<Graduation />} />
+                    <Route path="/book" element={<Booking />} />
+                  <Route path="/film" element={<Film />} />
+                  <Route path="/digital" element={<Digital />} />
+                  <Route path="/aerial" element={<Aerial />} />
+                <Route path="/experience" element={<Experience />} />
+                  <Route path="/education" element={<Education />} />
+                  <Route path="/work" element={<Work />} />
+                  <Route path="/clubs" element={<Clubs />} />
+                <Route path="/info" element={<Info />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Router>
+
+        </div>
+      );
 }
 
 export default App;

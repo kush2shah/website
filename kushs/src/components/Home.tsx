@@ -8,7 +8,6 @@ const Home: React.FC = () => {
         width: "200px",
         height: 'auto',
     }
-    const time = new Date()
     return (
         <div className="Home">
             <header className="Home-header">
@@ -31,6 +30,22 @@ const Home: React.FC = () => {
                 Change Log
             </h3>
             <p>
+                <h4>October 30, 2023</h4>
+                <a href='/grad' className='link'>
+                    - Update graduation page with photos<br></br>
+                </a>
+                <a href='/book' className='link'>
+                    - Complete graduation photo preregistration form<br></br>
+                    - Correct sizing issues for mobile devices<br></br>
+                </a>
+                <a href='/experience' className='link'>
+                    - Add new Work experience cover photo<br></br>
+                </a>
+                - Add dark mode
+
+            </p>
+            <p>
+                <h4>October 25, 2023</h4>
                 - Behind the scenes work of implementing a backend using RedHat OpenShift<br></br>
                 - Added more work history<br></br>
                 - Change favicon <br></br>
