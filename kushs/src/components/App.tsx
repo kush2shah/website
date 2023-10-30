@@ -1,7 +1,11 @@
 import React from 'react';
+
+import { PhotoProvider, PhotoView} from "react-photo-view";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
+
 import '../css/app.scss';
+import 'react-photo-view/dist/react-photo-view.css';
 
 import Home from './Home';
 
