@@ -58,9 +58,16 @@
     margin: 0;  /* Remove margin if any */
 }
 
+iframe {
+    width: 640px;
+}
+
 /* Media Queries for smaller screens */
 @media (max-width: 768px) {
     .image-container {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    iframe {
+        width: 100%;
     }
 }
