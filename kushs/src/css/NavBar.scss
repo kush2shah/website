@@ -1,3 +1,4 @@
+/* NavBar.scss */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -6,63 +7,39 @@
     height: 80px;
     position: sticky;
     top: 0;
-    background-color: var(--secondary-gray);
+    background-color: #FFFFFF; /* White background */
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
+}
 
-    &.scrolled {
-        height: 60px;
-        background-color: rgba(var(--secondary-gray), 0.8);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
+.navbar.scrolled {
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.8); /* White, but a bit transparent when scrolled */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-menu {
     display: flex;
     list-style: none;
-
-    li {
-        margin: 0 10px;
-
-        a {
-            color: var(--navy);
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: var(--carolina-blue);
-            }
-        }
-    }
 }
 
-@media (prefers-color-scheme: dark) {
-    .navbar {
-        background-color: #222;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-        &.scrolled {
-            background-color: rgba(34,34,34,0.8);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-    }
-
-    .navbar-menu {
-        li {
-            a {
-                color: var(--carolina-blue);
-
-                &:hover {
-                    color: var(--sandstone);
-                }
-            }
-        }
-    }
-
+.navbar-menu li {
+    margin: 0 10px;
 }
+
+.navbar-menu li a {
+    color: #13294B;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: #4B9CD3; /* Carolina Blue for hover effect */
+}
+
 .menu-icon {
-    color: var(--secondary-gray);
+    color: #13294B; /* Navy for menu icon */
     display: none;
     border: none;
     background: transparent;
@@ -70,31 +47,71 @@
 }
 
 @media screen and (max-width: 768px) {
-
     .navbar-menu {
         position: absolute;
-        top: 80px;
+        top: 44px;
         right: 0;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: 100vh;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: rgba(var(--secondary-gray), 0.8);
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.8);
+        opacity: 0;  /* Start with menu hidden */
+        transition: opacity 0.3s ease;  /* Optional fade effect */
         z-index: -1;
         pointer-events: none;
+    }
 
-        &.show-menu {
-            opacity: 1;
-            z-index: 101;
-            pointer-events: auto;
-        }
+    .navbar-menu.show-menu {
+        opacity: 1;  /* Make menu visible */
+        z-index: 101;
+        pointer-events: auto;
     }
 
     .menu-icon {
         display: block;
     }
+}
 
+@media screen and (max-width: 768px) and (prefers-color-scheme: dark) {
+    .navbar-menu {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar-menu li a {
+        color: var(--carolina-blue);
+    }
+    .navbar-menu li a:hover {
+        color: var(--sandstone); /* Carolina Blue for hover effect */
+    }
+    .menu-icon {
+        color: var(--sandstone);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .navbar {
+        background-color: #000; /* Black background */
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar.scrolled {
+        background-color: rgba(0, 0, 0, 0.8); /* Black, but a bit transparent when scrolled */
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-menu {
+        color: transparent;
+    }
+
+    .navbar-menu li a {
+        color: var(--carolina-blue);
+    }
+    .navbar-menu li a:hover {
+        color: var(--sandstone); /* Carolina Blue for hover effect */
+    }
+    .menu-icon {
+        color: var(--sandstone);
+    }
 }

@@ -19,7 +19,6 @@ function Booking() {
             <h1>Booking</h1>
             <div>
                 <iframe
-
                     src="https://docs.google.com/forms/d/e/1FAIpQLSdl92VffFUHtbQWkWjmpA0JLg7cUW6TTujHYbf2wcsWS5ZojA/viewform?embedded=true"
                         width={width}
                         height={width * 1.6}

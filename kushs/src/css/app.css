@@ -37,6 +37,9 @@ body {
     background-color: #000;
     color: #FFF;
   }
+  h1 {
+    color: var(--carolina-blue);
+  }
 }
 .App-paragraph {
   font-family: -apple-system, Inter, system-ui;

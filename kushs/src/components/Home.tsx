@@ -2,6 +2,7 @@ import React from 'react';
 
 import { FaGithub } from 'react-icons/fa';
 import '../css/home.scss'
+import '../css/link.scss'
 
 const Home: React.FC = () => {
     const imageStyle = {

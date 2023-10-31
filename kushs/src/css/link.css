@@ -1,0 +1,20 @@
+.link {
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: var(--carolina-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+  .link {
+    color: var(--carolina-blue);
+    transition: color 0.3s ease;
+  }
+  .link:hover {
+    color: var(--sandstone);
+  }
+}
+
+/*# sourceMappingURL=link.css.map */

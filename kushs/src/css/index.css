@@ -16,13 +16,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  line-height: 1.6;
-  color: var(--navy);
-  background-color: var(--secondary-gray);
-}
-
 a {
   text-decoration: none;
   color: inherit;
