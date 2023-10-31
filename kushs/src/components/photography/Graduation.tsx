@@ -36,7 +36,7 @@ function Graduation() {
                 <div className="image-wrapper">
                     <img src={lauren} alt="A grad in Kenan Stadium looking down into the camera" />
                     <div className="overlay">
-                        <p>Lauren Anderson<br></br>Class of 2023 </p>
+                        <p>Lauren Alexander<br></br>Class of 2023 </p>
                     </div>
                 </div>
                 <div className="image-wrapper">
