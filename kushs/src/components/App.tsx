@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 
 import '../css/app.scss';
+import '../css/TopButton.scss';
 import 'react-photo-view/dist/react-photo-view.css';
 
 import Home from './Home';
@@ -23,6 +24,8 @@ import Clubs from "./experience/Clubs";
 import Info from './Info';
 
 import NotFound from './errors/NotFound';
+
+import TopButton from "./TopButton";
 
 
 function App() {
@@ -59,7 +62,9 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Router>
-
+            {/*<div className={".top-btn"}>
+                <TopButton />
+            </div>*/}
         </div>
       );
 }

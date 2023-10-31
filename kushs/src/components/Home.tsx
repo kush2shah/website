@@ -17,7 +17,7 @@ const Home: React.FC = () => {
                 </h1>
                 <p>
                     Feel free to follow along by clicking the menu links. <br></br>
-                    This build was deployed October 30, 2023 at 0025 EST.
+                    This build was deployed October 31, 2023 at 0239 EST.
                 </p>
 
             </header>
@@ -31,6 +31,8 @@ const Home: React.FC = () => {
                 Change Log
             </h3>
             <p>
+                <h4>October 31, 2023</h4>
+                - Improve dark mode<br></br>
                 <h4>October 30, 2023</h4>
                 <a href='/grad' className='link'>
                     - Update graduation page with photos<br></br>

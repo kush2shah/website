@@ -22,15 +22,9 @@ function Graduation() {
 
             <div className="image-container">
                 <div className="image-wrapper">
-                    <img src={beliz} alt="Black and white photo of someone brushing" />
+                    <img src={beliz} alt="A grad at the Old Well looking into the camera leaning" />
                     <div className="overlay">
                         <p>Beliz Yilmaz<br></br> Class of 2023 </p>
-                    </div>
-                </div>
-                <div className="image-wrapper">
-                    <img src={erin} alt="The Golden Gate Bridge" />
-                    <div className="overlay">
-                        <p>Erin Silva<br></br> Class of 2023 </p>
                     </div>
                 </div>
                 <div className="image-wrapper">
@@ -51,8 +45,13 @@ function Graduation() {
                         <p>PJ Morales<br></br>Class of 2023</p>
                     </div>
                 </div>
+                <div className="image-wrapper">
+                    <img src={erin} alt="A grad in sunglasses against a sea of blue chairs" />
+                    <div className="overlay">
+                        <p>Erin Silva<br></br> Class of 2023 </p>
+                    </div>
+                </div>
             </div>
-
 
             {/* learn how to use PhotoProvider and PhotoView */}
             {/*<PhotoProvider>*/}
