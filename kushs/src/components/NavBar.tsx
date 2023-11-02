@@ -28,16 +28,16 @@ const NavBar = () => {
 
             <ul className={`navbar-menu ${isMenuOpen ? "show-menu" : ""}`}>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/" onClick={toggleMenu}>Home</Link>
                 </li>
                 <li>
-                    <Link to="/photography">Photography</Link>
+                    <Link to="/photography" onClick={toggleMenu}>Photography</Link>
                 </li>
                 <li>
-                    <Link to="/experience">Experience</Link>
+                    <Link to="/experience" onClick={toggleMenu}>Experience</Link>
                 </li>
                 <li>
-                    <Link to="/info">Info</Link>
+                    <Link to="/info" onClick={toggleMenu}>Info</Link>
                 </li>
             </ul>
 

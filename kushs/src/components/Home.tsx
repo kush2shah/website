@@ -17,7 +17,7 @@ const Home: React.FC = () => {
                 </h1>
                 <p>
                     Feel free to follow along by clicking the menu links. <br></br>
-                    This build was deployed October 31, 2023 at 0239 EST.
+                    This build was deployed November 2, 2023 at 1728 EST.
                 </p>
 
             </header>
@@ -31,6 +31,9 @@ const Home: React.FC = () => {
                 Change Log
             </h3>
             <p>
+                <h4>November 2, 2023</h4>
+                - Add analytics<br></br>
+                - Fix menu behavior on click<br></br>
                 <h4>October 31, 2023</h4>
                 - Improve dark mode<br></br>
                 <h4>October 30, 2023</h4>
