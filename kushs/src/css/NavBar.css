@@ -1,4 +1,3 @@
-/* NavBar.scss */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,7 +6,7 @@
   height: 80px;
   position: sticky;
   top: 0;
-  background-color: #FFFFFF; /* White background */
+  background-color: #FFFFFF;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
@@ -15,7 +14,7 @@
 
 .navbar.scrolled {
   height: 60px;
-  background-color: rgba(255, 255, 255, 0.8); /* White, but a bit transparent when scrolled */
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,11 +34,11 @@
 }
 
 .navbar-menu li a:hover {
-  color: #4B9CD3; /* Carolina Blue for hover effect */
+  color: #4B9CD3;
 }
 
 .menu-icon {
-  color: #13294B; /* Navy for menu icon */
+  color: #13294B;
   display: none;
   border: none;
   background: transparent;
@@ -57,13 +56,13 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
-    opacity: 0; /* Start with menu hidden */
-    transition: opacity 0.3s ease; /* Optional fade effect */
+    opacity: 0;
+    transition: opacity 0.3s ease;
     z-index: -1;
     pointer-events: none;
   }
   .navbar-menu.show-menu {
-    opacity: 1; /* Make menu visible */
+    opacity: 1;
     z-index: 101;
     pointer-events: auto;
   }
@@ -79,7 +78,7 @@
     color: var(--carolina-blue);
   }
   .navbar-menu li a:hover {
-    color: var(--sandstone); /* Carolina Blue for hover effect */
+    color: var(--sandstone);
   }
   .menu-icon {
     color: var(--sandstone);
@@ -87,11 +86,11 @@
 }
 @media (prefers-color-scheme: dark) {
   .navbar {
-    background-color: #000; /* Black background */
+    background-color: #000;
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
   }
   .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8); /* Black, but a bit transparent when scrolled */
+    background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
   }
   .navbar-menu {
@@ -101,7 +100,7 @@
     color: var(--carolina-blue);
   }
   .navbar-menu li a:hover {
-    color: var(--sandstone); /* Carolina Blue for hover effect */
+    color: var(--sandstone);
   }
   .menu-icon {
     color: var(--sandstone);

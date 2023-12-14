@@ -1,4 +1,5 @@
 import React from 'react';
+import coultureImage from '../../assets/digital/a6600/Coulture.jpeg';
 import gradImage from '../../assets/graduation/McCauley_Cap_Throw.jpeg';
 import aerialImage from '../../assets/aerial/budapest/budapest_aerial.jpeg';
 import digitalImage from '../../assets/digital/x100/mirror_brushing.jpeg';
@@ -11,13 +12,18 @@ function Photography() {
         <div>
             <h1>Photography</h1>
             <div>
-                <h3>
-                    What's in my camera bag?
-                </h3>
-                <p>I shoot with a SONY Alpha a7R III, Fujifilm FinePix X100, DJI Mavic Air 2, Nikon FE, and my iPhone 13 Pro Max.</p>
+
             </div>
             <div className="image-container">
-            <a href="/grad">
+                <a href="/awards">
+                    <div className="image-wrapper">
+                        <img src={coultureImage} alt="Two women in front of a window with a sunset in the background" />
+                        <div className="overlay">
+                            <p>Recognition</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/grad">
                     <div className="image-wrapper">
                         <img src={gradImage} alt="Graduates" />
                         <div className="overlay">

@@ -10,6 +10,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import Home from './Home';
 
 import Photography from "./photography/Photography";
+import Awards from "./photography/Awards";
 import Graduation from './photography/Graduation';
 import Booking from "./photography/Booking";
 import Film from "./photography/Film";
@@ -23,9 +24,12 @@ import Clubs from "./experience/Clubs";
 
 import Info from './Info';
 
+import ChangeLog from './ChangeLog';
+
 import NotFound from './errors/NotFound';
 
 import TopButton from "./TopButton";
+
 
 
 function App() {
@@ -49,6 +53,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/photography" element={<Photography />} />
+                  <Route path="/awards" element={<Awards />} />
                   <Route path="/grad" element={<Graduation />} />
                     <Route path="/book" element={<Booking />} />
                   <Route path="/film" element={<Film />} />
@@ -60,6 +65,7 @@ function App() {
                   <Route path="/clubs" element={<Clubs />} />
                 <Route path="/info" element={<Info />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/changelog" element={<ChangeLog />} />
               </Routes>
             </Router>
             {/*<div className={".top-btn"}>
