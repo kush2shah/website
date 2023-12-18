@@ -1,5 +1,5 @@
 import React from 'react';
-import coultureImage from '../../assets/digital/a6600/Coulture.jpeg';
+import coultureImage from '../../assets/awards/coulture/window_sunset.jpeg';
 import gradImage from '../../assets/graduation/McCauley_Cap_Throw.jpeg';
 import aerialImage from '../../assets/aerial/budapest/budapest_aerial.jpeg';
 import digitalImage from '../../assets/digital/x100/mirror_brushing.jpeg';

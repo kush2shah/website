@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-import '../../css/error.scss'
 import '../../css/github-button.scss'
 
 function NotFound() {
