@@ -1,63 +1,118 @@
+// Main image container
 .image-container {
-    display: grid;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    overflow-y: auto;
-    //max-height: 100vh;
-}
-
-.image-wrapper {
-    position: relative;
-    margin: 10px;
-    display: inline-block;
+  display: grid;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  overflow-y: auto;
+  //max-height: 100vh;
 }
 
 .image-container img {
-    flex: 0 0 auto;
-    width: 100%;
+  flex: 0 0 auto;
+  width: 100%;
 
 }
 
 .image-container:hover {
-    flex: 0 0 110%;
+  flex: 0 0 110%;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 5px;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--sandstone);
-    text-align: center;
-    font-size: 1.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--sandstone);
+  text-align: center;
+  font-size: 1.5em;
+}
+
+// Main image wrapper
+.image-wrapper {
+  position: relative;
+  margin: 10px;
+  display: inline-block;
 }
 
 .image-wrapper:hover .overlay {
-    opacity: 1;
+  opacity: 1;
 }
 
 .image-wrapper img {
-    min-width: 100px;
-    min-height: 100px;
-    margin: 0;
+  min-width: 100px;
+  min-height: 100px;
+  margin: 0;
 }
 
-//iframe {
-//    width: 640px;
-//}
+// Image wrapper for smaller, side-by-side images
+.image-wrapper-small {
+  position: relative;
+  margin: 10px;
+  display: inline-block;
+  width: 50%;
+}
 
-//@media (max-width: 768px) {
-//    .image-container {
-//        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-//    }
-//    iframe {
-//        width: 100%;
-//    }
-//}
+.image-wrapper-small:hover .overlay {
+  opacity: 1;
+}
+
+.image-wrapper-small img {
+  min-width: 100px;
+  min-height: 100px;
+  margin: 0;
+}
+
+// Image container for smaller, side-by-side images
+.image-container-small {
+  display: grid;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow-y: auto;
+  //max-height: 100vh;
+}
+
+.image-container-small img {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.image-container-small:hover {
+  flex: 0 0 110%;
+}
+
+// Image container for mini, app icon sized images
+.image-container-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding: 0 10px;
+  max-width: calc(100% - 20px);
+}
+
+.image-container-mini img {
+  flex: 0 0 auto;
+  width: 25%;
+  margin: 10px;
+}
+
+// Image wrapper for mini, app icon sized images
+.image-wrapper-mini {
+  position: relative;
+  width: 25%;
+}
+
+.image-wrapper-mini img {
+  width: 100%;
+  height: auto;
+}
+
+.image-wrapper-mini:hover .overlay {
+  opacity: 1;
+}

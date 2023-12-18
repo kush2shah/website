@@ -5,12 +5,6 @@
   overflow-y: auto;
 }
 
-.image-wrapper {
-  position: relative;
-  margin: 10px;
-  display: inline-block;
-}
-
 .image-container img {
   flex: 0 0 auto;
   width: 100%;
@@ -37,6 +31,12 @@
   font-size: 1.5em;
 }
 
+.image-wrapper {
+  position: relative;
+  margin: 10px;
+  display: inline-block;
+}
+
 .image-wrapper:hover .overlay {
   opacity: 1;
 }
@@ -45,6 +45,67 @@
   min-width: 100px;
   min-height: 100px;
   margin: 0;
+}
+
+.image-wrapper-small {
+  position: relative;
+  margin: 10px;
+  display: inline-block;
+  width: 50%;
+}
+
+.image-wrapper-small:hover .overlay {
+  opacity: 1;
+}
+
+.image-wrapper-small img {
+  min-width: 100px;
+  min-height: 100px;
+  margin: 0;
+}
+
+.image-container-small {
+  display: grid;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow-y: auto;
+}
+
+.image-container-small img {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.image-container-small:hover {
+  flex: 0 0 110%;
+}
+
+.image-container-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding: 0 10px;
+  max-width: calc(100% - 20px);
+}
+
+.image-container-mini img {
+  flex: 0 0 auto;
+  width: 25%;
+  margin: 10px;
+}
+
+.image-wrapper-mini {
+  position: relative;
+  width: 25%;
+}
+
+.image-wrapper-mini img {
+  width: 100%;
+  height: auto;
+}
+
+.image-wrapper-mini:hover .overlay {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=photo.css.map */

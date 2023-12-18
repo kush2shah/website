@@ -10,7 +10,7 @@ function ChangeLog() {
                 <h4>December 13, 2023</h4>
                 - New animal to check out!<br></br>
                 <a href={'/work'} className={'link'}>
-                - Work section completed<br></br>
+                    - Work section completed<br></br>
                 </a>
                 <a href={'/film'} className={'link'}>
                     Film photos added<br></br>

@@ -15,14 +15,15 @@ function Photography() {
 
             </div>
             <div className="image-container">
-                <a href="/awards">
+                <a href="/published">
                     <div className="image-wrapper">
                         <img src={coultureImage} alt="Two women in front of a window with a sunset in the background" />
                         <div className="overlay">
-                            <p>Recognition</p>
+                            <p>Published work</p>
                         </div>
                     </div>
                 </a>
+
                 <a href="/grad">
                     <div className="image-wrapper">
                         <img src={gradImage} alt="Graduates" />

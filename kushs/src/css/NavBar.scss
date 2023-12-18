@@ -1,116 +1,116 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    height: 80px;
-    position: sticky;
-    top: 0;
-    background-color: #FFFFFF;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  position: sticky;
+  top: 0;
+  background-color: #FFFFFF;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
 .navbar.scrolled {
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-menu {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 .navbar-menu li {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .navbar-menu li a {
-    color: #13294B;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #13294B;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .navbar-menu li a:hover {
-    color: #4B9CD3;
+  color: #4B9CD3;
 }
 
 .menu-icon {
-    color: #13294B;
-    display: none;
-    border: none;
-    background: transparent;
-    cursor: pointer;
+  color: #13294B;
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
-    .navbar-menu {
-        position: absolute;
-        top: 44px;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.8);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
-        pointer-events: none;
-    }
+  .navbar-menu {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+  }
 
-    .navbar-menu.show-menu {
-        opacity: 1;
-        z-index: 101;
-        pointer-events: auto;
-    }
+  .navbar-menu.show-menu {
+    opacity: 1;
+    z-index: 101;
+    pointer-events: auto;
+  }
 
-    .menu-icon {
-        display: block;
-    }
+  .menu-icon {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 768px) and (prefers-color-scheme: dark) {
-    .navbar-menu {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
+  .navbar-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 
-    .navbar-menu li a {
-        color: var(--carolina-blue);
-    }
-    .navbar-menu li a:hover {
-        color: var(--sandstone);
-    }
-    .menu-icon {
-        color: var(--sandstone);
-    }
+  .navbar-menu li a {
+    color: var(--carolina-blue);
+  }
+  .navbar-menu li a:hover {
+    color: var(--sandstone);
+  }
+  .menu-icon {
+    color: var(--sandstone);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    .navbar {
-        background-color: #000;
-        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-    }
+  .navbar {
+    background-color: #000;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  }
 
-    .navbar.scrolled {
-        background-color: rgba(0, 0, 0, 0.8);
-        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-    }
+  .navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  }
 
-    .navbar-menu {
-        color: transparent;
-    }
+  .navbar-menu {
+    color: transparent;
+  }
 
-    .navbar-menu li a {
-        color: var(--carolina-blue);
-    }
-    .navbar-menu li a:hover {
-        color: var(--sandstone);
-    }
-    .menu-icon {
-        color: var(--sandstone);
-    }
+  .navbar-menu li a {
+    color: var(--carolina-blue);
+  }
+  .navbar-menu li a:hover {
+    color: var(--sandstone);
+  }
+  .menu-icon {
+    color: var(--sandstone);
+  }
 }

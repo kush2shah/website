@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 
 import '../css/app.scss';
@@ -10,25 +10,26 @@ import 'react-photo-view/dist/react-photo-view.css';
 import Home from './Home';
 
 import Photography from "./photography/Photography";
-    import Awards from "./photography/Awards";
-    import Graduation from './photography/Graduation';
-        import Booking from "./photography/Booking";
-    import Film from "./photography/Film";
-    import Digital from "./photography/Digital";
-    import Aerial from "./photography/Aerial";
+import Published from "./photography/Published";
+import Graduation from './photography/Graduation';
+import Booking from "./photography/Booking";
+import Film from "./photography/Film";
+import Digital from "./photography/Digital";
+import Aerial from "./photography/Aerial";
 
 import Experience from "./experience/Experience";
-    import Projects from "./experience/Projects";
-    import Work from "./experience/Work";
-    import Education from "./experience/Education";
-    import Clubs from "./experience/Clubs";
+import Projects from "./experience/Projects";
+import Work from "./experience/Work";
+import Education from "./experience/Education";
+import Clubs from "./experience/Clubs";
 
 import Info from './Info';
 
 import ChangeLog from './ChangeLog';
 
-import NotFound from './errors/NotFound';
+import Chat from './gpt/Chat';
 
+import NotFound from './errors/NotFound';
 
 
 function App() {
@@ -36,28 +37,35 @@ function App() {
     return (
         <div className="App">
             <Router>
-            <NavBar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/photography" element={<Photography />} />
-                  <Route path="/awards" element={<Awards />} />
-                  <Route path="/grad" element={<Graduation />} />
-                    <Route path="/book" element={<Booking />} />
-                  <Route path="/film" element={<Film />} />
-                  <Route path="/digital" element={<Digital />} />
-                  <Route path="/aerial" element={<Aerial />} />
-                <Route path="/experience" element={<Experience />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/education" element={<Education />} />
-                  <Route path="/work" element={<Work />} />
-                  <Route path="/clubs" element={<Clubs />} />
-                <Route path="/info" element={<Info />} />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/changelog" element={<ChangeLog />} />
-              </Routes>
+                <NavBar/>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+
+                    <Route path="/photography" element={<Photography/>}/>
+                    <Route path="/published" element={<Published/>}/>
+                    <Route path="/grad" element={<Graduation/>}/>
+                    <Route path="/book" element={<Booking/>}/>
+                    <Route path="/film" element={<Film/>}/>
+                    <Route path="/digital" element={<Digital/>}/>
+                    <Route path="/aerial" element={<Aerial/>}/>
+
+                    <Route path="/experience" element={<Experience/>}/>
+                    <Route path="/projects" element={<Projects/>}/>
+                    <Route path="/education" element={<Education/>}/>
+                    <Route path="/work" element={<Work/>}/>
+                    <Route path="/clubs" element={<Clubs/>}/>
+
+                    <Route path="/info" element={<Info/>}/>
+
+                    <Route path="/chat" element={<Chat/>}/>
+
+                    <Route path="*" element={<NotFound/>}/>
+
+                    <Route path="/changelog" element={<ChangeLog/>}/>
+                </Routes>
             </Router>
         </div>
-      );
+    );
 }
 
 export default App;
