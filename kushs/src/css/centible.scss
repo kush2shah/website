@@ -1,0 +1,19 @@
+.centible-link {
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.centible-link:hover {
+  color: #8068f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .centible-link {
+    color: #8068f3;
+    transition: color 0.3s ease;
+  }
+
+  .centible-link:hover {
+    color: var(--sandstone);
+  }
+}

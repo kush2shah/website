@@ -3,6 +3,7 @@ import React from 'react';
 import wt from '../../assets/experience/wt_shoot.jpeg'
 import climbing from '../../assets/experience/climbing.jpeg'
 import kenan from '../../assets/experience/kenan.jpeg'
+import centible from '../../assets/experience/centible/centible_team.jpeg'
 
 import '../../css/photo.scss'
 function Experience() {
@@ -11,6 +12,14 @@ function Experience() {
             <h1>Experience</h1>
 
             <div className="image-container">
+                <a href="/projects">
+                    <div className='image-wrapper'>
+                        <img src={centible} alt='The Centible Team on launch day' />
+                        <div className='overlay'>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+                </a>
                 <a href="/work">
                     <div className='image-wrapper'>
                         <img src={wt} alt='WillowTree employees talking with each other' />

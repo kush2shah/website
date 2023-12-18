@@ -4,7 +4,7 @@ import balance from "../../assets/film/gold_200/balance.jpeg";
 import madison from "../../assets/film/gold_200/madison.jpeg";
 import glimmer from "../../assets/film/gold_200/glimmer.jpeg";
 
-import '../../css/left-align-header.scss'
+import '../../css/left-align.scss'
 
 function Film() {
     return (
@@ -12,7 +12,7 @@ function Film() {
             <h1>Film</h1>
             <h5>All photos shot on Nikon FE with a Micro-NIKKOR 55mm f/2.8 lens</h5>
 
-            <div>
+            <div className={'left-align'}>
                 <h3>Kodak Gold 200</h3>
                 <div className="image-container">
                     <div className="image-wrapper">
