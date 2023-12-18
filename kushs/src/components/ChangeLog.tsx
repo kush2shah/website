@@ -7,6 +7,20 @@ function ChangeLog() {
                 Change Log
             </h1>
             <p>
+                <h4>December 18, 2023</h4>
+                <a href={'/projects'} className={'link'}>
+                    - Add Centible information to Projects<br></br>
+                </a>
+                <a href={'/'} className={'link'}>
+                    - Update home page<br></br>
+                </a>
+                <a href={'/info'} className={'link'}>
+                    - There's a photo of me in info now!<br></br>
+                </a>
+                - Detach change log from homepage<br></br>
+                - Clean up CSS and code<br></br>
+                - Explored new photo display options<br/>
+
                 <h4>December 13, 2023</h4>
                 - New animal to check out!<br></br>
                 <a href={'/work'} className={'link'}>
