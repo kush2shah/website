@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.43a2f2ff.css",
-    "main.js": "/static/js/main.c820b4b6.js",
+    "main.js": "/static/js/main.770e16b6.js",
     "static/js/787.28821193.chunk.js": "/static/js/787.28821193.chunk.js",
     "static/media/erin.jpg": "/static/media/erin.7de9c85e00c486905277.jpg",
     "static/media/lake.jpeg": "/static/media/lake.4c469c6561cc2e64eab5.jpeg",
     "static/media/santorini.jpeg": "/static/media/santorini.1479ac279ee29259bcc3.jpeg",
+    "static/media/marge.jpg": "/static/media/marge.29699e75f02ff4a9d39e.jpg",
     "static/media/madison.jpeg": "/static/media/madison.b323ef559d5f6bbcc321.jpeg",
     "static/media/centible_customization.png": "/static/media/centible_customization.b49b26545af02dba6636.png",
     "static/media/balance.jpeg": "/static/media/balance.c98e6d86809c8e11fc3e.jpeg",
@@ -29,6 +30,7 @@
     "static/media/golden_gate.jpeg": "/static/media/golden_gate.d422543857109db5a47b.jpeg",
     "static/media/mirror_hannah.jpeg": "/static/media/mirror_hannah.ee1af6a9e9aa734d9af9.jpeg",
     "static/media/pj.jpeg": "/static/media/pj.9c6efd4ef08bf81dffc2.jpeg",
+    "static/media/chase.jpeg": "/static/media/chase.004d8e75e4fbbc3c3b7c.jpeg",
     "static/media/headshot.jpeg": "/static/media/headshot.3175b08e2650db352040.jpeg",
     "static/media/balboa.jpeg": "/static/media/balboa.f44cf3b076289979dc96.jpeg",
     "static/media/Inter-SemiBoldItalic.woff?v=3.19": "/static/media/Inter-SemiBoldItalic.463bdbfb28abad0fa6df.woff",
@@ -75,11 +77,11 @@
     "static/media/cisco_logo.png": "/static/media/cisco_logo.04519cb1fffa03b5186e.png",
     "index.html": "/index.html",
     "main.43a2f2ff.css.map": "/static/css/main.43a2f2ff.css.map",
-    "main.c820b4b6.js.map": "/static/js/main.c820b4b6.js.map",
+    "main.770e16b6.js.map": "/static/js/main.770e16b6.js.map",
     "787.28821193.chunk.js.map": "/static/js/787.28821193.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.43a2f2ff.css",
-    "static/js/main.c820b4b6.js"
+    "static/js/main.770e16b6.js"
   ]
 }
