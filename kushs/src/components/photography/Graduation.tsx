@@ -5,6 +5,8 @@ import erin from '../../assets/graduation/erin.jpg';
 import lauren from '../../assets/graduation/lauren.jpeg';
 import mccauley from '../../assets/graduation/McCauley_Cap_Throw.jpeg';
 import pj from '../../assets/graduation/pj.jpeg';
+import marge from '../../assets/graduation/marge.jpg';
+import chase from '../../assets/graduation/chase.jpeg';
 
 import {PhotoProvider, PhotoView} from "react-photo-view";
 
@@ -21,6 +23,18 @@ function Graduation() {
             </a>
 
             <div className="image-container">
+                <div className="image-wrapper">
+                    <img src={chase} alt="A grad looking at computers programming" />
+                    <div className="overlay">
+                        <p>Chase Allen<br></br> Class of 2023 </p>
+                    </div>
+                </div>
+                <div className="image-wrapper">
+                    <img src={marge} alt="A grad at the Old Well looking into the camera leaning" />
+                    <div className="overlay">
+                        <p>Margaret Seets<br></br> Class of 2023 </p>
+                    </div>
+                </div>
                 <div className="image-wrapper">
                     <img src={beliz} alt="A grad at the Old Well looking into the camera leaning" />
                     <div className="overlay">

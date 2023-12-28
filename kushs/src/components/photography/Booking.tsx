@@ -17,12 +17,14 @@ function Booking() {
     return (
         <div>
             <h1>Booking</h1>
+            <a href="https://calendly.com/kmsh/grad" className={'link'}>If the booking interface doesn't render properly on your device, <br></br> please click here</a>
+            <br></br>
             <div>
                 <iframe
                     src="https://calendly.com/kmsh/grad"
                     width={width * 0.8}
                     // height={width * 1.5}
-                    style={{ minWidth: 320, height: 700 }}
+                    style={{ minWidth: 280, height: 700 }}
                     frameBorder="0"
                 />
                 {/*<iframe
@@ -34,7 +36,6 @@ function Booking() {
                     Loading…
                 </iframe>*/}
             </div>
-            <a href="https://calendly.com/kmsh/grad" className={'link'}>If the booking interface doesn't render properly on your device, <br></br> please click here</a>
         </div>
     );
 }
