@@ -11,6 +11,7 @@ function Published() {
                     <img src={coulture} alt={'Two women in front of a sunset'}/>
                 </div>
             </div>
+            <p>This page is still under construction :)</p>
         </div>
     );
 }

@@ -21,6 +21,7 @@ const Info: React.FC = () => {
                     Howdy! I am a Senior at the University of North Carolina
                     at Chapel Hill studying Computer Science and Business.
                 </p>
+                <p>This page is still under construction :)</p>
                 <a href="https://www.linkedin.com/in/kushsha/" target="_blank" rel="noopener noreferrer"
                    className='icon-link'>
                     <FaLinkedinIn size={64}/>

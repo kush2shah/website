@@ -7,6 +7,11 @@ function ChangeLog() {
                 Change Log
             </h1>
             <p>
+                <h4>December 27, 2023</h4>
+                <a href={'/book'} className={'link'}>
+                    - Switch booking registration to a Calendly<br></br>
+                </a>
+                <p>Add placeholder text on unfinished pages</p>
                 <h4>December 18, 2023</h4>
                 <a href={'/projects'} className={'link'}>
                     - Add Centible information to Projects<br></br>
