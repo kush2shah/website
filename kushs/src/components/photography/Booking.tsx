@@ -20,9 +20,9 @@ function Booking() {
             <div>
                 <iframe
                     src="https://calendly.com/kmsh/grad"
-                    width={width}
-                    height={width * 1.5}
-                    style={{ minWidth: 320, height: 800 }}
+                    width={width * 0.8}
+                    // height={width * 1.5}
+                    style={{ minWidth: 320, height: 700 }}
                     frameBorder="0"
                 />
                 {/*<iframe
