@@ -15,14 +15,6 @@ function Photography() {
 
             </div>
             <div className="image-container">
-                <a href="/published">
-                    <div className="image-wrapper">
-                        <img src={coultureImage} alt="Two women in front of a window with a sunset in the background" />
-                        <div className="overlay">
-                            <p>Published work</p>
-                        </div>
-                    </div>
-                </a>
 
                 <a href="/grad">
                     <div className="image-wrapper">
@@ -56,6 +48,15 @@ function Photography() {
                         <img src={filmImage} alt="Film of people on a beach" />
                         <div className="overlay">
                             <p>Film</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/published">
+                    <div className="image-wrapper">
+                        <img src={coultureImage} alt="Two women in front of a window with a sunset in the background" />
+                        <div className="overlay">
+                            <p>Published work</p>
                         </div>
                     </div>
                 </a>
