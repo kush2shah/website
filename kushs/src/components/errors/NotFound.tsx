@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import '../../css/error.scss'
-import '../../css/github-button.scss'
+import '../../css/global/github-button.scss'
 
 function NotFound() {
     const [dogImage, setDogImage] = useState(null);

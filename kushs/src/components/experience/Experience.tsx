@@ -5,7 +5,7 @@ import climbing from '../../assets/experience/climbing.jpeg'
 import kenan from '../../assets/experience/kenan.jpeg'
 import centible from '../../assets/experience/centible/centible_team.jpeg'
 
-import '../../css/photo.scss'
+import '../../css/photo/photo.scss'
 function Experience() {
     return (
         <div>

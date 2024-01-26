@@ -1,0 +1,19 @@
+.apperture {
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.apperture:hover {
+  color: var(--carolina-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+  .apperture {
+    color: var(--carolina-blue);
+    transition: color 0.3s ease;
+  }
+
+  .apperture:hover {
+    color: var(--sandstone);
+  }
+}

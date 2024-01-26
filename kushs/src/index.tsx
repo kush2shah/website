@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 
-import './css/index.scss';
+import './css/global/index.scss';
 import './assets/fonts/Inter/inter.css'
 
 import App from './components/App';

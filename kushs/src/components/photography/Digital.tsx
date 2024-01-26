@@ -6,7 +6,7 @@ import hannah from '../../assets/digital/x100/mirror_hannah.jpeg';
 import ggb from '../../assets/digital/a7/golden_gate.jpeg'
 import balboa from '../../assets/digital/a7/balboa.jpeg'
 
-import '../../css/photo.scss'
+import '../../css/photo/photo.scss'
 
 function Digital() {
     return (

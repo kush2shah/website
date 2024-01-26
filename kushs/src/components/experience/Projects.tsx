@@ -1,12 +1,17 @@
 import React from 'react';
 
-import '../../css/centible.scss'
+import '../../css/experience/centible.scss'
+import '../../css/experience/apperture.scss'
 
 import centibleSpending from '../../assets/experience/centible/centible_spending.jpeg'
 import centibleLogo from '../../assets/experience/centible/centible_logo.png'
 import centibleOnboard from '../../assets/experience/centible/centible_onboard.png'
 import centibleInbox from '../../assets/experience/centible/centible_inbox.png'
 import centibleCustomization from '../../assets/experience/centible/centible_customization.png'
+
+import unfinishedApp from '../../assets/experience/unfinished_app_icon.png'
+import appertureHome from '../../assets/experience/apperture/apperture_home.jpeg'
+import apperturePost from '../../assets/experience/apperture/apperture_post.png'
 
 function Projects() {
     return (
@@ -66,7 +71,34 @@ function Projects() {
                         <img src={centibleCustomization} alt={'A screenshot of Centible'}></img>
                     </div>
                 </div>
+            </div>
+            <br></br><br></br>
 
+            <div className={'left-align'}>
+                <div className={'image-container-mini'}>
+                    <div className={'image-wrapper-mini'}>
+                        <img src={unfinishedApp} alt={'A screenshot of Centible'}></img>
+                    </div>
+                </div>
+                <a className={'apperture'}>
+                    <h2>Apperture</h2>
+                </a>
+                <h3>Co-Creator</h3>
+                <p>Apperture is a mobile app intended to help photographers research and share photography.<br>
+                </br>This product was ideated from a need for a high quality platform where photographers could share photos
+                with each other, but rather than focus on the social element, Apperture allows them to focus on the
+                metadata. Photographers can research and learn about lenses that work on their camera body, different
+                strengths in different models, and what settings they should use to capture similar photos.<br></br>
+                I ideated and worked on product vision, defining the MVP, and market research, while the app was programmed by
+                Sam Gilmore.</p>
+                <div className={'image-container-mini'}>
+                    <div className={'image-wrapper-mini'}>
+                        <img src={appertureHome} alt={'A screenshot of Apperture\'s home page'}></img>
+                    </div>
+                    <div className={'image-wrapper-mini'}>
+                        <img src={apperturePost} alt={'A screenshot of a post on Apperture'}></img>
+                    </div>
+                </div>
             </div>
         </div>
     );

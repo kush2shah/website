@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu } from "react-icons/fi"; // Hamburger Menu Icon
 import { CgClose } from "react-icons/cg"; // Close Menu Icon
-import '../css/NavBar.scss';
+import '../css/global/NavBar.scss';
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

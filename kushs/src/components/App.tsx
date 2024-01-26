@@ -3,8 +3,8 @@ import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 
-import '../css/app.scss';
-import '../css/TopButton.scss';
+import '../css/global/app.scss';
+import '../css/global/TopButton.scss';
 import 'react-photo-view/dist/react-photo-view.css';
 
 import Home from './Home';

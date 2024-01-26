@@ -3,8 +3,8 @@ import React from 'react';
 import {FaGithub} from 'react-icons/fa';
 import {MdPublishedWithChanges} from "react-icons/md";
 
-import '../css/footer.scss'
-import '../css/link.scss'
+import '../css/global/footer.scss'
+import '../css/global/link.scss'
 import santorini from "../assets/aerial/greece/santorini.jpeg";
 import gradImage from "../assets/graduation/McCauley_Cap_Throw.jpeg";
 import centible from "../assets/experience/centible/centible_team.jpeg";

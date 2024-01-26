@@ -4,7 +4,7 @@ import balance from "../../assets/film/gold_200/balance.jpeg";
 import madison from "../../assets/film/gold_200/madison.jpeg";
 import glimmer from "../../assets/film/gold_200/glimmer.jpeg";
 
-import '../../css/left-align.scss'
+import '../../css/global/left-align.scss'
 
 function Film() {
     return (
