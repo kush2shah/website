@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 import NavBar from './NavBar';
 
 import '../css/global/app.scss';
@@ -31,6 +31,14 @@ import Chat from './gpt/Chat';
 
 import NotFound from './errors/NotFound';
 
+function RedirectToDataVizMod2() {
+    const navigate = useNavigate();
+    React.useEffect(() => {
+        window.location.href = "https://colab.research.google.com/drive/1jZlqFIYKMHGCoYCdT3DD6tbj19S0aUi5?usp=sharing";
+    }, [navigate]);
+
+    return null;
+}
 
 function App() {
     const [darkMode, setDarkMode] = React.useState(false);
@@ -62,6 +70,8 @@ function App() {
                     <Route path="*" element={<NotFound/>}/>
 
                     <Route path="/changelog" element={<ChangeLog/>}/>
+
+                    <Route path="/datavizmod2" element={<RedirectToDataVizMod2 />} />
                 </Routes>
             </Router>
         </div>
