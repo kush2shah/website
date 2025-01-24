@@ -19,6 +19,7 @@ function ChangeLog() {
                 #TODO: update work experience section<br/>
                 #TODO: update booking information<br/>
                 #TODO: improve photo experience globally<br/>
+                #TODO: fix homepage<br/>
 
                 <h4>December 27, 2023</h4>
                 <a href={'/book'} className={'link'}>

@@ -1,2 +1,4 @@
 kushs/deploy_key
 kushs/deploy_key.pub
+/node_modules
+CNAME
