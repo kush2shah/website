@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../css/global/link.scss';
+
 function ChangeLog() {
     return (
         <div>
@@ -7,6 +9,11 @@ function ChangeLog() {
                 Change Log
             </h1>
             <p>
+                <h4>Jan 23, 2025</h4>
+                <a className={'link'} href={'/grad'}>
+                    - Update Graduation Photo portfolio<br/>
+                </a>
+                - Complete some TODOs on formatting/user experience<br/>
                 <h4>Jan 16, 2025</h4>
                 - Update copyright to 2025<br/>
                 - Fix package.json to build and deploy project locally using npm run deploy<br/>
@@ -18,8 +25,10 @@ function ChangeLog() {
                 - Improve responsiveness and mobile experience<br/>
                 #TODO: update work experience section<br/>
                 #TODO: update booking information<br/>
+                Done, 24 Jan 2025<br/>
                 #TODO: improve photo experience globally<br/>
                 #TODO: fix homepage<br/>
+                Done, 24 Jan 2025<br/>
 
                 <h4>December 27, 2023</h4>
                 <a href={'/book'} className={'link'}>

@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 
 import '../css/global/app.scss';
 import '../css/global/TopButton.scss';
-import 'react-photo-view/dist/react-photo-view.css';
+// import 'react-photo-view/dist/react-photo-view.css';
 
 import Home from './Home';
 

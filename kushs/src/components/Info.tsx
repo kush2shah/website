@@ -1,22 +1,18 @@
 import React from 'react';
-
-import {FaLinkedinIn} from 'react-icons/fa';
-import {TiSocialInstagram} from 'react-icons/ti';
-
-import headshot from '../assets/digital/a7/headshot.jpeg'
+import { FaLinkedinIn } from 'react-icons/fa';
+import { TiSocialInstagram } from 'react-icons/ti';
+import headshot from '../assets/digital/a7/headshot.jpeg';
 
 const Info: React.FC = () => {
     return (
         <div className="Info">
             <header className="Info-header">
-                <div className={'image-container'}>
-                    <div className={'image-wrapper'}>
-                        <img src={headshot} alt={'Me in front of the Old Well'}/>
+                <div className="featured-image featured-image--small">
+                    <div className="featured-image__wrapper">
+                        <img src={headshot} alt="Me in front of the Old Well" />
                     </div>
                 </div>
-                <h1>
-                    Kush Shah
-                </h1>
+                <h1>Kush Shah</h1>
                 <p>
                     Hey there, thanks for checking out my website. I built this from scratch using React.js, TypeScript, and SCSS.
                     <br/>
@@ -29,17 +25,21 @@ const Info: React.FC = () => {
                     When I'm left with time to myself, I fill it taking photos of the people and the world around me, travelling the world, listening to music, and
                     playing with different technologies. I enjoy going outside and exploring the world around me, striving to do something each day that pushes me outside my
                     comfort zone. I'd love to chat with you about any of these things, so feel free to reach out!
-
                 </p>
-                <a href="https://www.linkedin.com/in/kushsha/" target="_blank" rel="noopener noreferrer"
-                   className='icon-link'>
-                    <FaLinkedinIn size={64}/>
-                </a>
-
-                <a href="https://www.instagram.com/kushspictures/" target="_blank" rel="noopener noreferrer"
-                   className="icon-link">
-                    <TiSocialInstagram size={64}/>
-                </a>
+                <div className="social-links">
+                    <a href="https://www.linkedin.com/in/kushsha/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="icon-link">
+                        <FaLinkedinIn size={64} />
+                    </a>
+                    <a href="https://www.instagram.com/kushspictures/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="icon-link">
+                        <TiSocialInstagram size={64} />
+                    </a>
+                </div>
             </header>
         </div>
     );

@@ -36,14 +36,14 @@ function Experience() {
                             </div>
                     </div>
                 </a>
-                <a href="/clubs">
-                    <div className='image-wrapper'>
-                        <img src={climbing} alt='Me climbing at Pilot Mountain' />
-                            <div className='overlay'>
-                                <p>Other experience</p>
-                            </div>
-                    </div>
-                </a>
+                {/*<a href="/clubs">*/}
+                {/*    <div className='image-wrapper'>*/}
+                {/*        <img src={climbing} alt='Me climbing at Pilot Mountain' />*/}
+                {/*            <div className='overlay'>*/}
+                {/*                <p>Other experience</p>*/}
+                {/*            </div>*/}
+                {/*    </div>*/}
+                {/*</a>*/}
             </div>
         </div>
     );
