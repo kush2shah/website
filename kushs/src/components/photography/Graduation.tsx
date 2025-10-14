@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 import beliz from '../../assets/graduation/beliz.jpeg';
 import erin from '../../assets/graduation/erin.jpg';
@@ -16,20 +17,54 @@ type Photo = {
     class: string;
 };
 
+// Animation component for each photo with staged hover effects
+function AnimatedPhoto({ src, alt, caption, index, onClick }: { src: string, alt: string, caption: string, index: number, onClick: () => void }) {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
+    const [hoverStage, setHoverStage] = React.useState<'none' | 'initial' | 'sustained'>('none');
+    const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+    const handleMouseEnter = () => {
+        setHoverStage('initial');
+
+        // After 1s, move to sustained hover
+        hoverTimeoutRef.current = setTimeout(() => {
+            setHoverStage('sustained');
+        }, 1000);
+    };
+
+    const handleMouseLeave = () => {
+        setHoverStage('none');
+        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            className={`image-wrapper ${hoverStage !== 'none' ? `hover-${hoverStage}` : ''}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.4, 0, 0.2, 1]
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={onClick}
+        >
+            <img src={src} alt={alt} loading="lazy" />
+            <div className="overlay">
+                <p dangerouslySetInnerHTML={{ __html: caption }} />
+            </div>
+        </motion.div>
+    );
+}
+
 const Graduation = () => {
     const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-
-    // Lock body scroll when modal is open
-    useEffect(() => {
-        if (selectedPhoto) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [selectedPhoto]);
 
     const photos: Photo[] = [
         {
@@ -126,7 +161,13 @@ const Graduation = () => {
 
     return (
         <div>
-            <h1>Graduation</h1>
+            <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                Graduation
+            </motion.h1>
 
             <a href={'mailto:photo@kushs.org'} className='link'>
                 <button className={'gh-button'}>
@@ -142,39 +183,40 @@ const Graduation = () => {
 
             <div className="image-container">
                 {photos.map((photo, index) => (
-                    <div
+                    <AnimatedPhoto
                         key={index}
-                        className="image-wrapper"
+                        src={photo.url}
+                        alt={photo.alt}
+                        caption={`${photo.name}<br/>${photo.class}`}
+                        index={index}
                         onClick={() => setSelectedPhoto(photo)}
-                    >
-                        <img src={photo.url} alt={photo.alt} />
-                        <div className="overlay">
-                            <p>{photo.name}<br></br>{photo.class}</p>
-                        </div>
-                    </div>
+                    />
                 ))}
             </div>
 
-            {/* Photo Modal */}
-            {selectedPhoto && (
-                <div
-                    className={`photo-modal ${selectedPhoto ? 'visible' : ''}`}
-                    onClick={() => setSelectedPhoto(null)}
-                >
-                    <button
-                        className="photo-modal__close"
+            {/* Click-to-open Modal */}
+            <AnimatePresence>
+                {selectedPhoto && (
+                    <motion.div
+                        className="photo-modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
                         onClick={() => setSelectedPhoto(null)}
-                        aria-label="Close photo"
                     >
-                        <X size={24} />
-                    </button>
-                    <img
-                        src={selectedPhoto.url}
-                        alt={selectedPhoto.alt}
-                        onClick={(e) => e.stopPropagation()}
-                    />
-                </div>
-            )}
+                        <motion.img
+                            src={selectedPhoto.url}
+                            alt={selectedPhoto.alt}
+                            className="photo-modal-image"
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
