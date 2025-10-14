@@ -30,15 +30,28 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #000;
-    color: #FFF;
+    background-color: var(--bg-dark);
+    color: var(--text-dark-primary);
   }
   h1 {
     color: var(--carolina-blue);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

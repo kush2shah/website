@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import NavBar from './NavBar';
 
 import '../css/global/app.scss';
@@ -64,42 +65,91 @@ function RedirectToFlightAppPP() {
     return null;
 }
 
+// Page transition variants
+const pageVariants = {
+    initial: {
+        opacity: 0,
+        y: 20,
+    },
+    animate: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.4,
+            ease: [0.4, 0, 0.2, 1] as const,
+        },
+    },
+    exit: {
+        opacity: 0,
+        y: -20,
+        transition: {
+            duration: 0.3,
+            ease: [0.4, 0, 0.2, 1] as const,
+        },
+    },
+};
+
+// Wrapper component to handle animations
+function AnimatedRoutes() {
+    const location = useLocation();
+
+    return (
+        <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<PageWrapper><Home/></PageWrapper>}/>
+
+                <Route path="/photography" element={<PageWrapper><Photography/></PageWrapper>}/>
+                <Route path="/published" element={<PageWrapper><Published/></PageWrapper>}/>
+                <Route path="/grad" element={<PageWrapper><Graduation/></PageWrapper>}/>
+                <Route path="/book" element={<PageWrapper><Booking/></PageWrapper>}/>
+                <Route path="/film" element={<PageWrapper><Film/></PageWrapper>}/>
+                <Route path="/digital" element={<PageWrapper><Digital/></PageWrapper>}/>
+                <Route path="/aerial" element={<PageWrapper><Aerial/></PageWrapper>}/>
+
+                <Route path="/experience" element={<PageWrapper><Experience/></PageWrapper>}/>
+                <Route path="/projects" element={<PageWrapper><Projects/></PageWrapper>}/>
+                <Route path="/education" element={<PageWrapper><Education/></PageWrapper>}/>
+                <Route path="/work" element={<PageWrapper><Work/></PageWrapper>}/>
+                <Route path="/clubs" element={<PageWrapper><Clubs/></PageWrapper>}/>
+
+                <Route path="/info" element={<PageWrapper><Info/></PageWrapper>}/>
+
+                <Route path="/chat" element={<PageWrapper><Chat/></PageWrapper>}/>
+
+                <Route path="/changelog" element={<PageWrapper><ChangeLog/></PageWrapper>}/>
+
+                <Route path="*" element={<PageWrapper><NotFound/></PageWrapper>}/>
+
+                <Route path="/datavizmod2" element={<RedirectToDataVizMod2 />} />
+                <Route path="/datavizmod3" element={<TableauRedirect />} />
+                <Route path="/cc" element={<RedirectToCreditCardGuide />} />
+                <Route path="/app-terms" element={<RedirectToFlightAppTC />} />
+                <Route path="/app-privacy" element={<RedirectToFlightAppPP />} />
+            </Routes>
+        </AnimatePresence>
+    );
+}
+
+// Page wrapper for animations
+function PageWrapper({ children }: { children: React.ReactNode }) {
+    return (
+        <motion.div
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+        >
+            {children}
+        </motion.div>
+    );
+}
+
 function App() {
     return (
         <div className="App">
             <Router>
                 <NavBar/>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-
-                    <Route path="/photography" element={<Photography/>}/>
-                    <Route path="/published" element={<Published/>}/>
-                    <Route path="/grad" element={<Graduation/>}/>
-                    <Route path="/book" element={<Booking/>}/>
-                    <Route path="/film" element={<Film/>}/>
-                    <Route path="/digital" element={<Digital/>}/>
-                    <Route path="/aerial" element={<Aerial/>}/>
-
-                    <Route path="/experience" element={<Experience/>}/>
-                    <Route path="/projects" element={<Projects/>}/>
-                    <Route path="/education" element={<Education/>}/>
-                    <Route path="/work" element={<Work/>}/>
-                    <Route path="/clubs" element={<Clubs/>}/>
-
-                    <Route path="/info" element={<Info/>}/>
-
-                    <Route path="/chat" element={<Chat/>}/>
-
-                    <Route path="/changelog" element={<ChangeLog/>}/>
-
-                    <Route path="*" element={<NotFound/>}/>
-
-                    <Route path="/datavizmod2" element={<RedirectToDataVizMod2 />} />
-                    <Route path="/datavizmod3" element={<TableauRedirect />} />
-                    <Route path="/cc" element={<RedirectToCreditCardGuide />} />
-                    <Route path="/app-terms" element={<RedirectToFlightAppTC />} />
-                    <Route path="/app-privacy" element={<RedirectToFlightAppPP />} />
-                </Routes>
+                <AnimatedRoutes />
             </Router>
         </div>
     );

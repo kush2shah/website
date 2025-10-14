@@ -9,7 +9,18 @@
   --davie-green: #C4D600;
   --longleaf-pine: #00594C;
   --dark-gray: #5A5A5A;
+
+  // Enhanced dark mode colors (softer on eyes)
+  --bg-dark: #0f1419;
+  --bg-dark-elevated: #1a1f29;
+  --text-dark-primary: #e8e8e8;
+  --text-dark-secondary: #a8a8a8;
+  --border-dark: #2a2f3a;
+
+  // Transitions
   --transition-duration: 0.5s;
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * {
