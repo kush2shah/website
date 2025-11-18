@@ -43,7 +43,7 @@ function RedirectToDataVizMod2() {
 
 function RedirectToCreditCardGuide() {
     React.useEffect(() => {
-        window.location.href = "https://kushah.notion.site/";
+        window.location.href = "https://kushah.notion.site/cc";
     }, []);
 
     return null;
@@ -60,6 +60,14 @@ function RedirectToFlightAppTC() {
 function RedirectToFlightAppPP() {
     React.useEffect(() => {
         window.location.href = "https://kushah.notion.site/flight-app-pp";
+    }, []);
+
+    return null;
+}
+
+function RedirectToFotodex(){
+    React.useEffect(() => {
+        window.location.href = "https://testflight.apple.com/join/gaca1a8x";
     }, []);
 
     return null;
@@ -125,6 +133,7 @@ function AnimatedRoutes() {
                 <Route path="/cc" element={<RedirectToCreditCardGuide />} />
                 <Route path="/app-terms" element={<RedirectToFlightAppTC />} />
                 <Route path="/app-privacy" element={<RedirectToFlightAppPP />} />
+                <Route path="/fotodex" element={<RedirectToFotodex />} />
             </Routes>
         </AnimatePresence>
     );
