@@ -38,7 +38,7 @@ const Info: React.FC = () => {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        Student · Developer · Photographer
+                        I take photos, build things, and travel
                     </motion.p>
                 </motion.div>
 
@@ -53,14 +53,19 @@ const Info: React.FC = () => {
                     </p>
 
                     <p>
-                        I am a student at UNC Chapel Hill studying Computer Science and Business Administration,
+                        I'm a Product Manager at Bandwidth, where I own A2P Messaging, a product that enables
+                        businesses to reach their clients via SMS and MMS using local phone numbers.
+                    </p>
+
+                    <p>
+                        At UNC Chapel Hill, I studied Computer Science and Business Administration,
                         with a minor in Philosophy, Politics, and Economics.
                     </p>
 
                     <p>
-                        In my professional life, I'm passionate about building things for people to use, and talking
-                        to them about how they use them. I strive to understand the people I'm building for, and to
-                        make their lives better through the products I create.
+                        I'm passionate about building things for people to use, and talking
+                        to them about how they use them. I enjoy understanding the people I'm building for, and
+                        improving their lives through the products I create.
                     </p>
 
                     <p>
