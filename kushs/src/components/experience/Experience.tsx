@@ -1,6 +1,6 @@
 import React from 'react';
 
-import wt from '../../assets/experience/wt_shoot.jpeg'
+import bw from '../../assets/experience/bw_holi.jpg'
 import climbing from '../../assets/experience/climbing.jpeg'
 import kenan from '../../assets/experience/kenan.jpeg'
 import centible from '../../assets/experience/centible/centible_team.jpeg'
@@ -22,7 +22,7 @@ function Experience() {
                 </a>
                 <a href="/work">
                     <div className='image-wrapper'>
-                        <img src={wt} alt='WillowTree employees talking with each other' />
+                        <img src={bw} alt='Bandwidth employees playing Holi' />
                             <div className='overlay'>
                                 <p>Work</p>
                             </div>

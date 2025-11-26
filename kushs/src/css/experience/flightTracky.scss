@@ -1,0 +1,19 @@
+.flightTracky-link {
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.flightTracky-link:hover {
+  color: #007AFF;
+}
+
+@media (prefers-color-scheme: dark) {
+  .flightTracky-link {
+    color: #007AFF;
+    transition: color 0.3s ease;
+  }
+
+  .flightTracky-link:hover {
+    color: var(--sandstone);
+  }
+}
