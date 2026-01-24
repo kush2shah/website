@@ -1,0 +1,574 @@
+.work {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  position: relative;
+
+  // Decorative background elements
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--carolina-blue) 0%, transparent 70%);
+    opacity: 0.03;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--tile-teal) 0%, transparent 70%);
+    opacity: 0.03;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .work-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInDown 0.6s ease-out;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+      color: var(--carolina-blue);
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--carolina-blue) 0%, var(--tile-teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--carolina-blue), var(--tile-teal));
+      margin: 1rem auto 0;
+      border-radius: 2px;
+      animation: expandWidth 0.8s ease-out 0.3s backwards;
+    }
+  }
+
+  .experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .experience-card {
+    --mouse-x: 0%;
+    --mouse-y: 0%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.8s ease-out,
+                box-shadow 0.8s ease-out;
+    border-left: 5px solid;
+    animation: fadeInUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    position: relative;
+    overflow: visible;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease-out;
+      background: radial-gradient(
+        1000px circle at calc(50% + var(--mouse-x)) calc(50% + var(--mouse-y)),
+        rgba(255, 255, 255, 0.02) 0%,
+        transparent 100%
+      );
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+
+      &::before {
+        opacity: 1;
+      }
+
+      .logo-container {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .header-text h2 {
+        transform: translateX(2px);
+      }
+
+      .card-content {
+        transform: none;
+      }
+    }
+
+    // Stagger animations with spring effect
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.4s; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+
+      .logo-container {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+        border-radius: 16px;
+        padding: 1rem;
+        transition: all 0.8s ease-out;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          filter: contrast(1.1);
+        }
+      }
+
+      .header-text {
+        text-align: left;
+
+        h2 {
+          margin: 0 0 0.25rem 0;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: var(--navy);
+          letter-spacing: -0.01em;
+          transition: transform 0.8s ease-out;
+          line-height: 1.2;
+        }
+
+        h3 {
+          margin: 0 0 0.25rem 0;
+          font-size: 1.2rem;
+          font-weight: 600;
+          font-style: normal;
+          line-height: 1.3;
+        }
+
+        .period {
+          margin: 0;
+          font-size: 0.875rem;
+          color: var(--dark-gray);
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          opacity: 0.75;
+        }
+      }
+    }
+
+    .card-content {
+      transition: transform 0.8s ease-out;
+
+      p {
+        margin: 0 0 1.25rem 0;
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        color: #444;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // Company-specific branding with personality
+    &.willowtree {
+      border-left-color: #19B39F;
+
+      .header-text h3 {
+        color: #19B39F;
+      }
+
+      .logo-container {
+        background: linear-gradient(135deg, rgba(25, 179, 159, 0.08) 0%, rgba(25, 179, 159, 0.02) 100%);
+      }
+
+      &::before {
+        background: radial-gradient(
+          1000px circle at calc(50% + var(--mouse-x)) calc(50% + var(--mouse-y)),
+          rgba(25, 179, 159, 0.06) 0%,
+          rgba(25, 179, 159, 0.02) 40%,
+          transparent 100%
+        );
+      }
+
+      &:hover .logo-container {
+        background: linear-gradient(135deg, rgba(25, 179, 159, 0.15) 0%, rgba(25, 179, 159, 0.05) 100%);
+      }
+    }
+
+    &.cisco {
+      border-left-color: #049fd9;
+
+      .header-text h3 {
+        color: #049fd9;
+      }
+
+      .logo-container {
+        background: linear-gradient(135deg, rgba(4, 159, 217, 0.08) 0%, rgba(4, 159, 217, 0.02) 100%);
+      }
+
+      &::before {
+        background: radial-gradient(
+          1000px circle at calc(50% + var(--mouse-x)) calc(50% + var(--mouse-y)),
+          rgba(4, 159, 217, 0.06) 0%,
+          rgba(4, 159, 217, 0.02) 40%,
+          transparent 100%
+        );
+      }
+
+      &:hover .logo-container {
+        background: linear-gradient(135deg, rgba(4, 159, 217, 0.15) 0%, rgba(4, 159, 217, 0.05) 100%);
+      }
+    }
+
+    &.netapp {
+      border-left-color: #0067C5;
+
+      .header-text h3 {
+        color: #0067C5;
+      }
+
+      .logo-container {
+        background: linear-gradient(135deg, rgba(0, 103, 197, 0.08) 0%, rgba(0, 103, 197, 0.02) 100%);
+      }
+
+      &::before {
+        background: radial-gradient(
+          1000px circle at calc(50% + var(--mouse-x)) calc(50% + var(--mouse-y)),
+          rgba(0, 103, 197, 0.06) 0%,
+          rgba(0, 103, 197, 0.02) 40%,
+          transparent 100%
+        );
+      }
+
+      &:hover .logo-container {
+        background: linear-gradient(135deg, rgba(0, 103, 197, 0.15) 0%, rgba(0, 103, 197, 0.05) 100%);
+      }
+    }
+
+    &.trc {
+      border-left-color: #b0d254;
+
+      .header-text h3 {
+        color: #b0d254;
+      }
+
+      .logo-container {
+        background: linear-gradient(135deg, rgba(176, 210, 84, 0.08) 0%, rgba(176, 210, 84, 0.02) 100%);
+      }
+
+      &::before {
+        background: radial-gradient(
+          1000px circle at calc(50% + var(--mouse-x)) calc(50% + var(--mouse-y)),
+          rgba(176, 210, 84, 0.06) 0%,
+          rgba(176, 210, 84, 0.02) 40%,
+          transparent 100%
+        );
+      }
+
+      &:hover .logo-container {
+        background: linear-gradient(135deg, rgba(176, 210, 84, 0.15) 0%, rgba(176, 210, 84, 0.05) 100%);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .work {
+    &::before {
+      opacity: 0.06;
+    }
+
+    &::after {
+      opacity: 0.06;
+    }
+
+    .work-header h1 {
+      // Gradient text works well in dark mode too
+      background: linear-gradient(135deg, var(--carolina-blue) 0%, var(--tile-teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .experience-card {
+      background: var(--bg-dark-elevated);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      }
+
+      .logo-container {
+        background: rgba(255, 255, 255, 0.05) !important;
+
+        img {
+          filter: contrast(1.1) brightness(1.1);
+        }
+      }
+
+      .card-header .header-text {
+        h2 {
+          color: var(--text-dark-primary);
+        }
+
+        h3 {
+          // Keep brand colors - they pop nicely in dark mode
+        }
+
+        .period {
+          color: var(--text-dark-secondary);
+        }
+      }
+
+      .card-content p {
+        color: var(--text-dark-secondary);
+      }
+
+      // Dark mode hover colors
+      &.willowtree:hover {
+        background: linear-gradient(135deg, rgba(25, 179, 159, 0.08) 0%, var(--bg-dark-elevated) 100%);
+      }
+
+      &.cisco:hover {
+        background: linear-gradient(135deg, rgba(4, 159, 217, 0.08) 0%, var(--bg-dark-elevated) 100%);
+      }
+
+      &.netapp:hover {
+        background: linear-gradient(135deg, rgba(0, 103, 197, 0.08) 0%, var(--bg-dark-elevated) 100%);
+      }
+
+      &.trc:hover {
+        background: linear-gradient(135deg, rgba(176, 210, 84, 0.08) 0%, var(--bg-dark-elevated) 100%);
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .work {
+    padding: 2rem 1rem;
+
+    &::before,
+    &::after {
+      opacity: 0.02;
+    }
+
+    .work-header {
+      margin-bottom: 3rem;
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      &::after {
+        width: 50px;
+      }
+    }
+
+    .experience-grid {
+      gap: 2rem;
+    }
+
+    .experience-card {
+      padding: 2rem 1.5rem;
+
+      &:hover {
+        transform: translateY(-4px) scale(1.005);
+      }
+
+      .card-header {
+        gap: 1.5rem;
+
+        .logo-container {
+          width: 75px;
+          height: 75px;
+        }
+
+        .header-text {
+          h2 {
+            font-size: 1.5rem;
+          }
+
+          h3 {
+            font-size: 1.125rem;
+          }
+        }
+      }
+
+      .card-content p {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .work {
+    padding: 1.5rem 0.75rem;
+
+    .work-header {
+      margin-bottom: 2.5rem;
+
+      h1 {
+        font-size: 1.875rem;
+      }
+
+      &::after {
+        width: 40px;
+        height: 3px;
+      }
+    }
+
+    .experience-card {
+      padding: 1.5rem 1.25rem;
+      border-radius: 16px;
+      border-left-width: 4px;
+
+      .card-header {
+        gap: 1.25rem;
+
+        .logo-container {
+          width: 65px;
+          height: 65px;
+          padding: 0.75rem;
+        }
+
+        .header-text {
+          h2 {
+            font-size: 1.375rem;
+          }
+
+          h3 {
+            font-size: 1.0625rem;
+          }
+
+          .period {
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      .card-content p {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .work {
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    .work-header {
+      animation: none;
+
+      &::after {
+        animation: none;
+      }
+    }
+
+    .experience-card {
+      animation: none;
+
+      &:hover {
+        transform: none;
+      }
+
+      .logo-container,
+      .header-text h2,
+      .card-content {
+        transition: none;
+      }
+    }
+  }
+
+  @keyframes fadeInUp,
+  @keyframes fadeInDown,
+  @keyframes expandWidth {
+    from, to {
+      opacity: 1;
+      transform: none;
+      width: 60px;
+    }
+  }
+}

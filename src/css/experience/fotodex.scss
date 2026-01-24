@@ -1,0 +1,19 @@
+.fotodex-link {
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.fotodex-link:hover {
+  color: #FF6B35;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fotodex-link {
+    color: #FF6B35;
+    transition: color 0.3s ease;
+  }
+
+  .fotodex-link:hover {
+    color: var(--sandstone);
+  }
+}

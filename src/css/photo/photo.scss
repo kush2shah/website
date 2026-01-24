@@ -1,0 +1,449 @@
+@mixin responsive-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.5rem;
+
+  @media (min-width: 640px) {
+    padding: 1rem;
+  }
+}
+
+@mixin responsive-grid {
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.25rem;
+  padding: 0;
+  @include responsive-container;
+  @include responsive-grid;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; // 4:3 aspect ratio
+  overflow: visible; // Changed from hidden to allow breakout
+  cursor: pointer;
+  border-radius: 0;
+  z-index: 1;
+  transition: z-index 0s 0.3s; // Delay z-index reset until after hover animation
+
+  &:hover {
+    z-index: 10; // Bring to front immediately
+    transition: z-index 0s 0s; // No delay on hover
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--transition-smooth),
+                filter 0.4s ease,
+                box-shadow 0.5s var(--transition-smooth),
+                opacity 0.3s ease;
+    will-change: transform;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s var(--transition-smooth),
+                backdrop-filter 0.3s var(--transition-smooth),
+                transform 0.5s var(--transition-smooth);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.75) 100%);
+    backdrop-filter: blur(0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    pointer-events: none;
+
+    p {
+      transform: translateY(10px);
+      transition: transform 0.3s var(--transition-smooth);
+    }
+  }
+
+  // Stage 1: Initial bulge (immediate hover)
+  &.hover-initial img {
+    transform: scale(1.08);
+    filter: brightness(0.95);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+  }
+
+  &.hover-initial .overlay {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+    transform: scale(1.08);
+
+    p {
+      transform: translateY(0) scale(0.926); // 1 / 1.08 ≈ 0.926
+    }
+  }
+
+  // Stage 2: Sustained hover (after 0.5s) - grows a bit more in place
+  &.hover-sustained img {
+    transform: scale(1.15);
+    filter: brightness(1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
+
+  &.hover-sustained .overlay {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    transform: scale(1.15);
+
+    p {
+      transform: translateY(0) scale(0.870); // 1 / 1.15 ≈ 0.870
+    }
+  }
+
+  // Fallback for basic hover (on pages without staged hover)
+  &:hover:not(.hover-initial):not(.hover-sustained) img {
+    transform: scale(1.08);
+    filter: brightness(0.95);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  &:hover:not(.hover-initial):not(.hover-sustained) .overlay {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+    transform: scale(1.08);
+
+    p {
+      transform: translateY(0) scale(0.926); // 1 / 1.08 ≈ 0.926
+    }
+  }
+}
+
+// Dim siblings when one is in sustained hover
+.image-container:has(.hover-sustained) .image-wrapper:not(.hover-sustained) img {
+  opacity: 0.5;
+  filter: brightness(0.6);
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .image-wrapper {
+    overflow: hidden; // Keep contained on mobile
+
+    &:hover img {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .overlay {
+      p {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+// Smooth performance on mobile
+@media (prefers-reduced-motion: no-preference) {
+  .image-wrapper img {
+    will-change: transform;
+  }
+}
+
+// Click-to-open modal - minimalist, just the photo
+.photo-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.photo-modal-image {
+  max-width: 92vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .photo-modal-overlay {
+    padding: 1rem;
+  }
+
+  .photo-modal-image {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .photo-modal-overlay {
+    background: rgba(0, 0, 0, 0.95);
+  }
+}
+
+// Add new modal styles
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  img {
+    max-height: 90vh;
+    max-width: 90vw;
+    object-fit: contain;
+  }
+
+  &__close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+
+    &:hover {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Keep your existing mini variants
+.image-container-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding: 0 10px;
+  max-width: calc(100% - 20px);
+}
+
+.image-wrapper-mini {
+  position: relative;
+  width: 25%;
+}
+
+.image-wrapper-mini img {
+  width: 100%;
+  height: auto;
+}
+
+.image-wrapper-mini:hover .overlay {
+  opacity: 1;
+}
+
+// Single featured image (for Info and Education pages)
+.featured-image {
+  @include responsive-container;
+  margin-bottom: 2rem;
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; // 16:9 aspect ratio
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Modifier for smaller featured images
+  &--small {
+    max-width: 800px;
+  }
+}
+
+// Overlay styles
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  p {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.25rem;
+  }
+}
+
+.image-wrapper:hover .overlay {
+  opacity: 1;
+}
+
+// Flexible aspect ratio wrapper for bento-box style layouts
+.image-wrapper-flexible {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  cursor: pointer;
+  border-radius: 0;
+  z-index: 1;
+  transition: z-index 0s 0.3s;
+  align-self: center;
+
+  &:hover {
+    z-index: 10;
+    transition: z-index 0s 0s;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--transition-smooth),
+                filter 0.4s ease,
+                box-shadow 0.5s var(--transition-smooth),
+                opacity 0.3s ease;
+    will-change: transform;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+
+  // Stage 1: Initial bulge (immediate hover)
+  &.hover-initial img {
+    transform: scale(1.08);
+    filter: brightness(0.95);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+  }
+
+  // Stage 2: Sustained hover (after 1s)
+  &.hover-sustained img {
+    transform: scale(1.15);
+    filter: brightness(1);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
+}
+
+// Dim siblings when one is in sustained hover
+.image-container:has(.hover-sustained) .image-wrapper-flexible:not(.hover-sustained) img {
+  opacity: 0.5;
+  filter: brightness(0.6);
+}
+
+// Bento-box container for flexible vertical stacking
+.bento-container {
+  @include responsive-container;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense; // Allow grid to fill gaps intelligently
+  gap: 0.5rem;
+  padding: 0;
+
+  @media (min-width: 640px) {
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 1rem;
+  }
+
+  // Images span based on their aspect ratio
+  .image-wrapper-flexible {
+    // Default to full width on mobile
+    grid-column: span 12;
+
+    @media (min-width: 768px) {
+      // Determine column span based on aspect ratio
+      // This will be overridden by inline styles based on actual image dimensions
+    }
+  }
+}
+
+.bento-container:has(.hover-sustained) .image-wrapper-flexible:not(.hover-sustained) img {
+  opacity: 0.5;
+  filter: brightness(0.6);
+}

@@ -1,0 +1,338 @@
+// Apply scroll-snap to body when projects gallery is present
+body:has(.projects-gallery) {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+// Projects Gallery Container
+.projects-gallery {
+  width: 100%;
+}
+
+// Individual Project Section - Full-screen exhibition space
+.project-section {
+  min-height: 100vh;
+  height: auto; // Allow sections to grow beyond viewport
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  position: relative;
+
+  // Better mobile handling
+  @media (max-width: 767px) {
+    padding: 3rem 1.5rem;
+    scroll-snap-stop: normal;
+  }
+
+  @media (min-width: 768px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 5rem 3rem;
+  }
+}
+
+// Project Content Wrapper - Constrains max width
+.project-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 2.5rem;
+  }
+}
+
+// Project Header - Icon, title, role
+.project-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    gap: 1.25rem;
+  }
+}
+
+// App Icon Container
+.project-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s var(--transition-smooth);
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 100px;
+    border-radius: 22px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 120px;
+    height: 120px;
+    border-radius: 26px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Project Title
+.project-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: opacity 0.3s var(--transition-smooth);
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
+
+  a {
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+// Project Role Subtitle
+.project-role {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
+}
+
+// Project Description
+.project-description {
+  max-width: 700px;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.9rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.0625rem;
+  }
+}
+
+// App Store / TestFlight Badge
+.project-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    display: inline-block;
+    transition: transform 0.2s var(--transition-smooth);
+
+    @media (hover: hover) {
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  img {
+    height: 40px;
+    width: auto;
+
+    @media (min-width: 768px) {
+      height: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 60px;
+    }
+  }
+}
+
+// Screenshot Gallery - Mobile-first responsive grid
+.screenshot-gallery {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  // Mobile: Single column stack
+  grid-template-columns: 1fr;
+
+  // Tablet: 2 columns
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  // Desktop: 4 columns (horizontal layout)
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+// Screenshot Wrapper
+.screenshot-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--bg-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s var(--transition-smooth);
+
+  @media (min-width: 768px) {
+    border-radius: 16px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s var(--transition-smooth);
+  }
+
+  // Hover effects - desktop only
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+  .project-icon {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .screenshot-wrapper {
+    background: var(--bg-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+// Project-specific color links (maintained from original)
+.centible-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #8068f3; // Centible purple
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: #8068f3;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--sandstone);
+      }
+    }
+  }
+}
+
+.flightTracky-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #FFD100; // Yellow
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: #FFD100;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--sandstone);
+      }
+    }
+  }
+}
+
+.fotodex-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #B8A5E8; // Pastel blue/purple mix (lavender)
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: #B8A5E8;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--sandstone);
+      }
+    }
+  }
+}
+
