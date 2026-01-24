@@ -12,7 +12,7 @@ import ReactGA from 'react-ga4';
 
 import axios from 'axios';
 
-axios.get('https://kushs.org/api')
+axios.get('/api')
     .then(response => {
         console.log(response.data);
     })
