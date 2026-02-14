@@ -65,7 +65,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
             >
                 <p>
-                    With love from NC (c) 2025 Kush Shah
+                    With love from NC (c) 2026 Kush Shah
                     <br />
                     <motion.a
                         href="https://github.com/kush2shah/website"
