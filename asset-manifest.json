@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.74f5e4ac.css",
-    "main.js": "/static/js/main.445e1592.js",
+    "main.css": "/static/css/main.cd4e5b9f.css",
+    "main.js": "/static/js/main.a056fa99.js",
     "static/js/453.ead30adf.chunk.js": "/static/js/453.ead30adf.chunk.js",
     "static/media/pic-light.PNG": "/static/media/pic-light.053ee14990e3fbbfa9d0.PNG",
     "static/media/pic-dark.PNG": "/static/media/pic-dark.89e83440aa8ff2535612.PNG",
@@ -9,10 +9,14 @@
     "static/media/home-dark.PNG": "/static/media/home-dark.ce5073f7a061e729e097.PNG",
     "static/media/flight-light.PNG": "/static/media/flight-light.fdc7544fa3ec9ae2a79f.PNG",
     "static/media/flight-dark.PNG": "/static/media/flight-dark.0fd41baff2f167b1ea26.PNG",
+    "static/media/rollganizer-dark.png": "/static/media/rollganizer-dark.67003540b4de5b94c449.png",
+    "static/media/rollganizer.png": "/static/media/rollganizer.0b31c05e843ecf08b109.png",
     "static/media/flightapp-dark.png": "/static/media/flightapp-dark.413e7a4db03bdefe04a1.png",
     "static/media/fotodex-dark.png": "/static/media/fotodex-dark.46afc092d34fadd79bfd.png",
     "static/media/flightapp.png": "/static/media/flightapp.644e0e9b5090984e0dea.png",
     "static/media/fotodex.png": "/static/media/fotodex.32ddbcf96673cc6bcfbe.png",
+    "static/media/rollganizer-app-light.png": "/static/media/rollganizer-app-light.19b60cced9f8ee216eb5.png",
+    "static/media/rollganizer-app-dark.png": "/static/media/rollganizer-app-dark.6437c4f657f511028282.png",
     "static/media/search-light.PNG": "/static/media/search-light.e69e39743043df77126c.PNG",
     "static/media/malaysia2.jpg": "/static/media/malaysia2.6f758b105591072544c0.jpg",
     "static/media/onboarding-light.PNG": "/static/media/onboarding-light.4e80e0aeb2a5aaea2285.PNG",
@@ -97,16 +101,18 @@
     "static/media/wt_logo.svg": "/static/media/wt_logo.f861b170df22dd225ac824bbc37acdb1.svg",
     "static/media/testflight.png": "/static/media/testflight.8ef138acd3bfd50486b4.png",
     "static/media/trc_logo.png": "/static/media/trc_logo.9a3e83e80f5b88a3341a.png",
+    "static/media/macappstore-dark.svg": "/static/media/macappstore-dark.1d39e8dace6b366637c5a86a05efe854.svg",
+    "static/media/macappstore-light.svg": "/static/media/macappstore-light.93ae99b832a266634c96c4d7dc4d58c6.svg",
     "static/media/cisco_logo.png": "/static/media/cisco_logo.04519cb1fffa03b5186e.png",
     "static/media/appstore-dark.svg": "/static/media/appstore-dark.8c4986ee4828b47d16f5cd694ef065f2.svg",
     "static/media/appstore-light.svg": "/static/media/appstore-light.969642b47a537eefe45f64aaa42f530b.svg",
     "index.html": "/index.html",
-    "main.74f5e4ac.css.map": "/static/css/main.74f5e4ac.css.map",
-    "main.445e1592.js.map": "/static/js/main.445e1592.js.map",
+    "main.cd4e5b9f.css.map": "/static/css/main.cd4e5b9f.css.map",
+    "main.a056fa99.js.map": "/static/js/main.a056fa99.js.map",
     "453.ead30adf.chunk.js.map": "/static/js/453.ead30adf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74f5e4ac.css",
-    "static/js/main.445e1592.js"
+    "static/css/main.cd4e5b9f.css",
+    "static/js/main.a056fa99.js"
   ]
 }
