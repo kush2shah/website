@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './css/global/index.scss';
@@ -7,7 +7,6 @@ import './assets/fonts/Inter/inter.css'
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
-import {BrowserRouter} from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
 import axios from 'axios';

@@ -21,6 +21,7 @@ function Booking() {
             <br></br>
             <div>
                 <iframe
+                    title="Booking calendar"
                     src="https://calendly.com/kmsh/grad"
                     width={width * 0.8}
                     height={width * 1.2}

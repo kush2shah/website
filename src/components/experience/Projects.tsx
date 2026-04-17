@@ -3,11 +3,15 @@ import { motion, useInView } from 'framer-motion';
 
 import '../../css/experience/projects.scss'
 
-import centibleSpending from '../../assets/experience/centible/centible_spending.jpeg'
-import centibleLogo from '../../assets/experience/centible/centible_logo.png'
-import centibleOnboard from '../../assets/experience/centible/centible_onboard.png'
-import centibleInbox from '../../assets/experience/centible/centible_inbox.png'
-import centibleCustomization from '../../assets/experience/centible/centible_customization.png'
+import centibleIcon from '../../assets/experience/projects/centible.png'
+import centibleOnboardDark from '../../assets/experience/projects/centible-screenshots/onboard-dark.png'
+import centibleOnboardLight from '../../assets/experience/projects/centible-screenshots/onboard-light.png'
+import centibleCurveDark from '../../assets/experience/projects/centible-screenshots/curve-dark.png'
+import centibleCurveLight from '../../assets/experience/projects/centible-screenshots/curve-light.png'
+import centibleInboxDark from '../../assets/experience/projects/centible-screenshots/inbox-dark.png'
+import centibleInboxLight from '../../assets/experience/projects/centible-screenshots/inbox-light.png'
+import centibleCustomizationDark from '../../assets/experience/projects/centible-screenshots/customization-dark.png'
+import centibleCustomizationLight from '../../assets/experience/projects/centible-screenshots/customization-light.png'
 
 import flightAppIcon from '../../assets/experience/projects/flightapp.png'
 import flightAppIconDark from '../../assets/experience/projects/flightapp-dark.png'
@@ -20,12 +24,19 @@ import flightSearchLight from '../../assets/experience/projects/flight-app-scree
 import flightDetailDark from '../../assets/experience/projects/flight-app-screenshots/flight-dark.PNG'
 import flightDetailLight from '../../assets/experience/projects/flight-app-screenshots/flight-light.PNG'
 
+import rollganizerIcon from '../../assets/experience/projects/rollganizer.png'
+import rollganizerIconDark from '../../assets/experience/projects/rollganizer-dark.png'
+import rollganizerAppDark from '../../assets/experience/projects/rollganizer-screenshots/rollganizer-app-dark.png'
+import rollganizerAppLight from '../../assets/experience/projects/rollganizer-screenshots/rollganizer-app-light.png'
+
 import fotodexIcon from '../../assets/experience/projects/fotodex.png'
 import fotodexIconDark from '../../assets/experience/projects/fotodex-dark.png'
 import fotodexHomeDark from '../../assets/experience/projects/fotodex-screenshots/home-dark.PNG'
 
 import appStoreBadgeLight from '../../assets/experience/projects/appstore-light.svg'
 import appStoreBadgeDark from '../../assets/experience/projects/appstore-dark.svg'
+import macAppStoreBadgeLight from '../../assets/experience/projects/macappstore-light.svg'
+import macAppStoreBadgeDark from '../../assets/experience/projects/macappstore-dark.svg'
 import testFlightBadge from '../../assets/experience/projects/testflight.png'
 import fotodexHomeLight from '../../assets/experience/projects/fotodex-screenshots/home-light.PNG'
 import fotodexScanDark from '../../assets/experience/projects/fotodex-screenshots/scan-dark.PNG'
@@ -77,11 +88,13 @@ function Projects() {
     // Refs for intersection observers
     const centibleRef = useRef(null);
     const flightTrackyRef = useRef(null);
+    const rollganizerRef = useRef(null);
     const fotodexRef = useRef(null);
 
     // First section should be immediately visible, others trigger on scroll
     const centibleInView = true; // Always show first section
     const flightTrackyInView = useInView(flightTrackyRef, { once: true, amount: 0.1 });
+    const rollganizerInView = useInView(rollganizerRef, { once: true, amount: 0.1 });
     const fotodexInView = useInView(fotodexRef, { once: true, amount: 0.1 });
 
     return (
@@ -97,7 +110,7 @@ function Projects() {
                 <div className="project-content">
                     <div className="project-header">
                         <div className="project-icon">
-                            <img src={centibleLogo} alt="Centible app icon" />
+                            <img src={centibleIcon} alt="Centible app icon" />
                         </div>
                         <h2 className="project-title">
                             <a className="centible-link" href="https://appteamcarolina.com" target="_blank" rel="noopener noreferrer">
@@ -132,16 +145,28 @@ function Projects() {
 
                     <div className="screenshot-gallery">
                         <div className="screenshot-wrapper">
-                            <img src={centibleOnboard} alt="Centible onboarding screen" />
+                            <img
+                                src={isDarkMode ? centibleOnboardDark : centibleOnboardLight}
+                                alt="Centible onboarding screen"
+                            />
                         </div>
                         <div className="screenshot-wrapper">
-                            <img src={centibleSpending} alt="Centible spending tracker" />
+                            <img
+                                src={isDarkMode ? centibleCurveDark : centibleCurveLight}
+                                alt="Centible spending curve"
+                            />
                         </div>
                         <div className="screenshot-wrapper">
-                            <img src={centibleInbox} alt="Centible inbox" />
+                            <img
+                                src={isDarkMode ? centibleInboxDark : centibleInboxLight}
+                                alt="Centible inbox"
+                            />
                         </div>
                         <div className="screenshot-wrapper">
-                            <img src={centibleCustomization} alt="Centible customization" />
+                            <img
+                                src={isDarkMode ? centibleCustomizationDark : centibleCustomizationLight}
+                                alt="Centible customization"
+                            />
                         </div>
                     </div>
                 </div>
@@ -209,6 +234,56 @@ function Projects() {
                             <img
                                 src={isDarkMode ? flightDetailDark : flightDetailLight}
                                 alt="FlightTracky flight details screen"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Rollganizer Section */}
+            <motion.section
+                ref={rollganizerRef}
+                className="project-section"
+                initial="hidden"
+                animate={rollganizerInView ? "visible" : "hidden"}
+                variants={fadeInVariants}
+            >
+                <div className="project-content">
+                    <div className="project-header">
+                        <div className="project-icon">
+                            <img src={isDarkMode ? rollganizerIconDark : rollganizerIcon} alt="Rollganizer app icon" />
+                        </div>
+                        <h2 className="project-title rollganizer-link">Rollganizer</h2>
+                        <h3 className="project-role">Creator and Developer</h3>
+                    </div>
+
+                    <p className="project-description">
+                        Rollganizer is a native macOS app that helps photographers track their editing progress across
+                        photo collections.<br/>
+                        As the sole creator and developer, I designed and built the app from the ground up using SwiftUI.
+                        Rollganizer scans your photo directories and intelligently detects which RAW files have been
+                        edited — by checking for XMP sidecars, format conversions, and version numbering — giving you
+                        a clear view of what's left to edit.
+                    </p>
+
+                    <div className="project-badge">
+                        <a
+                            href="https://apps.apple.com/us/app/rollganizer/id6756248977?mt=12"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src={isDarkMode ? macAppStoreBadgeDark : macAppStoreBadgeLight}
+                                alt="Download on the Mac App Store"
+                            />
+                        </a>
+                    </div>
+
+                    <div className="single-screenshot">
+                        <div className="screenshot-wrapper">
+                            <img
+                                src={isDarkMode ? rollganizerAppDark : rollganizerAppLight}
+                                alt="Rollganizer app screenshot"
                             />
                         </div>
                     </div>

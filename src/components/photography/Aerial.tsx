@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import firebase from 'firebase/app';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 

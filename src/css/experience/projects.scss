@@ -251,6 +251,23 @@ body:has(.projects-gallery) {
   }
 }
 
+// Single screenshot container (for macOS/landscape apps)
+.single-screenshot {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 0.5rem;
+
+  .screenshot-wrapper {
+    box-shadow: none;
+
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
 // Dark mode adjustments
 @media (prefers-color-scheme: dark) {
   .project-icon {
@@ -305,6 +322,28 @@ body:has(.projects-gallery) {
 
   @media (prefers-color-scheme: dark) {
     color: #FFD100;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--sandstone);
+      }
+    }
+  }
+}
+
+.rollganizer-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #4A90D9; // Rollganizer blue
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: #4A90D9;
 
     @media (hover: hover) {
       &:hover {
