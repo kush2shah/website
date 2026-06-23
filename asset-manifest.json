@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd4e5b9f.css",
-    "main.js": "/static/js/main.2b5a0b79.js",
+    "main.css": "/static/css/main.62e44764.css",
+    "main.js": "/static/js/main.0d6fdb35.js",
     "static/js/453.ead30adf.chunk.js": "/static/js/453.ead30adf.chunk.js",
     "static/media/pic-light.PNG": "/static/media/pic-light.053ee14990e3fbbfa9d0.PNG",
     "static/media/pic-dark.PNG": "/static/media/pic-dark.89e83440aa8ff2535612.PNG",
@@ -18,6 +18,7 @@
     "static/media/rollganizer-app-light.png": "/static/media/rollganizer-app-light.19b60cced9f8ee216eb5.png",
     "static/media/rollganizer-app-dark.png": "/static/media/rollganizer-app-dark.6437c4f657f511028282.png",
     "static/media/search-light.PNG": "/static/media/search-light.e69e39743043df77126c.PNG",
+    "static/media/website.png": "/static/media/website.a389320169c5a3a211b4.png",
     "static/media/malaysia2.jpg": "/static/media/malaysia2.6f758b105591072544c0.jpg",
     "static/media/onboarding-light.PNG": "/static/media/onboarding-light.4e80e0aeb2a5aaea2285.PNG",
     "static/media/halfdome.jpg": "/static/media/halfdome.20adb33158bcb8d7ee8b.jpg",
@@ -43,7 +44,6 @@
     "static/media/budapest_aerial.jpeg": "/static/media/budapest_aerial.b02236671b4588de0cd9.jpeg",
     "static/media/glimmer.jpeg": "/static/media/glimmer.871e2293bc2f14b1d905.jpeg",
     "static/media/inbox-light.png": "/static/media/inbox-light.5a3f1cfa61e54ce218f0.png",
-    "static/media/Coulture.jpeg": "/static/media/Coulture.fcde6e313efa3c363126.jpeg",
     "static/media/grad_pic.jpeg": "/static/media/grad_pic.d76f90e6507ed0a2de0d.jpeg",
     "static/media/Inter-italic.var.woff2?v=3.19": "/static/media/Inter-italic.var.30807be7abc48ba8c73c.woff2",
     "static/media/buda_castle.jpeg": "/static/media/buda_castle.75cdbfcc25a44e693e1b.jpeg",
@@ -111,12 +111,12 @@
     "static/media/appstore-dark.svg": "/static/media/appstore-dark.8c4986ee4828b47d16f5cd694ef065f2.svg",
     "static/media/appstore-light.svg": "/static/media/appstore-light.969642b47a537eefe45f64aaa42f530b.svg",
     "index.html": "/index.html",
-    "main.cd4e5b9f.css.map": "/static/css/main.cd4e5b9f.css.map",
-    "main.2b5a0b79.js.map": "/static/js/main.2b5a0b79.js.map",
+    "main.62e44764.css.map": "/static/css/main.62e44764.css.map",
+    "main.0d6fdb35.js.map": "/static/js/main.0d6fdb35.js.map",
     "453.ead30adf.chunk.js.map": "/static/js/453.ead30adf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd4e5b9f.css",
-    "static/js/main.2b5a0b79.js"
+    "static/css/main.62e44764.css",
+    "static/js/main.0d6fdb35.js"
   ]
 }
