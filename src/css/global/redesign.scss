@@ -251,6 +251,23 @@ body[data-weight="300"] .home-name { font-weight: 300; }
 .image-wrap.hover-initial  .cap1, .image-wrap.hover-initial  .cap2  { transform: translateY(0) scale(0.926); }
 .image-wrap.hover-sustained .cap1, .image-wrap.hover-sustained .cap2 { transform: translateY(0) scale(0.870); }
 
+/* On touch devices the staged hover fires on tap and sticks; its scale + large
+   box-shadow overflow `overflow: visible` tiles into the (single-column) cell
+   below. Drop the growth/shadow there — keep only the caption reveal. */
+@media (hover: none) {
+  .image-wrap.hover-initial img,
+  .image-wrap.hover-sustained img,
+  .image-wrap:hover img {
+    transform: none;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+  .image-wrap.hover-initial .img-overlay,
+  .image-wrap.hover-sustained .img-overlay { transform: none; }
+  .image-wrap.hover-initial .cap1, .image-wrap.hover-initial .cap2,
+  .image-wrap.hover-sustained .cap1, .image-wrap.hover-sustained .cap2 { transform: translateY(0); }
+  .gallery-grid:has(.hover-sustained) .image-wrap:not(.hover-sustained) img { opacity: 1; filter: none; }
+}
+
 /* ── MODAL ───────────────────────────────────────────── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 9999;
