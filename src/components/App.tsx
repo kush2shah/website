@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 
 import '../css/global/app.scss';
 import '../css/global/TopButton.scss';
+import '../css/global/redesign.scss';
 
 import Home from './Home';
 
@@ -97,6 +98,15 @@ const pageVariants = {
     },
 };
 
+// Reset scroll position to the top whenever the route changes.
+function ScrollToTop() {
+    const { pathname } = useLocation();
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+}
+
 // Wrapper component to handle animations
 function AnimatedRoutes() {
     const location = useLocation();
@@ -154,9 +164,17 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
+    // Bake the redesign's default "tweaks" onto the body (the editor's Tweaks panel is dropped).
+    React.useEffect(() => {
+        document.body.dataset.weight = '200';
+        document.body.dataset.card = 'line';
+        document.body.dataset.logos = 'color';
+    }, []);
+
     return (
         <div className="App">
             <Router>
+                <ScrollToTop/>
                 <NavBar/>
                 <AnimatedRoutes />
             </Router>

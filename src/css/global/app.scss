@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -22,27 +18,8 @@
   color: #4B9CD3;
 }
 
-body {
-  background-color: #FFF;
-  color: #222;
-  font-family: -apple-system, Inter, system-ui;
-  font-weight: 300;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--bg-dark);
-    color: var(--text-dark-primary);
-  }
-  h1 {
-    color: var(--carolina-blue);
-  }
-}
+// Body typography/background and dark-mode tokens are governed by redesign.scss.
+html { scroll-behavior: smooth; }
 
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {

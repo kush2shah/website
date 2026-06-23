@@ -195,6 +195,154 @@ body:has(.projects-gallery) {
   }
 }
 
+// Actions row: install command + GitHub button
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+// Copyable "brew install" command pill (mirrors the Bandwidth CLI site)
+.install-command {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  line-height: 1;
+  cursor: pointer;
+  background: #24292f; // GitHub dark
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s var(--transition-smooth), background 0.2s ease;
+
+  code {
+    font-family: 'SF Mono', ui-monospace, Menlo, Monaco, 'Cascadia Code', monospace;
+    font-size: 0.8rem;
+    line-height: 1;
+    color: #e6edf3;
+    white-space: nowrap;
+
+    .prompt {
+      color: #3fb950; // terminal green
+      margin-right: 0.4rem;
+    }
+  }
+
+  .copy-icon {
+    display: inline-flex;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: #8b949e;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 0.7rem 1.3rem;
+
+    code {
+      font-size: 1rem;
+    }
+
+    .copy-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      background: #32383f;
+
+      .copy-icon svg {
+        fill: #e6edf3;
+      }
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: #f6f8fa;
+
+    code {
+      color: #24292f;
+
+      .prompt {
+        color: #1a7f37;
+      }
+    }
+
+    .copy-icon svg {
+      fill: #57606a;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background: #ffffff;
+
+        .copy-icon svg {
+          fill: #24292f;
+        }
+      }
+    }
+  }
+}
+
+// Self-contained "View on GitHub" button (no external widget/asset)
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  color: #ffffff;
+  background: #24292f; // GitHub dark
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s var(--transition-smooth), background 0.2s ease;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    padding: 0.7rem 1.3rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      background: #32383f;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: #f6f8fa;
+    color: #24292f;
+
+    @media (hover: hover) {
+      &:hover {
+        background: #ffffff;
+      }
+    }
+  }
+}
+
 // Screenshot Gallery - Mobile-first responsive grid
 .screenshot-gallery {
   width: 100%;
@@ -344,6 +492,28 @@ body:has(.projects-gallery) {
 
   @media (prefers-color-scheme: dark) {
     color: #4A90D9;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--sandstone);
+      }
+    }
+  }
+}
+
+.bandwidth-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #19A0F4; // Bandwidth blue
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: #19A0F4;
 
     @media (hover: hover) {
       &:hover {

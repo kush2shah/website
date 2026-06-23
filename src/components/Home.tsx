@@ -1,94 +1,38 @@
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
-import { MdPublishedWithChanges } from "react-icons/md";
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-import '../css/global/footer.scss';
-import '../css/home.scss';
+import santorini from '../assets/aerial/greece/santorini.jpeg';
+import centibleTeam from '../assets/experience/centible/centible_team.jpeg';
+import balboa from '../assets/digital/a7/balboa.jpeg';
 
-import santorini from "../assets/aerial/greece/santorini.jpeg";
-import centible from "../assets/experience/centible/centible_team.jpeg";
+const TILES: { to: string; img: string; alt: string; label: string; eager?: boolean }[] = [
+    { to: '/photography', img: santorini, alt: 'Aerial of Santorini', label: 'Photography', eager: true },
+    { to: '/work', img: centibleTeam, alt: 'The Centible team on launch day', label: 'Work', eager: true },
+    { to: '/projects', img: balboa, alt: 'Balboa Park', label: 'Projects' },
+];
 
 const Home: React.FC = () => {
     return (
         <div className="home">
-            <motion.header
-                className="home-header"
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            >
-                <h1>Kush Shah</h1>
-            </motion.header>
-
-            <div className="image-container">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                >
-                    <Link to="/photography" className="image-wrapper">
-                        <img
-                            src={santorini}
-                            alt="Aerial of Santorini"
-                            loading="eager"
-                        />
-                        <div className="overlay">
-                            <p>Photo</p>
-                        </div>
+            <h1 className="home-name">Kush Shah</h1>
+            <div className="home-grid">
+                {TILES.map(t => (
+                    <Link key={t.to} className="home-tile" to={t.to}>
+                        <img src={t.img} alt={t.alt} loading={t.eager ? 'eager' : 'lazy'} />
+                        <div className="home-label">{t.label}</div>
+                        <div className="home-label-line" />
                     </Link>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                >
-                    <Link to="/experience" className="image-wrapper">
-                        <img
-                            src={centible}
-                            alt="The Centible Team on launch day"
-                            loading="eager"
-                        />
-                        <div className="overlay">
-                            <p>Experience</p>
-                        </div>
-                    </Link>
-                </motion.div>
+                ))}
             </div>
-
-            <motion.footer
-                className="credit"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-            >
-                <p>
-                    With love from NC (c) 2026 Kush Shah
-                    <br />
-                    <motion.a
-                        href="https://github.com/kush2shah/website"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="icon-link"
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        <FaGithub />
-                    </motion.a>
-                    <motion.a
-                        href="/changelog"
-                        className="icon-link"
-                        whileHover={{ scale: 1.2, rotate: -5 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        <MdPublishedWithChanges />
-                    </motion.a>
-                </p>
-            </motion.footer>
+            <footer className="home-footer">
+                <span className="home-copy">© 2026 Kush Shah · NC</span>
+                <div className="home-footer-links">
+                    <a href="https://github.com/kush2shah/website" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <Link to="/changelog">Changelog</Link>
+                </div>
+            </footer>
         </div>
     );
-}
+};
 
 export default Home;
