@@ -7,6 +7,8 @@ import NavBar from './NavBar';
 import '../css/global/app.scss';
 import '../css/global/TopButton.scss';
 import '../css/global/redesign.scss';
+// Global: .link is used by TableauRedirect, Booking, and NotFound.
+import '../css/global/link.scss';
 
 import Home from './Home';
 

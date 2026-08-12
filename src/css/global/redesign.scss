@@ -458,6 +458,33 @@ body[data-weight="300"] .info-name { font-weight: 300; }
   .info-hero { flex-direction: column; align-items: flex-start; }
 }
 
+/* ── CHANGE LOG ──────────────────────────────────────── */
+.log-wrap { max-width: 620px; margin: 0 auto; padding: 3.5rem 2.5rem 5rem; display: flex; flex-direction: column; gap: 2.75rem; }
+.log-head { display: flex; flex-direction: column; gap: 0.6rem; }
+.log-title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 200; letter-spacing: -0.02em; line-height: 1; }
+body[data-weight="100"] .log-title { font-weight: 100; }
+body[data-weight="300"] .log-title { font-weight: 300; }
+.log-sub { font-size: 0.625rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.log-release { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.log-date { font-size: 0.625rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+.log-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.log-item {
+  position: relative; padding-left: 1.1rem;
+  font-size: 0.9375rem; line-height: 1.7; font-weight: 300; color: var(--text-2);
+}
+.log-item::before {
+  content: ''; position: absolute; left: 0; top: 0.75em;
+  width: 5px; height: 1px; background: var(--border-s);
+}
+.log-link {
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border-s);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.log-link:hover { color: var(--text); border-color: var(--text-3); }
+.log-upcoming .log-item { color: var(--text-3); }
+@media (max-width: 640px) { .log-wrap { padding: 2.5rem 1.5rem 4rem; gap: 2.25rem; } }
+
 /* ── EDUCATION ───────────────────────────────────────── */
 .edu-wrap { max-width: 760px; margin: 0 auto; padding: 0 2.5rem 5rem; }
 .edu-featured { width: 100%; aspect-ratio: 16/9; overflow: hidden; margin-bottom: 3rem; }
