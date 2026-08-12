@@ -80,6 +80,22 @@ Because GitHub Pages has no server-side routing, the `postbuild` step copies `in
 - Prefer WebP for new screenshots; keep JPEG for photographs.
 - Add `loading="lazy"` to any `<img>` that isn't above the fold, and always set a real `alt`.
 
+Project screenshots under `src/assets/experience/projects/` are WebP. To add more, convert before
+committing (no permanent dependency needed):
+
+```bash
+# phone screenshots -> 900px wide (3x the 4-column desktop display size)
+npx --yes sharp-cli -i <files> -o <same-dir> -f webp -q 82 resize 900 --withoutEnlargement
+# 1024x1024 app icons -> 360px (icons render at 80-120px)
+npx --yes sharp-cli -i <files> -o <same-dir> -f webp -q 88 resize 360 --withoutEnlargement
+# landscape/desktop screenshots -> 1600px (they render in .single-screenshot, max-width 800px)
+npx --yes sharp-cli -i <files> -o <same-dir> -f webp -q 82 resize 1600 --withoutEnlargement
+```
+
+**Do not re-encode the photographs** in `assets/digital`, `film`, `aerial`, or `graduation`. They're
+already compressed JPEGs, so another lossy pass is pure generation loss. Re-export from originals
+instead. (Those are also the assets slated to move to Cloudinary.)
+
 ## Gotchas
 
 - `index.html`'s meta/Open Graph tags are static, so **all routes share one link preview**. Changing
