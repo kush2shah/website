@@ -11,9 +11,10 @@
 # production
 /build
 
-# backend
-backend/__pycache__/
-**/*.pyc
+# compiled SASS output (the .scss files are the sources)
+# scoped to src/css so src/assets/fonts/Inter/inter.css is still tracked
+/src/css/**/*.css
+/src/css/**/*.css.map
 
 # misc
 .DS_Store
