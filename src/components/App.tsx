@@ -28,8 +28,6 @@ import Info from './Info';
 
 import ChangeLog from './ChangeLog';
 
-import Chat from './ai/Chat';
-
 import NotFound from './errors/NotFound';
 
 import TableauRedirect from './TableauRedirect';
@@ -131,8 +129,6 @@ function AnimatedRoutes() {
                 <Route path="/clubs" element={<PageWrapper><Clubs/></PageWrapper>}/>
 
                 <Route path="/info" element={<PageWrapper><Info/></PageWrapper>}/>
-
-                <Route path="/chat" element={<PageWrapper><Chat/></PageWrapper>}/>
 
                 <Route path="/changelog" element={<PageWrapper><ChangeLog/></PageWrapper>}/>
 

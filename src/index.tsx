@@ -9,17 +9,6 @@ import reportWebVitals from './reportWebVitals';
 
 import ReactGA from 'react-ga4';
 
-import axios from 'axios';
-
-axios.get('/api')
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
