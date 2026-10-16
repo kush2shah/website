@@ -5,6 +5,10 @@ role: Creator and developer
 stack: [SwiftUI, SwiftData, MusicKit, PhotoKit]
 status: TestFlight beta
 order: 4
+icon: ./icon.png
+iconDark: ./icon-dark.png
+links:
+  testflight: https://testflight.apple.com/join/pNtewv1y
 ---
 
 Momento connects your photos to the music you were listening to when you took them.

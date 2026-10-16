@@ -2,6 +2,7 @@
 title: Gold 200
 date: 2023-11-05
 dateLabel: "2023"
+place: Denver, Colorado
 tags: [Film]
 film: { stock: Kodak Gold 200, camera: Nikon FE, lens: Micro-NIKKOR 55mm f/2.8 }
 photos:

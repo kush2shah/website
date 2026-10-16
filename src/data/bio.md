@@ -4,6 +4,6 @@ Before that, I was an Applied AI Product Engineer at Bandwidth, building develop
 
 At UNC Chapel Hill, I studied Computer Science and Business Administration with a minor in Philosophy, Politics, and Economics.
 
-I'm passionate about building things people actually use — and understanding the people I'm building for, so I can improve their lives through the products I make.
+I find my joy in building things for me and my friends to use. Maybe you'll enjoy using them too? I am driven by understanding how people and technology interact, and try to find ways to make their experience with software something that delights.
 
-In the time left over, I take photos of the people and world around me, travel, listen to music, and push myself into new territory wherever I can find it.
+In the time left over, I take photos of the people and world around me, travel, skate, and collect vinyl. I'm currently picking up snowboarding and surfing!

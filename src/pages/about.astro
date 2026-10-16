@@ -5,10 +5,13 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { Content as Bio } from '../data/bio.md';
 import headshot from '../assets/about/headshot.jpeg';
-import uncLogo from '../assets/logos/unc_logo.png';
+import uncLogo from '../assets/logos/unc-icon.png';
 import { SITE, SOCIAL } from '../lib/site';
+import experienceFile from '../data/experience.yaml?raw';
 
-const experience = await getCollection('experience');
+// Roles render in the order they appear in experience.yaml; the content store doesn't keep it.
+const fileOrder = [...experienceFile.matchAll(/^- id:\s*(\S+)/gm)].map((m) => m[1]);
+const experience = (await getCollection('experience')).sort((a, b) => fileOrder.indexOf(a.id) - fileOrder.indexOf(b.id));
 const elsewhere = [...SOCIAL, { label: 'Photo inquiries', href: `mailto:${SITE.email}` }];
 ---
 

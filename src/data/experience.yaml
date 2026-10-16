@@ -3,12 +3,14 @@
   company: LangChain
   role: Deployed Engineer
   period: 2026 – Present
+  summary: "Helping enterprises build and deploy agents to production safely"
+  logo: ../assets/logos/langchain-icon.png
 
 - id: bandwidth
   company: Bandwidth
   role: Applied AI Product Engineer
   previously: Product Manager
-  period: Jul 2024 – 2026
+  period:  2024 – 2026
   logo: ../content/projects/bandwidth-cli/icon.png
   summary: "Developer experience and agent-native tooling: the open-source band CLI, a TwiML-to-BXML migration adapter, an API spec-review bot and a Pipecat voice integration. Before that, owned the roadmap for 10DLC and toll-free messaging."
 
@@ -16,26 +18,26 @@
   company: WillowTree
   role: Product Analyst Intern
   period: Summer 2023
-  summary: Wrote user stories and acceptance criteria for a telecom client's flagship mobile app, working with the client daily alongside a team of 10+.
-  logo: ../assets/logos/wt_logo.svg
+  summary: Wrote user stories and acceptance criteria for T-Mobile's flagship mobile app, working with the client daily alongside a team of 10+.
+  logo: ../assets/logos/willowtree_logo.png
 
 - id: cisco
   company: Cisco Systems
   role: Customer Marketing Intern
   period: Summer 2022
   summary: Built a playbook for B2B influencer marketing and presented it to 30+ members of the marketing senior leadership team.
-  logo: ../assets/logos/cisco_logo.png
+  logo: ../assets/logos/cisco-icon.png
 
 - id: netapp
   company: NetApp
   role: Customer Success and Sales Analytics Intern
   period: Summer 2021
   summary: Designed a weighted customer health score, built on 600,000+ daily-refreshed data points, to point success managers at the most critical accounts.
-  logo: ../assets/logos/netapp_logo.png
+  logo: ../assets/logos/netapp-icon.png
 
 - id: trc
   company: Triangle Rock Club
   role: Competition and Club Team Coach
-  period: 2020 – 2023
+  period: 2019 – 2023
   summary: Coached climbers from their first session to national-championship qualification, and ran a 25+ climber development program.
   logo: ../assets/logos/trc_logo.png
