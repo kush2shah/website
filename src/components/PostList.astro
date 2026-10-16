@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/site';
+
+interface Props {
+    posts: CollectionEntry<'writing'>[];
+}
+
+const { posts } = Astro.props;
+const minutes = (post: CollectionEntry<'writing'>) =>
+    Math.max(1, Math.round((post.body ?? '').split(/\s+/).filter(Boolean).length / 230));
+---
+
+<ol>
+    {
+        posts.map((post) => (
+            <li>
+                <a href={`/writing/${post.id}/`}>
+                    <time class="eyebrow" datetime={post.data.date.toISOString()}>
+                        {formatDate(post.data.date)}
+                    </time>
+                    <span class="text">
+                        <span class="title">{post.data.title}</span>
+                        <span class="summary">{post.data.description}</span>
+                    </span>
+                    <span class="eyebrow">{minutes(post)} min</span>
+                </a>
+            </li>
+        ))
+    }
+</ol>
+
+<style>
+    ol {
+        padding: 0;
+        list-style: none;
+    }
+    li {
+        border-bottom: 1px solid var(--border);
+    }
+    a {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 40px;
+        padding-block: 30px;
+    }
+    time {
+        flex: 0 0 140px;
+    }
+    .text {
+        flex: 1 1 360px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .title {
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+    }
+    a:hover .title {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+    }
+    .summary {
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--text-2);
+    }
+</style>

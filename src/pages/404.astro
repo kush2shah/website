@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Not found">
+    <div class="wrap-narrow page">
+        <h1 class="page-title">Not found</h1>
+        <p class="lede">Sorry, there's nothing here. If you think there should be, let me know.</p>
+        <a class="arrow-link" href="/">Go home <Icon name="arrow-right" /></a>
+        <figure class="dog" hidden>
+            <img alt="A random dog" />
+        </figure>
+    </div>
+</Base>
+
+<script>
+    // A random dog, as has been tradition on this page since 2023.
+    const figure = document.querySelector<HTMLElement>('.dog');
+    const img = figure?.querySelector('img');
+    fetch('https://api.thedogapi.com/v1/images/search')
+        .then((r) => r.json())
+        .then((data) => {
+            if (!figure || !img || !data?.[0]?.url) return;
+            img.src = data[0].url;
+            figure.hidden = false;
+        })
+        .catch(() => {});
+</script>
+
+<style>
+    .page {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding-block: 120px;
+    }
+    .arrow-link {
+        align-self: flex-start;
+    }
+    .dog img {
+        max-width: 360px;
+        width: 100%;
+        margin-top: 24px;
+        border-radius: 6px;
+    }
+</style>

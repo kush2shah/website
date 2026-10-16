@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import CollectionCard from '../../components/CollectionCard.astro';
+import { getPhotoCollections } from '../../lib/photos';
+import { PHOTO_TAGS } from '../../content.config';
+
+const collections = await getPhotoCollections();
+const tags = PHOTO_TAGS.filter((t) => collections.some((c) => c.data.tags.includes(t)));
+---
+
+<Base title="Photos" description="Photography by Kush Shah: trips, film rolls, portraits and published work.">
+    <div class="wrap">
+        <header class="page-head">
+            <h1 class="page-title">Photos</h1>
+            <p class="lede">
+                Trips, film rolls, portraits and published work, grouped into collections. Camera and lens details come
+                straight from each photo.
+            </p>
+        </header>
+
+        <photo-filter>
+            <div class="filters">
+                <div role="group" aria-label="Filter collections" class="buttons">
+                    <button type="button" aria-pressed="true" data-tag="">All</button>
+                    {
+                        tags.map((t) => (
+                            <button type="button" aria-pressed="false" data-tag={t}>
+                                {t}
+                            </button>
+                        ))
+                    }
+                </div>
+                <p class="eyebrow count" aria-live="polite">{collections.length} collections</p>
+            </div>
+            <div class="grid">
+                {collections.map((c) => <CollectionCard collection={c} />)}
+            </div>
+        </photo-filter>
+    </div>
+</Base>
+
+<script>
+    class PhotoFilter extends HTMLElement {
+        connectedCallback() {
+            const buttons = [...this.querySelectorAll<HTMLButtonElement>('button[data-tag]')];
+            const cards = [...this.querySelectorAll<HTMLElement>('[data-tags]')];
+            const count = this.querySelector('.count');
+
+            const apply = (tag: string) => {
+                let shown = 0;
+                for (const card of cards) {
+                    const match = !tag || (card.dataset.tags ?? '').split(',').includes(tag);
+                    card.hidden = !match;
+                    if (match) shown++;
+                }
+                for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+                if (count) count.textContent = `${shown} collection${shown === 1 ? '' : 's'}`;
+            };
+
+            for (const b of buttons) b.addEventListener('click', () => apply(b.dataset.tag ?? ''));
+
+            // Old links like /published land here; ?tag=Published preselects a filter.
+            const initial = new URLSearchParams(location.search).get('tag');
+            if (initial && buttons.some((b) => b.dataset.tag === initial)) apply(initial);
+        }
+    }
+    customElements.define('photo-filter', PhotoFilter);
+</script>
+
+<style>
+    photo-filter {
+        display: block;
+        padding-bottom: 120px;
+    }
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 24px;
+        margin-bottom: 40px;
+        padding-block: 16px;
+        border-block: 1px solid var(--border);
+    }
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    button {
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid var(--border-s);
+        border-radius: 999px;
+        background: transparent;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-2);
+        transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    button:hover {
+        border-color: var(--text-3);
+        color: var(--text);
+    }
+    button[aria-pressed='true'] {
+        background: var(--text);
+        border-color: var(--text);
+        color: var(--bg);
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 48px 24px;
+    }
+    @media (max-width: 400px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

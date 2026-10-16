@@ -1,20 +1,12 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
-
-# production
+# build output
+/dist
+# generated types and content cache
+.astro/
+# output of the old Create React App build
 /build
-
-# compiled SASS output (the .scss files are the sources)
-# scoped to src/css so src/assets/fonts/Inter/inter.css is still tracked
-/src/css/**/*.css
-/src/css/**/*.css.map
 
 # misc
 .DS_Store
@@ -25,6 +17,4 @@
 .env.production.local
 
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 deploy_key*

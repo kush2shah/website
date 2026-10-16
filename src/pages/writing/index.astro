@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/site';
+
+const posts = await getPosts();
+---
+
+<Base title="Writing" description="Writing by Kush Shah on developer experience, agent-native tooling and the things he builds.">
+    <div class="wrap">
+        <header class="page-head">
+            <h1 class="page-title">Writing</h1>
+            <p class="lede">Notes on developer experience, agent-native tooling, and the things I build.</p>
+            {
+                posts.length > 0 && (
+                    <a class="arrow-link rss" href="/rss.xml">
+                        <Icon name="rss" size={12} /> Subscribe via RSS
+                    </a>
+                )
+            }
+        </header>
+        <div class="list">
+            {posts.length > 0 ? <PostList posts={posts} /> : <p class="lede">Nothing published yet.</p>}
+        </div>
+    </div>
+</Base>
+
+<style>
+    .rss {
+        align-self: flex-start;
+    }
+    .list {
+        padding-bottom: 120px;
+        border-top: 1px solid var(--border);
+    }
+    .list > .lede {
+        padding-block: 32px;
+    }
+</style>

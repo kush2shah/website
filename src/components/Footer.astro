@@ -1,0 +1,62 @@
+---
+import { SOCIAL, getPosts } from '../lib/site';
+
+const hasWriting = (await getPosts()).length > 0;
+const year = new Date().getFullYear();
+---
+
+<footer>
+    <span class="copy">© {year} Kush Shah · NC</span>
+    <ul>
+        {
+            SOCIAL.map((s) => (
+                <li>
+                    <a href={s.href}>{s.label}</a>
+                </li>
+            ))
+        }
+        {
+            hasWriting && (
+                <li>
+                    <a href="/rss.xml">RSS</a>
+                </li>
+            )
+        }
+        <li><a href="/changelog/">Changelog</a></li>
+    </ul>
+</footer>
+
+<style>
+    footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0 24px;
+        padding: 8px var(--gutter);
+        border-top: 1px solid var(--border);
+    }
+    .copy,
+    a {
+        display: inline-block;
+        padding-block: 16px;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-3);
+    }
+    a {
+        transition: color var(--dur) var(--ease);
+    }
+    a:hover {
+        color: var(--text);
+    }
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 24px;
+        padding: 0;
+        list-style: none;
+    }
+</style>

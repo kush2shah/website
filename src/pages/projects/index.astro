@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Projects" description="Apps and tools Kush Shah has built or led — native apps in SwiftUI, developer tools in Go.">
+    <div class="wrap">
+        <header class="page-head">
+            <h1 class="page-title">Projects</h1>
+            <p class="lede">Apps and tools I've built or led — native apps in SwiftUI, developer tools in Go.</p>
+        </header>
+        <div class="grid">
+            {projects.map((p) => <ProjectCard project={p} />)}
+        </div>
+    </div>
+</Base>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 0 40px;
+        padding-bottom: 120px;
+    }
+    @media (max-width: 400px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

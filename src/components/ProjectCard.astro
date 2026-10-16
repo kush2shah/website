@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectIcon from './ProjectIcon.astro';
+
+interface Props {
+    project: CollectionEntry<'projects'>;
+    compact?: boolean;
+}
+
+const { project, compact = false } = Astro.props;
+const { name, tagline, role, stack, status } = project.data;
+const href = `/projects/${project.id}/`;
+---
+
+<article class:list={['card', { compact }]}>
+    <div class="top">
+        <ProjectIcon project={project} size={compact ? 56 : 64} />
+        {!compact && <span class="pill">{status}</span>}
+    </div>
+    <h3><a href={href}>{name}</a></h3>
+    <p class="tagline">{tagline}</p>
+    <p class="eyebrow">
+        {compact ? [stack[0], status].filter(Boolean).join(' · ') : [role, stack.join(', ')].filter(Boolean).join(' · ')}
+    </p>
+</article>
+
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding-block: 36px 44px;
+        border-top: 1px solid var(--border);
+    }
+    .compact {
+        padding-block: 32px;
+        border-top: none;
+    }
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+    h3 {
+        margin-top: 10px;
+        font-size: 26px;
+        font-weight: 200;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+    }
+    .compact h3 {
+        margin-top: 0;
+        font-size: 22px;
+        font-weight: 300;
+    }
+    /* The whole card is clickable; the heading link stretches over it. */
+    h3 a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+    .card:hover h3 {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+    }
+    .tagline {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--text-2);
+    }
+</style>

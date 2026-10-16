@@ -1,0 +1,110 @@
+---
+import { getPosts } from '../lib/site';
+
+interface Props {
+    // 'overlay' sits on top of a full-bleed photo (home); 'solid' is the sticky bar everywhere else.
+    variant?: 'solid' | 'overlay';
+}
+const { variant = 'solid' } = Astro.props;
+
+const hasWriting = (await getPosts()).length > 0;
+const links = [
+    ...(hasWriting ? [{ href: '/writing/', label: 'Writing' }] : []),
+    { href: '/projects/', label: 'Projects' },
+    { href: '/photos/', label: 'Photos' },
+    { href: '/about/', label: 'About' },
+];
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path.startsWith(href);
+---
+
+<header class:list={['nav', variant]}>
+    <a class="name" href="/">Kush Shah</a>
+    <nav aria-label="Primary">
+        <ul>
+            {
+                links.map((l) => (
+                    <li>
+                        <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>
+                            {l.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</header>
+
+<style>
+    .nav {
+        z-index: 20;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0 32px;
+        padding-inline: var(--gutter);
+    }
+    .solid {
+        position: sticky;
+        top: 0;
+        background: color-mix(in oklch, var(--bg) 88%, transparent);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border-bottom: 1px solid var(--border);
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        color: #fff;
+    }
+    .name {
+        display: inline-block;
+        padding-block: 18px;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+    }
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 32px;
+        padding: 0;
+        list-style: none;
+    }
+    ul a {
+        display: inline-block;
+        padding-block: 18px;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-2);
+        transition: color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    ul a:hover,
+    ul a[aria-current='page'] {
+        color: var(--text);
+    }
+    ul a[aria-current='page'] {
+        box-shadow: inset 0 -1px 0 currentColor;
+    }
+    .overlay ul a {
+        color: rgba(255, 255, 255, 0.88);
+    }
+    .overlay ul a:hover {
+        color: #fff;
+    }
+    @media (max-width: 480px) {
+        ul {
+            gap: 0 20px;
+        }
+        ul a {
+            padding-block: 10px 16px;
+        }
+    }
+</style>

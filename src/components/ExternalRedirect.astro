@@ -1,0 +1,26 @@
+---
+// A static redirect page for when the destination lives off-site (GitHub Pages can't
+// send real HTTP redirects). Browsers follow the meta refresh immediately; the link
+// covers anything that doesn't.
+interface Props {
+    to: string;
+    title: string;
+}
+
+const { to, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta http-equiv="refresh" content={`0;url=${to}`} />
+        <meta name="robots" content="noindex" />
+        <link rel="canonical" href={to} />
+    </head>
+    <body>
+        <p>Redirecting to the <a href={to}>{title}</a>.</p>
+    </body>
+</html>

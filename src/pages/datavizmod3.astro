@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+
+// Public Tableau visualizations from a UNC data visualization course.
+const VIZ = [
+    { label: 'All People', href: 'https://public.tableau.com/app/profile/kush.shah3302/viz/FoodInaccessibilitybyUSDA/People1mile?publish=yes' },
+    { label: 'Low Income People', href: 'https://public.tableau.com/app/profile/kush.shah3302/viz/FoodInaccessibilitybyUSDALowIncome/LowIncome1mile?publish=yes' },
+    { label: 'Children', href: 'https://public.tableau.com/app/profile/kush.shah3302/viz/FoodInaccessibilitybyUSDAChildren/Children1mile?publish=yes' },
+    { label: 'Seniors', href: 'https://public.tableau.com/app/profile/kush.shah3302/viz/FoodInaccessibilitybyUSDASeniors/Seniors1mile?publish=yes' },
+    { label: 'Vehicle Access', href: 'https://public.tableau.com/app/profile/kush.shah3302/viz/VehicleAccess/VehicleAccess12mile?publish=yes' },
+];
+---
+
+<Base title="Food inaccessibility visualizations" description="Public Tableau visualizations of USDA food access data.">
+    <div class="wrap-narrow">
+        <header class="page-head">
+            <h1 class="page-title">Food inaccessibility</h1>
+            <p class="lede">Public Tableau visualizations of USDA food access data. Pick a population to view.</p>
+        </header>
+        <ul>
+            {
+                VIZ.map((v) => (
+                    <li>
+                        <a class="arrow-link" href={v.href}>
+                            {v.label} <Icon name="arrow-up-right" />
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</Base>
+
+<style>
+    ul {
+        padding: 0 0 120px;
+        list-style: none;
+        border-top: 1px solid var(--border);
+    }
+    li {
+        border-bottom: 1px solid var(--border);
+    }
+</style>

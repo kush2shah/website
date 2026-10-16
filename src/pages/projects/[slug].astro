@@ -1,0 +1,251 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import ProjectIcon from '../../components/ProjectIcon.astro';
+import ThemedImage from '../../components/ThemedImage.astro';
+
+export async function getStaticPaths() {
+    const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+    return projects.map((project, i) => ({
+        params: { slug: project.id },
+        props: { project, next: projects[(i + 1) % projects.length] },
+    }));
+}
+
+interface Props {
+    project: CollectionEntry<'projects'>;
+    next: CollectionEntry<'projects'>;
+}
+
+const { project, next } = Astro.props;
+const { name, tagline, role, stack, status, install, links, screens, wide, icon, legal } = project.data;
+const { Content } = await render(project);
+
+const actions = [
+    links.appStore && { href: links.appStore, label: 'App Store' },
+    links.macAppStore && { href: links.macAppStore, label: 'Mac App Store' },
+    links.testflight && { href: links.testflight, label: 'Join the TestFlight beta' },
+    links.github && { href: links.github, label: 'GitHub' },
+    links.docs && { href: links.docs, label: 'Docs' },
+    links.website && { href: links.website, label: 'Website' },
+].filter((a): a is { href: string; label: string } => !!a);
+---
+
+<Base title={name} description={tagline} image={screens[0]?.light ?? icon}>
+    <article>
+        <header class="wrap head">
+            <a class="back arrow-link" href="/projects/"><Icon name="chevron-left" /> Projects</a>
+            <div class="center">
+                <ProjectIcon project={project} size={88} loading="eager" />
+                <h1 class="page-title">{name}</h1>
+                <p class="eyebrow">{[role, stack.join(', '), status].filter(Boolean).join(' · ')}</p>
+                <p class="tagline">{tagline}</p>
+                {
+                    (install || actions.length > 0) && (
+                        <div class="actions">
+                            {install && (
+                                <copy-command data-command={install}>
+                                    <button type="button" class="button install" aria-label={`Copy install command: ${install}`}>
+                                        <code>
+                                            <span class="prompt">$</span> {install}
+                                        </code>
+                                        <span class="copy-icon">
+                                            <Icon name="copy" size={14} />
+                                        </span>
+                                        <span class="done-icon">
+                                            <Icon name="check" size={14} />
+                                        </span>
+                                    </button>
+                                </copy-command>
+                            )}
+                            {actions.map((a) => (
+                                <a class="button" href={a.href}>
+                                    {a.label} <Icon name="arrow-up-right" />
+                                </a>
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+        </header>
+
+        {
+            screens.length > 0 && (
+                <div class:list={['wrap', 'screens', { wide }]}>
+                    {screens.map((s) => (
+                        <figure class="screen">
+                            <ThemedImage light={s.light} dark={s.dark} alt={s.alt} width={wide ? 1040 : 300} />
+                        </figure>
+                    ))}
+                </div>
+            )
+        }
+
+        <div class="wrap-narrow body prose">
+            <Content />
+        </div>
+
+        {
+            (legal.privacy || legal.terms) && (
+                <ul class="wrap-narrow legal" aria-label={`${name} legal`}>
+                    {legal.privacy && (
+                        <li>
+                            <a class="arrow-link" href={`/projects/${project.id}/privacy-policy/`}>
+                                Privacy policy <Icon name="arrow-up-right" />
+                            </a>
+                        </li>
+                    )}
+                    {legal.terms && (
+                        <li>
+                            <a class="arrow-link" href={`/projects/${project.id}/terms/`}>
+                                Terms and conditions <Icon name="arrow-up-right" />
+                            </a>
+                        </li>
+                    )}
+                </ul>
+            )
+        }
+
+        <nav class="wrap-narrow next" aria-label="More projects">
+            <a href={`/projects/${next.id}/`}>
+                <span>
+                    <span class="eyebrow">Next project</span>
+                    <span class="next-name">{next.data.name}</span>
+                </span>
+                <Icon name="arrow-right" size={20} />
+            </a>
+        </nav>
+    </article>
+</Base>
+
+<script>
+    class CopyCommand extends HTMLElement {
+        connectedCallback() {
+            const button = this.querySelector('button');
+            button?.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(this.dataset.command ?? '');
+                    this.toggleAttribute('copied', true);
+                    setTimeout(() => this.toggleAttribute('copied', false), 2000);
+                } catch {
+                    /* Clipboard unavailable; the command is still visible to copy by hand. */
+                }
+            });
+        }
+    }
+    customElements.define('copy-command', CopyCommand);
+</script>
+
+<style>
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding-block: 40px 56px;
+    }
+    .back {
+        align-self: flex-start;
+        color: var(--text-3);
+    }
+    .center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+    }
+    .tagline {
+        max-width: 620px;
+        font-size: 18px;
+        line-height: 1.75;
+        color: var(--text-2);
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding-top: 6px;
+    }
+    .install {
+        gap: 12px;
+        background: var(--bg-hi);
+        font-family: var(--mono);
+    }
+    .install code {
+        font-size: 13px;
+    }
+    .prompt {
+        color: var(--text-3);
+    }
+    .done-icon,
+    copy-command[copied] .copy-icon {
+        display: none;
+    }
+    copy-command[copied] .done-icon {
+        display: inline-flex;
+    }
+    .screens {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        max-width: 1040px;
+    }
+    .screens.wide {
+        grid-template-columns: 1fr;
+    }
+    .screen {
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+    .screen :global(img) {
+        width: 100%;
+        height: auto;
+    }
+    @media (prefers-color-scheme: dark) {
+        .screen {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+    }
+    .body {
+        padding-block: 72px 0;
+    }
+    .legal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 32px;
+        margin-top: 40px;
+        list-style: none;
+    }
+    .legal .arrow-link {
+        color: var(--text-3);
+    }
+    .legal .arrow-link:hover {
+        color: var(--text);
+    }
+    .next {
+        padding-block: 88px 120px;
+    }
+    .next a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-block: 32px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+    .next a > span {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .next-name {
+        font-size: 32px;
+        font-weight: 200;
+        letter-spacing: -0.01em;
+    }
+</style>

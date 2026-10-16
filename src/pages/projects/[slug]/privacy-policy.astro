@@ -1,0 +1,13 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ExternalRedirect from '../../../components/ExternalRedirect.astro';
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects', (p) => !!p.data.legal.privacy);
+    return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: CollectionEntry<'projects'> };
+---
+
+<ExternalRedirect to={project.data.legal.privacy!} title={`${project.data.name} Privacy Policy`} />

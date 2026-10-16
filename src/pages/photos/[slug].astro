@@ -1,0 +1,351 @@
+---
+import { render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Photo from '../../components/Photo.astro';
+import { getPhotoCollections, photoDetails, type PhotoCollection } from '../../lib/photos';
+import { SITE } from '../../lib/site';
+
+export async function getStaticPaths() {
+    const collections = await getPhotoCollections();
+    return collections.map((collection, i) => ({
+        params: { slug: collection.id },
+        props: {
+            collection,
+            prev: collections[(i - 1 + collections.length) % collections.length],
+            next: collections[(i + 1) % collections.length],
+        },
+    }));
+}
+
+interface Props {
+    collection: PhotoCollection;
+    prev: PhotoCollection;
+    next: PhotoCollection;
+}
+
+const { collection, prev, next } = Astro.props;
+const { data, photos, cover, dateLabel, gear } = collection;
+const { Content } = await render(collection.entry);
+
+const facts = [
+    data.film && { label: 'Film', value: data.film.stock },
+    data.film?.camera && { label: 'Camera', value: data.film.camera },
+    data.film?.lens && { label: 'Lens', value: data.film.lens },
+    !data.film && gear.length > 0 && { label: gear.length > 1 ? 'Cameras' : 'Camera', value: gear.join(', ') },
+    data.place && { label: 'Place', value: data.place },
+    { label: 'Date', value: dateLabel },
+    { label: data.film ? 'Frames' : 'Photos', value: String(photos.length) },
+].filter((f): f is { label: string; value: string } => !!f);
+
+// The lightbox opens a large WebP rather than the original file.
+const large = await Promise.all(
+    photos.map(async (p) =>
+        typeof p.src === 'string' ? p.src : (await getImage({ src: p.src, width: Math.min(2048, p.src.width), format: 'webp' })).src,
+    ),
+);
+
+const description = `${data.title}: ${[data.place, dateLabel].filter(Boolean).join(', ')}. Photography by Kush Shah.`;
+const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SITE.email}</a>`);
+---
+
+<Base title={data.title} description={description} image={typeof cover.src === 'string' ? undefined : cover.src}>
+    <header class="wrap head">
+        <a class="back arrow-link" href="/photos/"><Icon name="chevron-left" /> Photos</a>
+        <h1 class="page-title">{data.title}</h1>
+        <div class="lede intro"><Content /></div>
+        <dl class="facts">
+            {
+                facts.map((f) => (
+                    <div>
+                        <dt class="eyebrow">{f.label}</dt>
+                        <dd>{f.value}</dd>
+                    </div>
+                ))
+            }
+        </dl>
+        {note && <p class="note" set:html={note} />}
+    </header>
+
+    <photo-lightbox>
+        <div class="grid">
+            {
+                photos.map((p, i) => {
+                    const href = large[i];
+                    const details = [p.caption, photoDetails(p)].filter(Boolean).join(' — ');
+                    return (
+                        <a class="tile" href={href} data-index={i} data-caption={details}>
+                            <Photo photo={p} sizes="(max-width: 800px) 100vw, 33vw" widths={[400, 800, 1200]} loading={i < 3 ? 'eager' : 'lazy'} />
+                            {p.caption && <span class="tile-caption">{p.caption}</span>}
+                        </a>
+                    );
+                })
+            }
+        </div>
+        <dialog aria-label={data.title}>
+            <button type="button" class="close" aria-label="Close"><Icon name="close" size={16} /></button>
+            <button type="button" class="step prev" aria-label="Previous photo"><Icon name="chevron-left" size={20} /></button>
+            <figure>
+                <img alt="" />
+                <figcaption></figcaption>
+            </figure>
+            <button type="button" class="step next" aria-label="Next photo"><Icon name="chevron-right" size={20} /></button>
+        </dialog>
+    </photo-lightbox>
+
+    <nav class="wrap more" aria-label="More collections">
+        <a href={`/photos/${prev.id}/`}>
+            <span class="eyebrow">Previous</span>
+            <span class="more-title">{prev.data.title}</span>
+        </a>
+        <a class="right" href={`/photos/${next.id}/`}>
+            <span class="eyebrow">Next</span>
+            <span class="more-title">{next.data.title}</span>
+        </a>
+    </nav>
+</Base>
+
+<script>
+    // Click a photo to view it large. Without JS, the link opens the full image.
+    class PhotoLightbox extends HTMLElement {
+        connectedCallback() {
+            const tiles = [...this.querySelectorAll<HTMLAnchorElement>('a.tile')];
+            const dialog = this.querySelector('dialog');
+            const img = dialog?.querySelector('img');
+            const caption = dialog?.querySelector('figcaption');
+            if (!dialog || !img || !caption) return;
+            let index = 0;
+
+            const show = (i: number) => {
+                index = (i + tiles.length) % tiles.length;
+                const tile = tiles[index];
+                const source = tile.querySelector('img');
+                img.src = tile.href;
+                img.alt = source?.alt ?? '';
+                caption.textContent = tile.dataset.caption ?? '';
+            };
+
+            tiles.forEach((tile, i) =>
+                tile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    show(i);
+                    dialog.showModal();
+                }),
+            );
+            dialog.querySelector('.close')?.addEventListener('click', () => dialog.close());
+            dialog.querySelector('.prev')?.addEventListener('click', () => show(index - 1));
+            dialog.querySelector('.next')?.addEventListener('click', () => show(index + 1));
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+            });
+            dialog.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') show(index - 1);
+                if (e.key === 'ArrowRight') show(index + 1);
+            });
+        }
+    }
+    customElements.define('photo-lightbox', PhotoLightbox);
+</script>
+
+<style>
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-block: 40px 40px;
+    }
+    .back {
+        align-self: flex-start;
+        color: var(--text-3);
+    }
+    .intro:empty {
+        display: none;
+    }
+    .facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 40px;
+        margin-top: 8px;
+        padding-block: 20px;
+        border-block: 1px solid var(--border);
+    }
+    .facts div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    dd {
+        font-size: 15px;
+    }
+    .note {
+        max-width: 640px;
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--text-2);
+    }
+    .note :global(a) {
+        color: var(--text);
+        border-bottom: 1px solid var(--border-s);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 3px;
+        padding-inline: 3px;
+    }
+    @media (max-width: 420px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .tile {
+        position: relative;
+        display: block;
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        background: var(--bg-hi);
+        cursor: zoom-in;
+    }
+    .tile :global(picture),
+    .tile :global(img) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms var(--ease-out), filter 400ms var(--ease);
+    }
+    .tile:hover :global(img) {
+        transform: scale(1.03);
+        filter: brightness(0.9);
+    }
+    .tile-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 40px 16px 12px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 300ms var(--ease);
+    }
+    .tile:hover .tile-caption,
+    .tile:focus-visible .tile-caption {
+        opacity: 1;
+    }
+    @media (hover: none) {
+        .tile-caption {
+            opacity: 1;
+        }
+    }
+
+    dialog {
+        width: 100vw;
+        height: 100dvh;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: rgba(8, 8, 8, 0.95);
+        color: #fff;
+    }
+    dialog[open] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        max-width: calc(100vw - 140px);
+    }
+    figure img {
+        max-width: 100%;
+        max-height: calc(100dvh - 120px);
+        width: auto;
+        object-fit: contain;
+    }
+    figcaption {
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.6;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.78);
+    }
+    dialog button {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.8);
+    }
+    dialog button:hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+    }
+    .close {
+        top: 16px;
+        right: 16px;
+    }
+    .step {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .step.prev {
+        left: 16px;
+    }
+    .step.next {
+        right: 16px;
+    }
+    @media (max-width: 640px) {
+        figure {
+            max-width: 100vw;
+        }
+        .step {
+            top: auto;
+            bottom: 16px;
+            transform: none;
+        }
+    }
+
+    .more {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 24px;
+        padding-block: 72px 120px;
+    }
+    .more a {
+        flex: 1 1 260px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-block: 8px;
+    }
+    .more a.right {
+        align-items: flex-end;
+        text-align: right;
+    }
+    .more-title {
+        font-size: 26px;
+        font-weight: 200;
+        letter-spacing: -0.01em;
+    }
+</style>

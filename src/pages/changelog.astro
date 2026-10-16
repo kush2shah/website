@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import { Content } from '../data/changelog.md';
+---
+
+<Base title="Changelog" description="What's changed on kushs.org since 2023.">
+    <div class="wrap-narrow">
+        <header class="page-head">
+            <h1 class="page-title">Changelog</h1>
+            <p class="eyebrow">What's changed on this site since 2023</p>
+        </header>
+        <div class="log">
+            <Content />
+        </div>
+    </div>
+</Base>
+
+<style>
+    .log {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 120px;
+    }
+    .log :global(h2) {
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-3);
+    }
+    .log :global(ul) {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 14px 0 32px;
+        padding: 0;
+        list-style: none;
+    }
+    .log :global(li) {
+        position: relative;
+        padding-left: 18px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--text-2);
+    }
+    .log :global(li)::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.85em;
+        width: 6px;
+        height: 1px;
+        background: var(--border-s);
+    }
+</style>

@@ -1,0 +1,141 @@
+---
+import type { PhotoCollection } from '../lib/photos';
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+
+// A horizontal, snapping row of photos. The next one peeks in at the edge;
+// buttons scroll it for people without a trackpad.
+interface Props {
+    collections: PhotoCollection[];
+    label: string;
+}
+
+const { collections, label } = Astro.props;
+---
+
+<photo-strip>
+    <div class="track" role="region" aria-label={label} tabindex="0">
+        {
+            collections.map((c) => (
+                <a class="item" href={`/photos/${c.id}/`}>
+                    <Photo photo={c.cover} sizes="(max-width: 700px) 88vw, 660px" widths={[480, 800, 1320]} />
+                    <span class="caption">
+                        <span>{c.data.title}</span>
+                        <span>{c.dateLabel}</span>
+                    </span>
+                </a>
+            ))
+        }
+    </div>
+    <div class="wrap controls">
+        <span class="eyebrow">{label}</span>
+        <div class="buttons">
+            <button type="button" data-dir="-1" aria-label="Scroll photos left"><Icon name="chevron-left" size={14} /></button>
+            <button type="button" data-dir="1" aria-label="Scroll photos right"><Icon name="chevron-right" size={14} /></button>
+        </div>
+    </div>
+</photo-strip>
+
+<script>
+    class PhotoStrip extends HTMLElement {
+        connectedCallback() {
+            const track = this.querySelector<HTMLElement>('.track');
+            this.querySelectorAll<HTMLButtonElement>('button[data-dir]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    if (!track) return;
+                    const dir = Number(button.dataset.dir);
+                    track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: 'smooth' });
+                });
+            });
+        }
+    }
+    customElements.define('photo-strip', PhotoStrip);
+</script>
+
+<style>
+    photo-strip {
+        display: block;
+    }
+    .track {
+        display: flex;
+        gap: 3px;
+        padding-inline: 3px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 3px;
+        scrollbar-width: none;
+    }
+    .track::-webkit-scrollbar {
+        display: none;
+    }
+    .item {
+        position: relative;
+        flex: 0 0 auto;
+        width: min(660px, 88vw);
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        scroll-snap-align: start;
+        background: var(--bg-hi);
+    }
+    .item :global(picture),
+    .item :global(img) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 40px 18px 14px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 300ms var(--ease);
+    }
+    .item:hover .caption,
+    .item:focus-visible .caption {
+        opacity: 1;
+    }
+    @media (hover: none) {
+        .caption {
+            opacity: 1;
+        }
+    }
+    .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-top: 12px;
+    }
+    .buttons {
+        display: flex;
+        gap: 8px;
+    }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--border-s);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--text-2);
+        transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    button:hover {
+        border-color: var(--text-3);
+        color: var(--text);
+    }
+</style>

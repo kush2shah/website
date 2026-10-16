@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ThemedImage from './ThemedImage.astro';
+
+// The app icon, or a monogram tile for projects that don't have one yet.
+interface Props {
+    project: CollectionEntry<'projects'>;
+    size: number;
+    loading?: 'lazy' | 'eager';
+}
+
+const { project, size, loading } = Astro.props;
+const { icon, iconDark, name } = project.data;
+const radius = Math.round(size * 0.225);
+---
+
+<span class="icon" style={`--size: ${size}px; --radius: ${radius}px`}>
+    {
+        icon ? (
+            <ThemedImage light={icon} dark={iconDark} alt="" width={size} loading={loading} />
+        ) : (
+            <span class="monogram" aria-hidden="true">
+                {name.charAt(0)}
+            </span>
+        )
+    }
+</span>
+
+<style>
+    .icon {
+        flex: 0 0 auto;
+        display: block;
+        width: var(--size);
+        height: var(--size);
+        overflow: hidden;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .icon :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .monogram {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-hi);
+        border: 1px solid var(--border);
+        border-radius: inherit;
+        font-size: calc(var(--size) * 0.42);
+        font-weight: 200;
+        color: var(--text-2);
+    }
+</style>

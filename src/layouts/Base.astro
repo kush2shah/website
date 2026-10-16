@@ -1,0 +1,94 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, getPosts } from '../lib/site';
+import '../styles/global.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+    // A local image for the link preview. Falls back to /og-image.jpg.
+    image?: ImageMetadata;
+    nav?: 'solid' | 'overlay';
+    type?: 'website' | 'article';
+}
+
+const { title, description = SITE.description, image, nav = 'solid', type = 'website' } = Astro.props;
+
+const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// Link previews need a raster image; SVG icons fall back to the default card.
+const ogImage = image && image.format !== 'svg'
+    ? new URL((await getImage({ src: image, width: Math.min(1200, image.width), format: 'jpeg' })).src, Astro.site)
+    : new URL('/og-image.jpg', Astro.site);
+const hasWriting = (await getPosts()).length > 0;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
+        {hasWriting && <link rel="alternate" type="application/rss+xml" title="Kush Shah — Writing" href="/rss.xml" />}
+
+        <meta property="og:type" content={type} />
+        <meta property="og:site_name" content={SITE.name} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={fullTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+
+        {
+            import.meta.env.PROD && (
+                <>
+                    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}`} />
+                    <script is:inline define:vars={{ id: SITE.analyticsId }}>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() {
+                            dataLayer.push(arguments);
+                        }
+                        gtag('js', new Date());
+                        gtag('config', id);
+                    </script>
+                </>
+            )
+        }
+    </head>
+    <body>
+        <a class="skip visually-hidden" href="#main">Skip to content</a>
+        <Nav variant={nav} />
+        <main id="main">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .skip:focus {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        width: auto;
+        height: auto;
+        padding: 10px 14px;
+        clip: auto;
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border-s);
+    }
+</style>

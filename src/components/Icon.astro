@@ -1,0 +1,33 @@
+---
+// Small stroke icons used across the site. Decorative unless a label is passed.
+interface Props {
+    name: 'arrow-right' | 'arrow-up-right' | 'arrow-down' | 'chevron-left' | 'chevron-right' | 'rss' | 'copy' | 'check' | 'close';
+    size?: number;
+    label?: string;
+}
+const { name, size = 10, label } = Astro.props;
+---
+
+<svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden={label ? undefined : 'true'}
+    role={label ? 'img' : undefined}
+    aria-label={label}
+>
+    {name === 'arrow-right' && <><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></>}
+    {name === 'arrow-up-right' && <><line x1="7" y1="17" x2="17" y2="7" /><polyline points="8 7 17 7 17 16" /></>}
+    {name === 'arrow-down' && <><line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" /></>}
+    {name === 'chevron-left' && <polyline points="15 18 9 12 15 6" />}
+    {name === 'chevron-right' && <polyline points="9 18 15 12 9 6" />}
+    {name === 'rss' && <><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle cx="5" cy="19" r="1" /></>}
+    {name === 'copy' && <><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></>}
+    {name === 'check' && <polyline points="20 6 9 17 4 12" />}
+    {name === 'close' && <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>}
+</svg>

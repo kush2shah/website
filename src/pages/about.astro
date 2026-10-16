@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { Content as Bio } from '../data/bio.md';
+import headshot from '../assets/about/headshot.jpeg';
+import uncLogo from '../assets/logos/unc_logo.png';
+import { SITE, SOCIAL } from '../lib/site';
+
+const experience = await getCollection('experience');
+const elsewhere = [...SOCIAL, { label: 'Photo inquiries', href: `mailto:${SITE.email}` }];
+---
+
+<Base title="About" description="About Kush Shah: Deployed Engineer at LangChain, previously Applied AI Product Engineer at Bandwidth." image={headshot}>
+    <div class="wrap-narrow page">
+        <section class="hero">
+            <Image src={headshot} alt="Kush Shah in front of the Old Well" width={160} height={200} densities={[1, 2]} loading="eager" class="headshot" />
+            <div class="hero-text">
+                <h1 class="page-title">Kush Shah</h1>
+                <p class="eyebrow">Applied AI · Products · Photography</p>
+            </div>
+        </section>
+
+        <section class="prose bio">
+            <Bio />
+        </section>
+
+        <section>
+            <h2 class="eyebrow list-head">Experience</h2>
+            <ol class="list">
+                {
+                    experience.map(({ data }) => (
+                        <li class="item">
+                            <span class="logo">
+                                {data.logo ? (
+                                    <Image src={data.logo} alt="" width={40} densities={[1, 2]} />
+                                ) : (
+                                    <span class="logo-fallback" aria-hidden="true">
+                                        {data.company.charAt(0)}
+                                    </span>
+                                )}
+                            </span>
+                            <div class="item-body">
+                                <div class="item-head">
+                                    <h3>{data.company}</h3>
+                                    <span class="eyebrow">{data.period}</span>
+                                </div>
+                                <p class="role">{data.previously ? `${data.role} · previously ${data.previously}` : data.role}</p>
+                                {data.summary && <p class="summary">{data.summary}</p>}
+                            </div>
+                        </li>
+                    ))
+                }
+            </ol>
+        </section>
+
+        <section>
+            <h2 class="eyebrow list-head">Education</h2>
+            <div class="item">
+                <span class="logo"><Image src={uncLogo} alt="" width={40} densities={[1, 2]} /></span>
+                <div class="item-body">
+                    <div class="item-head">
+                        <h3>University of North Carolina at Chapel Hill</h3>
+                        <span class="eyebrow">Class of 2024</span>
+                    </div>
+                    <p class="role">BS Business Administration (Kenan-Flagler) · BA Computer Science</p>
+                    <p class="summary">
+                        Minor in Philosophy, Politics and Economics, with distinction. Board member of Scale and Coin Business
+                        Society and App Team Carolina; contributor to Coulture Magazine.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="eyebrow list-head">Elsewhere</h2>
+            <ul class="links">
+                {
+                    elsewhere.map((l) => (
+                        <li>
+                            <a class="arrow-link" href={l.href}>
+                                {l.label} <Icon name="arrow-right" />
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+    </div>
+</Base>
+
+<style>
+    .page {
+        display: flex;
+        flex-direction: column;
+        gap: 72px;
+        padding-block: 88px 120px;
+    }
+    .hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 32px;
+    }
+    .hero :global(.headshot) {
+        width: 160px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center top;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .bio {
+        padding-top: 40px;
+        border-top: 1px solid var(--border);
+    }
+    .list-head {
+        padding-block: 14px;
+        border-bottom: 1px solid var(--border);
+    }
+    .list {
+        padding: 0;
+        list-style: none;
+    }
+    .item {
+        display: flex;
+        gap: 24px;
+        padding-block: 32px;
+    }
+    .list .item {
+        border-bottom: 1px solid var(--border);
+    }
+    .logo {
+        flex: 0 0 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo :global(img) {
+        max-width: 40px;
+        max-height: 32px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+    .logo-fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border-s);
+        border-radius: 7px;
+        font-size: 15px;
+        color: var(--text-2);
+    }
+    .item-body {
+        flex: 1 1 0;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .item-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 4px 16px;
+    }
+    h3 {
+        font-size: 17px;
+        font-weight: 400;
+    }
+    .role {
+        font-size: 14px;
+        font-style: italic;
+        color: var(--text-2);
+    }
+    .summary {
+        margin-top: 8px;
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--text-2);
+    }
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 32px;
+        padding: 16px 0 0;
+        list-style: none;
+    }
+</style>
