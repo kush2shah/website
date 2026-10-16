@@ -9,6 +9,9 @@ const folderId = ({ entry }: { entry: string }) => entry.split('/')[0];
 export const PROJECT_STATUSES = ['App Store', 'Mac App Store', 'TestFlight beta', 'Open source', 'In development'] as const;
 export const PHOTO_TAGS = ['Travel', 'Film', 'Aerial', 'Portraits', 'Published'] as const;
 
+// What a film frame was shot on. Scans carry the scanner's EXIF, so this stands in for it.
+const roll = z.object({ stock: z.string(), camera: z.string().optional(), lens: z.string().optional() });
+
 const projects = defineCollection({
     loader: glob({ base: './src/content/projects', pattern: '*/index.md', generateId: folderId }),
     schema: ({ image }) =>
@@ -58,16 +61,19 @@ const photos = defineCollection({
         // Filename in the folder to use as the cover. Defaults to the first photo.
         cover: z.string().optional(),
         // Film rolls: scanned files carry the scanner's EXIF, so the roll says what shot it.
-        film: z.object({ stock: z.string(), camera: z.string().optional(), lens: z.string().optional() }).optional(),
+        // A photo can set its own `film` when a collection mixes stocks or cameras.
+        film: roll.optional(),
         // Fallback for files with no camera EXIF.
         camera: z.string().optional(),
         // Optional per-file alt text, captions and ordering. Files not listed here are
         // still shown, after the listed ones, alphabetically.
         photos: z
-            .array(z.object({ file: z.string(), alt: z.string(), caption: z.string().optional() }))
+            .array(z.object({ file: z.string(), alt: z.string(), caption: z.string().optional(), film: roll.optional() }))
             .default([]),
         // Photos hosted elsewhere (Cloudinary, S3).
-        remote: z.array(z.object({ src: z.url(), alt: z.string(), caption: z.string().optional() })).default([]),
+        remote: z
+            .array(z.object({ src: z.url(), alt: z.string(), caption: z.string().optional(), film: roll.optional() }))
+            .default([]),
         note: z.string().optional(),
     }),
 });

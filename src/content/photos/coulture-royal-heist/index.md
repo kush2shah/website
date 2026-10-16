@@ -5,8 +5,8 @@ dateLabel: "2023"
 place: Coulture Magazine
 tags: [Published]
 remote:
-  - { src: "https://website-ks.s3.us-east-2.amazonaws.com/coulture/Screenshot+2025-10-13+at+11.54.35%E2%80%AFPM.png", alt: "Royal Heist editorial in Coulture Magazine, spread 4" }
-  - { src: "https://website-ks.s3.us-east-2.amazonaws.com/coulture/Screenshot+2025-10-13+at+11.53.48%E2%80%AFPM.png", alt: "Royal Heist editorial in Coulture Magazine, spread 1" }
-  - { src: "https://website-ks.s3.us-east-2.amazonaws.com/coulture/Screenshot+2025-10-13+at+11.54.07%E2%80%AFPM.png", alt: "Royal Heist editorial in Coulture Magazine, spread 2" }
-  - { src: "https://website-ks.s3.us-east-2.amazonaws.com/coulture/Screenshot+2025-10-13+at+11.54.23%E2%80%AFPM.png", alt: "Royal Heist editorial in Coulture Magazine, spread 3" }
+  - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/coulture/royal-heist-4", alt: "Royal Heist editorial in Coulture Magazine, spread 4" }
+  - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/coulture/royal-heist-1", alt: "Royal Heist editorial in Coulture Magazine, spread 1" }
+  - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/coulture/royal-heist-2", alt: "Royal Heist editorial in Coulture Magazine, spread 2" }
+  - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/coulture/royal-heist-3", alt: "Royal Heist editorial in Coulture Magazine, spread 3" }
 ---

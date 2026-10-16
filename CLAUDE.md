@@ -44,7 +44,10 @@ Content lives in files, not components. Schemas are in `src/content.config.ts`.
   folder is published automatically**; `photos:` in the frontmatter only sets alt text, captions
   and order. Camera, lens, settings and date are read from EXIF at build (`src/lib/photos.ts`).
   Film rolls set `film:` because scans carry the scanner's EXIF. `remote:` holds photos hosted
-  elsewhere (Cloudinary, S3). Tags drive the filter on `/photos/`.
+  elsewhere. Use Cloudinary (cloud `degt8oftq`, under `website/`, as
+  `…/image/upload/f_auto,q_auto/v1/<public_id>`): `<Photo>` and the lightbox resize those through
+  the URL, while other hosts are served as-is. The free plan rejects uploads over 10 MB, so
+  convert big PNGs to lossless WebP first. Tags drive the filter on `/photos/`.
 - **Writing** — `src/content/writing/*.md` with title, description, date, draft. The Writing nav
   link, home section and RSS link only appear once a non-draft post exists.
 - **About** — bio in `src/data/bio.md`, roles in `src/data/experience.yaml`.

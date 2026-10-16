@@ -28,6 +28,8 @@ export type Photo = {
     alt: string;
     caption?: string;
     file?: string;
+    // Film stock, for film frames.
+    film?: string;
     camera?: string;
     lens?: string;
     settings?: string;
@@ -41,9 +43,12 @@ export type PhotoCollection = {
     photos: Photo[];
     cover: Photo;
     dateLabel: string;
-    // "Kodak Gold 200 · Nikon FE" for film, or the cameras used for digital.
-    gear: string[];
+    // Every stock, camera and film lens used. Digital lenses vary frame to frame, so they
+    // stay in each photo's details instead.
+    gear: { film: string[]; cameras: string[]; lenses: string[] };
 };
+
+const unique = (values: (string | undefined)[]) => [...new Set(values.filter((v): v is string => !!v))];
 
 type Exif = {
     Make?: string;
@@ -112,14 +117,16 @@ async function buildCollection(entry: CollectionEntry<'photos'>): Promise<PhotoC
 
             const exif = await readExif(key);
             const scanned = !!exif?.Model && SCANNERS.some((re) => re.test(exif.Model!));
-            const camera = data.film?.camera ?? (exif?.Model && !scanned ? CAMERA_NAMES[exif.Model] ?? exif.Model : data.camera);
-            const lens = data.film ? data.film.lens : exif?.LensModel ? enDash(exif.LensModel) : undefined;
+            const roll = meta?.film ?? data.film;
+            const camera = roll?.camera ?? (exif?.Model && !scanned ? CAMERA_NAMES[exif.Model] ?? exif.Model : data.camera);
+            const lens = roll ? roll.lens : exif?.LensModel ? enDash(exif.LensModel) : undefined;
 
             return {
                 src: files[key].default,
                 file,
                 alt: meta?.alt ?? `Photo from ${data.title}`,
                 caption: meta?.caption,
+                film: roll?.stock,
                 camera,
                 lens,
                 settings: exif && !scanned ? describeSettings(exif) : undefined,
@@ -128,15 +135,20 @@ async function buildCollection(entry: CollectionEntry<'photos'>): Promise<PhotoC
         }),
     );
 
-    const remote: Photo[] = data.remote.map((r) => ({ src: r.src, alt: r.alt, caption: r.caption }));
+    const remote = data.remote.map((r): Photo => {
+        const roll = r.film ?? data.film;
+        return { src: r.src, alt: r.alt, caption: r.caption, film: roll?.stock, camera: roll?.camera ?? data.camera, lens: roll?.lens };
+    });
     const photos = [...local, ...remote];
     if (!photos.length) throw new Error(`[photos] ${entry.id} has no photos`);
 
     const cover = (data.cover && photos.find((p) => p.file === data.cover)) || photos[0];
 
-    const gear = data.film
-        ? [data.film.stock, data.film.camera, data.film.lens].filter((s): s is string => !!s)
-        : [...new Set(local.map((p) => p.camera).filter((s): s is string => !!s))];
+    const gear = {
+        film: unique(photos.map((p) => p.film)),
+        cameras: unique(photos.map((p) => p.camera)),
+        lenses: unique(photos.filter((p) => p.film).map((p) => p.lens)),
+    };
 
     return {
         id: entry.id,
@@ -159,7 +171,16 @@ export function getPhotoCollections(): Promise<PhotoCollection[]> {
     return cache;
 }
 
-// One line under a photo: "Sony a7R III · FE 24–70mm F2.8 GM · 35mm · f/8 · 1/250s · ISO 100".
+// Cloudinary resizes in the URL: c_limit only ever scales down, and the URL's own
+// f_auto,q_auto still picks the format and quality. Other remote hosts serve one size.
+export const isCloudinary = (src: string) => /^https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\//.test(src);
+
+export function remoteAt(src: string, width: number): string {
+    return isCloudinary(src) ? src.replace('/image/upload/', `/image/upload/c_limit,w_${width}/`) : src;
+}
+
+// One line under a photo: "Sony a7R III · FE 24–70mm F2.8 GM · 35mm · f/8 · 1/250s · ISO 100",
+// or "Kodak Gold 200 · Nikon FE · Micro-NIKKOR 55mm f/2.8" for film.
 export function photoDetails(photo: Photo): string {
-    return [photo.camera, photo.lens, photo.settings].filter(Boolean).join(' · ');
+    return [photo.film, photo.camera, photo.lens, photo.settings].filter(Boolean).join(' · ');
 }

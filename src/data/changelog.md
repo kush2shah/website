@@ -5,6 +5,10 @@
 - Photos are grouped into collections, with camera details read from each file
 - Every project gets its own page
 - Add Cheap Near Beer Me and Whichever Weather
+- Coulture spreads load at the size they're shown instead of as full-size PNGs
+- Nine new film collections: Afloat, Barcelona, Death Valley & Sequoia, Amsterdam, Brussels & Cologne, Holi and three
+  Chapel Hill rolls
+- Film photos show the stock they were shot on, and a collection can mix stocks and cameras
 
 ## August 12, 2026
 

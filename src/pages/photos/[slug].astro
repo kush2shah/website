@@ -4,7 +4,7 @@ import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Photo from '../../components/Photo.astro';
-import { getPhotoCollections, photoDetails, type PhotoCollection } from '../../lib/photos';
+import { getPhotoCollections, photoDetails, remoteAt, type PhotoCollection } from '../../lib/photos';
 import { SITE } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -30,19 +30,20 @@ const { data, photos, cover, dateLabel, gear } = collection;
 const { Content } = await render(collection.entry);
 
 const facts = [
-    data.film && { label: 'Film', value: data.film.stock },
-    data.film?.camera && { label: 'Camera', value: data.film.camera },
-    data.film?.lens && { label: 'Lens', value: data.film.lens },
-    !data.film && gear.length > 0 && { label: gear.length > 1 ? 'Cameras' : 'Camera', value: gear.join(', ') },
+    gear.film.length > 0 && { label: 'Film', value: gear.film.join(', ') },
+    gear.cameras.length > 0 && { label: gear.cameras.length > 1 ? 'Cameras' : 'Camera', value: gear.cameras.join(', ') },
+    gear.lenses.length > 0 && { label: gear.lenses.length > 1 ? 'Lenses' : 'Lens', value: gear.lenses.join(', ') },
     data.place && { label: 'Place', value: data.place },
     { label: 'Date', value: dateLabel },
-    { label: data.film ? 'Frames' : 'Photos', value: String(photos.length) },
+    { label: photos.every((p) => p.film) ? 'Frames' : 'Photos', value: String(photos.length) },
 ].filter((f): f is { label: string; value: string } => !!f);
 
-// The lightbox opens a large WebP rather than the original file.
+// The lightbox opens a 2048px version rather than the original file.
 const large = await Promise.all(
     photos.map(async (p) =>
-        typeof p.src === 'string' ? p.src : (await getImage({ src: p.src, width: Math.min(2048, p.src.width), format: 'webp' })).src,
+        typeof p.src === 'string'
+            ? remoteAt(p.src, 2048)
+            : (await getImage({ src: p.src, width: Math.min(2048, p.src.width), format: 'webp' })).src,
     ),
 );
 

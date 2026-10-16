@@ -1,9 +1,9 @@
 ---
 import { Picture } from 'astro:assets';
-import type { Photo } from '../lib/photos';
+import { isCloudinary, remoteAt, type Photo } from '../lib/photos';
 
 // Local photos go through Astro's image pipeline (AVIF/WebP at several widths).
-// Remote ones (Cloudinary, S3) are already served optimized, so they pass through.
+// Cloudinary ones get the same widths from URL transforms; other remote ones pass through.
 interface Props {
     photo: Photo;
     sizes: string;
@@ -14,11 +14,21 @@ interface Props {
 
 const { photo, sizes, widths = [480, 800, 1200, 1600, 2048], loading = 'lazy', priority = false } = Astro.props;
 const fetchpriority = priority ? 'high' : undefined;
+const src = photo.src;
+const srcset = typeof src === 'string' && isCloudinary(src) ? widths.map((w) => `${remoteAt(src, w)} ${w}w`).join(', ') : undefined;
 ---
 
 {
     typeof photo.src === 'string' ? (
-        <img src={photo.src} alt={photo.alt} loading={loading} decoding="async" fetchpriority={fetchpriority} />
+        <img
+            src={photo.src}
+            srcset={srcset}
+            sizes={srcset && sizes}
+            alt={photo.alt}
+            loading={loading}
+            decoding="async"
+            fetchpriority={fetchpriority}
+        />
     ) : (
         <Picture
             src={photo.src}

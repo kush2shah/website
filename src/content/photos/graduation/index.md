@@ -23,4 +23,5 @@ remote:
   - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/grad/n0vk1ezklqjnzrmx1rty", alt: Two grads taking a selfie in front of the Bell Tower, caption: "Katie and Isabel · Class of 2024" }
   - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/grad/gegj3ip3xdfjcjulmu7h", alt: A grad leaning down with Wilson Library in the background, caption: "Sara Vandersip · Class of 2024" }
   - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/website/grad/mqis4zjc1wnqwzxbnotg", alt: A grad and their dog at the Old Well, caption: "Katie Noble · Class of 2024" }
+  - { src: "https://res.cloudinary.com/degt8oftq/image/upload/f_auto,q_auto/v1/ACROS_36", alt: "A grad holding a cap in an arched brick walkway under a hanging lantern", caption: "Kyle Sandino · Class of 2024", film: { stock: Fujifilm Acros II } }
 ---
