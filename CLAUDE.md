@@ -90,6 +90,7 @@ astro.config.mjs         site URL, sitemap, redirects
 
 ## Deployment
 
-Pushing to `main` or `react` runs `.github/workflows/deploy.yml`: Node 24, `npm ci`,
-`npm run build`, then publishes `dist/` to the `gh-pages` branch with the `kushs.org` CNAME.
-Other branches don't deploy.
+Pushing to `astro` runs `.github/workflows/deploy.yml`: Node 24, `npm ci`, `npm run build`,
+then publishes `dist/` to the `gh-pages` branch with the `kushs.org` CNAME. Other branches
+don't deploy from this workflow — but `react` still has the old React workflow, so a push
+there would redeploy the old site. Don't push to `react` unless it has been merged up.

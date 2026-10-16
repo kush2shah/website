@@ -1,10 +1,11 @@
 name: Deploy website
 
 on:
+  # The Astro site deploys from `astro`. The `react` branch still carries the old
+  # workflow, so pushing there would redeploy the React site over this one.
   push:
     branches:
-      - main
-      - react
+      - astro
   workflow_dispatch:
 
 permissions:

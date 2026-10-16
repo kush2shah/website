@@ -27,4 +27,4 @@ something.
 
 ## Deploy
 
-Pushing to `react` (or `main`) builds the site and publishes it to GitHub Pages at kushs.org.
+Pushing to `astro` builds the site and publishes it to GitHub Pages at kushs.org.
