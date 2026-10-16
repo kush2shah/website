@@ -10,7 +10,7 @@ import { getPhotoCollections } from '../lib/photos';
 import { getPosts } from '../lib/site';
 
 // The full-bleed photo on the landing page. Any local photo works.
-const HERO = { collection: 'yosemite', file: 'halfdome.jpg' };
+const HERO = { collection: 'yosemite', file: 'tunnel-view.jpg' };
 
 const collections = await getPhotoCollections();
 const heroCollection = collections.find((c) => c.id === HERO.collection);

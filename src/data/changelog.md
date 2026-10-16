@@ -9,6 +9,7 @@
 - Nine new film collections: Afloat, Barcelona, Death Valley & Sequoia, Amsterdam, Brussels & Cologne, Holi and three
   Chapel Hill rolls
 - Film photos show the stock they were shot on, and a collection can mix stocks and cameras
+- Tunnel View is the new home page photo
 
 ## August 12, 2026
 
