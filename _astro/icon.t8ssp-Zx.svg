@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4E2F10"/>
+      <stop offset="1" stop-color="#241304"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="512" cy="440" r="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C77E1A" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#C77E1A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beer" x1="0" y1="288" x2="0" y2="770" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFCF63"/>
+      <stop offset="0.5" stop-color="#F7A61F"/>
+      <stop offset="1" stop-color="#E07E10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#glow)"/>
+  <path fill="url(#beer)" d="M332,300 L692,300 L640,738 Q636,766 608,766 L416,766 Q388,766 384,738 Z"/>
+  <g transform="translate(1.4 21)">
+    <path fill="#FFFFFF" d="M320,352 C316,318 330,300 356,300 C360,266 408,252 440,278 C468,248 512,244 540,272 C574,250 620,262 628,296 C664,296 712,312 700,350 C690,366 664,372 636,366 C588,378 556,360 512,368 C468,376 436,360 388,368 C356,374 330,368 320,352 Z"/>
+    <g fill="#F0E4CC">
+      <circle cx="470" cy="330" r="9"/>
+      <circle cx="556" cy="322" r="7"/>
+      <circle cx="512" cy="344" r="6"/>
+    </g>
+  </g>
+  <path fill="#FFFFFF" fill-opacity="0.22" d="M372,372 Q368,362 380,362 L404,362 Q414,362 414,374 L430,690 Q431,706 416,706 L402,706 Q390,706 389,692 L368,384 Q367,376 372,372 Z"/>
+</svg>
