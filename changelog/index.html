@@ -1,4 +1,29 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-hkbrpulz><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Changelog · Kush Shah</title><meta name="description" content="What's changed on kushs.org since 2023."><link rel="canonical" href="https://kushs.org/changelog/"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo192.png"><meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)"><meta property="og:type" content="website"><meta property="og:site_name" content="Kush Shah"><meta property="og:url" content="https://kushs.org/changelog/"><meta property="og:title" content="Changelog · Kush Shah"><meta property="og:description" content="What's changed on kushs.org since 2023."><meta property="og:image" content="https://kushs.org/og-image.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Changelog · Kush Shah"><meta name="twitter:description" content="What's changed on kushs.org since 2023."><meta name="twitter:image" content="https://kushs.org/og-image.jpg"><script async src="https://www.googletagmanager.com/gtag/js?id=G-68JR99NH71"></script><script>(function(){const id = "G-68JR99NH71";
+<!DOCTYPE html><html lang="en" data-astro-cid-hkbrpulz><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Changelog · Kush Shah</title><meta name="description" content="What's changed on kushs.org since 2023."><link rel="canonical" href="https://kushs.org/changelog/"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo192.png"><meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)"><script>
+            // Photos fade in once they've loaded, and one that fails shows its description
+            // instead of a broken image. This runs before <body> is parsed so it sees every
+            // load and error. Without JS, photos simply appear as they arrive.
+            document.documentElement.classList.add('js');
+            document.addEventListener(
+                'load',
+                (e) => e.target instanceof HTMLImageElement && e.target.toggleAttribute('data-loaded', true),
+                true,
+            );
+            document.addEventListener(
+                'error',
+                (e) => {
+                    const img = e.target;
+                    if (!(img instanceof HTMLImageElement) || !img.hasAttribute('data-photo')) return;
+                    const box = img.parentElement instanceof HTMLPictureElement ? img.parentElement : img;
+                    if (box.nextElementSibling?.classList.contains('photo-failed')) return;
+                    const note = document.createElement('span');
+                    note.className = 'photo-failed';
+                    note.textContent = img.alt || 'Photo unavailable';
+                    box.style.display = 'none';
+                    box.after(note);
+                },
+                true,
+            );
+        </script><meta property="og:type" content="website"><meta property="og:site_name" content="Kush Shah"><meta property="og:url" content="https://kushs.org/changelog/"><meta property="og:title" content="Changelog · Kush Shah"><meta property="og:description" content="What's changed on kushs.org since 2023."><meta property="og:image" content="https://kushs.org/og-image.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Changelog · Kush Shah"><meta name="twitter:description" content="What's changed on kushs.org since 2023."><meta name="twitter:image" content="https://kushs.org/og-image.jpg"><script async src="https://www.googletagmanager.com/gtag/js?id=G-68JR99NH71"></script><script>(function(){const id = "G-68JR99NH71";
 
                         window.dataLayer = window.dataLayer || [];
                         function gtag() {
@@ -7,7 +32,7 @@
                         gtag('js', new Date());
                         gtag('config', id);
                     })();</script><style>.log[data-astro-cid-l7qxtvnw]{flex-direction:column;padding-bottom:120px;display:flex}.log[data-astro-cid-l7qxtvnw] h2{border-top:1px solid var(--border);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);padding-top:28px;font-size:11px;font-weight:400}.log[data-astro-cid-l7qxtvnw] ul{flex-direction:column;gap:8px;margin:14px 0 32px;padding:0;list-style:none;display:flex}.log[data-astro-cid-l7qxtvnw] li{color:var(--text-2);padding-left:18px;font-size:15px;line-height:1.7;position:relative}.log[data-astro-cid-l7qxtvnw] li:before{content:"";background:var(--border-s);width:6px;height:1px;position:absolute;top:.85em;left:0}
-</style><link rel="stylesheet" href="/_astro/Base.A8sKCerY.css"></head><body data-astro-cid-hkbrpulz><a class="skip visually-hidden" href="#main" data-astro-cid-hkbrpulz>Skip to content</a><header class="nav solid" data-astro-cid-wpvy4v7s><a class="name" href="/" data-astro-cid-wpvy4v7s>Kush Shah</a><nav aria-label="Primary" data-astro-cid-wpvy4v7s><ul data-astro-cid-wpvy4v7s><li data-astro-cid-wpvy4v7s><a href="/projects/" data-astro-cid-wpvy4v7s>Projects</a></li><li data-astro-cid-wpvy4v7s><a href="/photos/" data-astro-cid-wpvy4v7s>Photos</a></li><li data-astro-cid-wpvy4v7s><a href="/about/" data-astro-cid-wpvy4v7s>About</a></li></ul></nav></header><main id="main" data-astro-cid-hkbrpulz><div class="wrap-narrow" data-astro-cid-l7qxtvnw><header class="page-head" data-astro-cid-l7qxtvnw><h1 class="page-title" data-astro-cid-l7qxtvnw>Changelog</h1><p class="eyebrow" data-astro-cid-l7qxtvnw>What's changed on this site since 2023</p></header><div class="log" data-astro-cid-l7qxtvnw><h2 id="october-2026">October 2026</h2>
+</style><link rel="stylesheet" href="/_astro/Base.CRd4O68B.css"></head><body data-astro-cid-hkbrpulz><a class="skip visually-hidden" href="#main" data-astro-cid-hkbrpulz>Skip to content</a><header class="nav solid" data-astro-cid-wpvy4v7s><a class="name" href="/" data-astro-cid-wpvy4v7s>Kush Shah</a><nav aria-label="Primary" data-astro-cid-wpvy4v7s><ul data-astro-cid-wpvy4v7s><li data-astro-cid-wpvy4v7s><a href="/projects/" data-astro-cid-wpvy4v7s>Projects</a></li><li data-astro-cid-wpvy4v7s><a href="/photos/" data-astro-cid-wpvy4v7s>Photos</a></li><li data-astro-cid-wpvy4v7s><a href="/about/" data-astro-cid-wpvy4v7s>About</a></li></ul></nav></header><main id="main" data-astro-cid-hkbrpulz><div class="wrap-narrow" data-astro-cid-l7qxtvnw><header class="page-head" data-astro-cid-l7qxtvnw><h1 class="page-title" data-astro-cid-l7qxtvnw>Changelog</h1><p class="eyebrow" data-astro-cid-l7qxtvnw>What's changed on this site since 2023</p></header><div class="log" data-astro-cid-l7qxtvnw><h2 id="october-2026">October 2026</h2>
 <ul>
 <li>Rebuild the site on Astro: every page is real HTML now, with its own link preview</li>
 <li>New structure: Writing, Projects, Photos and About</li>
@@ -19,6 +44,10 @@
 Chapel Hill rolls</li>
 <li>Film photos show the stock they were shot on, and a collection can mix stocks and cameras</li>
 <li>Tunnel View is the new home page photo</li>
+<li>Smoother motion: photos fade in as they load, the lightbox eases open and slides between photos (swipe works
+too), filtering slides the collections into place, and pages fade into each other</li>
+<li>Handle failures: a photo that won’t load shows its description, the lightbox can retry, and the copy button says
+when the clipboard is blocked</li>
 </ul>
 <h2 id="august-12-2026">August 12, 2026</h2>
 <ul>
