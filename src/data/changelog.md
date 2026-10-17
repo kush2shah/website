@@ -16,6 +16,7 @@
   when the clipboard is blocked
 - Seven new collections: Bondi, Perhentian Islands, Nara, Fushimi Inari, Catalina Island, Salzburg and Montenegro
 - _Icebergs_, from Bondi, won the UNC Global Affairs Spotlight in the 2025–26 Carolina Global Photography Competition
+- Santorini won the Center for European Studies Spotlight in the 2023–24 competition
 - Photos hosted on Cloudinary show their camera, lens and settings too
 - The home page shows the ten newest collections, wherever their photos are hosted
 
