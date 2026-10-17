@@ -10,6 +10,10 @@
   Chapel Hill rolls
 - Film photos show the stock they were shot on, and a collection can mix stocks and cameras
 - Tunnel View is the new home page photo
+- Smoother motion: photos fade in as they load, the lightbox eases open and slides between photos (swipe works
+  too), filtering slides the collections into place, and pages fade into each other
+- Handle failures: a photo that won't load shows its description, the lightbox can retry, and the copy button says
+  when the clipboard is blocked
 
 ## August 12, 2026
 

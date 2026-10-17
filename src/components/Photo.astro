@@ -28,6 +28,7 @@ const srcset = typeof src === 'string' && isCloudinary(src) ? widths.map((w) => 
             loading={loading}
             decoding="async"
             fetchpriority={fetchpriority}
+            data-photo
         />
     ) : (
         <Picture
@@ -39,6 +40,7 @@ const srcset = typeof src === 'string' && isCloudinary(src) ? widths.map((w) => 
             loading={loading}
             decoding="async"
             fetchpriority={fetchpriority}
+            data-photo
         />
     )
 }

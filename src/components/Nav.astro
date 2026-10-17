@@ -38,6 +38,8 @@ const isCurrent = (href: string) => path === href || path.startsWith(href);
 
 <style>
     .nav {
+        /* Holds still while pages fade into each other. */
+        view-transition-name: site-nav;
         z-index: 20;
         display: flex;
         flex-wrap: wrap;

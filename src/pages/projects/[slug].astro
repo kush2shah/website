@@ -57,6 +57,7 @@ const actions = [
                                             <Icon name="check" size={14} />
                                         </span>
                                     </button>
+                                    <span class="visually-hidden" role="status" />
                                 </copy-command>
                             )}
                             {actions.map((a) => (
@@ -124,12 +125,17 @@ const actions = [
         connectedCallback() {
             const button = this.querySelector('button');
             button?.addEventListener('click', async () => {
+                const status = this.querySelector('[role="status"]');
                 try {
                     await navigator.clipboard.writeText(this.dataset.command ?? '');
                     this.toggleAttribute('copied', true);
+                    if (status) status.textContent = 'Copied';
                     setTimeout(() => this.toggleAttribute('copied', false), 2000);
                 } catch {
-                    /* Clipboard unavailable; the command is still visible to copy by hand. */
+                    // Clipboard blocked: select the command so it's one keystroke to copy by hand.
+                    const code = this.querySelector('code');
+                    if (code) getSelection()?.selectAllChildren(code);
+                    if (status) status.textContent = "Couldn't copy automatically. The command is selected.";
                 }
             });
         }
@@ -176,6 +182,8 @@ const actions = [
     }
     .install code {
         font-size: 13px;
+        /* Selectable even inside a button, for when the clipboard is blocked. */
+        user-select: text;
     }
     .prompt {
         color: var(--text-3);

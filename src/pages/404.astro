@@ -22,8 +22,9 @@ import Icon from '../components/Icon.astro';
         .then((r) => r.json())
         .then((data) => {
             if (!figure || !img || !data?.[0]?.url) return;
+            // Only reveal the dog once it has actually loaded.
+            img.onload = () => (figure.hidden = false);
             img.src = data[0].url;
-            figure.hidden = false;
         })
         .catch(() => {});
 </script>

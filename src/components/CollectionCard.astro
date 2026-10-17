@@ -45,7 +45,7 @@ const count = `${photos.length} ${noun}${photos.length === 1 ? '' : 's'}`;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 600ms var(--ease-out), filter 400ms var(--ease);
+        transition: opacity 500ms var(--ease), transform 600ms var(--ease-out), filter 400ms var(--ease);
     }
     .card:hover .frame :global(img) {
         transform: scale(1.03);

@@ -57,7 +57,31 @@ const tags = PHOTO_TAGS.filter((t) => collections.some((c) => c.data.tags.includ
                 if (count) count.textContent = `${shown} collection${shown === 1 ? '' : 's'}`;
             };
 
-            for (const b of buttons) b.addEventListener('click', () => apply(b.dataset.tag ?? ''));
+            // Cards slide to their new places instead of jumping. Each needs its own name for
+            // the transition; the names are cleared after so page changes stay one crossfade.
+            // `filtering` keeps the rest of the page still (see the styles below).
+            const filter = (tag: string) => {
+                if (!('startViewTransition' in document) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    return apply(tag);
+                }
+                const root = document.documentElement;
+                root.classList.add('filtering');
+                cards.forEach((card, i) => {
+                    card.style.viewTransitionName = `card-${i}`;
+                    card.style.setProperty('view-transition-class', 'card');
+                });
+                document
+                    .startViewTransition(() => apply(tag))
+                    .finished.finally(() => {
+                        root.classList.remove('filtering');
+                        cards.forEach((card) => {
+                            card.style.viewTransitionName = '';
+                            card.style.removeProperty('view-transition-class');
+                        });
+                    });
+            };
+
+            for (const b of buttons) b.addEventListener('click', () => filter(b.dataset.tag ?? ''));
 
             // Old links like /published land here; ?tag=Published preselects a filter.
             const initial = new URLSearchParams(location.search).get('tag');
@@ -118,5 +142,22 @@ const tags = PHOTO_TAGS.filter((t) => collections.some((c) => c.data.tags.includ
         .grid {
             grid-template-columns: 1fr;
         }
+    }
+</style>
+
+<style is:global>
+    /* While filtering, only the cards move: the rest of the page swaps without a fade. */
+    html.filtering::view-transition-old(root) {
+        display: none;
+    }
+    html.filtering::view-transition-new(root) {
+        animation: none;
+    }
+    /* Cards that leave fade out quickly; cards that arrive fade in once the others have moved. */
+    ::view-transition-old(*.card):only-child {
+        animation: 140ms var(--ease) both fade-out;
+    }
+    ::view-transition-new(*.card):only-child {
+        animation: 260ms var(--ease-out) 120ms both fade-in;
     }
 </style>

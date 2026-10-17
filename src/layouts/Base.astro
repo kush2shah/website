@@ -40,6 +40,33 @@ const hasWriting = (await getPosts()).length > 0;
         <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
         {hasWriting && <link rel="alternate" type="application/rss+xml" title="Kush Shah — Writing" href="/rss.xml" />}
 
+        <script is:inline>
+            // Photos fade in once they've loaded, and one that fails shows its description
+            // instead of a broken image. This runs before <body> is parsed so it sees every
+            // load and error. Without JS, photos simply appear as they arrive.
+            document.documentElement.classList.add('js');
+            document.addEventListener(
+                'load',
+                (e) => e.target instanceof HTMLImageElement && e.target.toggleAttribute('data-loaded', true),
+                true,
+            );
+            document.addEventListener(
+                'error',
+                (e) => {
+                    const img = e.target;
+                    if (!(img instanceof HTMLImageElement) || !img.hasAttribute('data-photo')) return;
+                    const box = img.parentElement instanceof HTMLPictureElement ? img.parentElement : img;
+                    if (box.nextElementSibling?.classList.contains('photo-failed')) return;
+                    const note = document.createElement('span');
+                    note.className = 'photo-failed';
+                    note.textContent = img.alt || 'Photo unavailable';
+                    box.style.display = 'none';
+                    box.after(note);
+                },
+                true,
+            );
+        </script>
+
         <meta property="og:type" content={type} />
         <meta property="og:site_name" content={SITE.name} />
         <meta property="og:url" content={canonical} />

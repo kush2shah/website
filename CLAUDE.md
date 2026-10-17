@@ -85,6 +85,10 @@ astro.config.mjs         site URL, sitemap, redirects
   the component. To style an image rendered by a child component, wrap it and use `:global(img)`.
 - **Client JS:** small custom elements in `<script>` tags (photo filter, lightbox, scroll strip,
   copy button). No framework runtime; keep it that way unless something genuinely needs one.
+- **Motion and failures:** an inline script in `Base.astro` fades in every `<Photo>` (marked
+  `data-photo`) once it loads and swaps a failed one for its alt text. If a component sets its
+  own `transition` on a photo, include `opacity` in it or the fade is lost. Pages crossfade via
+  `@view-transition` in `global.css`. Anything that moves must respect `prefers-reduced-motion`.
 - **Redirects:** old routes and short links (`/cc`, `/app-terms`, `/app-privacy`, `/fotodex`…)
   are in `astro.config.mjs`. `/app-terms` and `/app-privacy` are linked from App Store listings;
   don't remove them.

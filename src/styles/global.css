@@ -90,6 +90,58 @@ button {
     outline-offset: 3px;
 }
 
+/* ── Motion ────────────────────────────────────────────── */
+
+/* Pages fade into each other. The old page leaves quickly so the two don't double-expose.
+   Browsers without cross-document view transitions just cut. */
+@view-transition {
+    navigation: auto;
+}
+::view-transition-old(root) {
+    animation: 140ms var(--ease) both fade-out;
+}
+::view-transition-new(root) {
+    animation: 260ms var(--ease-out) 60ms both fade-in;
+}
+::view-transition-group(*) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ease-out);
+}
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+/* Photos fade in once loaded (Base.astro marks them). :where() keeps this easy to
+   override: components that transition their photos list opacity alongside. */
+:where(.js img[data-photo]) {
+    transition: opacity 500ms var(--ease);
+}
+.js img[data-photo]:not([data-loaded]) {
+    opacity: 0;
+}
+
+/* Stands in for a photo that failed to load. */
+.photo-failed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background: var(--bg-hi);
+    color: var(--text-3);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -100,6 +152,11 @@ button {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
     }
 }
 

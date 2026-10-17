@@ -89,8 +89,12 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
             <button type="button" class="step prev" aria-label="Previous photo"><Icon name="chevron-left" size={20} /></button>
             <figure>
                 <img alt="" />
+                <p class="failed" role="alert">
+                    This photo didn't load. <button type="button" class="retry">Try again</button>
+                </p>
                 <figcaption></figcaption>
             </figure>
+            <span class="spinner" aria-hidden="true"></span>
             <button type="button" class="step next" aria-label="Next photo"><Icon name="chevron-right" size={20} /></button>
         </dialog>
     </photo-lightbox>
@@ -109,40 +113,103 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
 
 <script>
     // Click a photo to view it large. Without JS, the link opens the full image.
+    //
+    // A photo only replaces the one on screen once it has loaded, so the caption never
+    // describes the wrong picture. Neighbours load ahead so stepping through is instant.
     class PhotoLightbox extends HTMLElement {
         connectedCallback() {
             const tiles = [...this.querySelectorAll<HTMLAnchorElement>('a.tile')];
             const dialog = this.querySelector('dialog');
-            const img = dialog?.querySelector('img');
+            const img = dialog?.querySelector<HTMLImageElement>('figure img');
             const caption = dialog?.querySelector('figcaption');
             if (!dialog || !img || !caption) return;
+            const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
             let index = 0;
+            // Bumped on every step and on close, so a slow photo can't land after a newer one.
+            let latest = 0;
 
-            const show = (i: number) => {
-                index = (i + tiles.length) % tiles.length;
-                const tile = tiles[index];
-                const source = tile.querySelector('img');
-                img.src = tile.href;
-                img.alt = source?.alt ?? '';
-                caption.textContent = tile.dataset.caption ?? '';
+            const load = (src: string) =>
+                new Promise<void>((resolve, reject) => {
+                    const image = new Image();
+                    image.onload = () => image.decode().catch(() => {}).then(resolve);
+                    image.onerror = reject;
+                    image.src = src;
+                });
+            const at = (i: number) => tiles[(i + tiles.length) % tiles.length];
+
+            // Photos slide a little in the direction of travel; with reduced motion they only fade.
+            const offset = (px: number) => (reduceMotion.matches || px === 0 ? 'none' : `translateX(${px}px)`);
+            const leave = (dir: number) =>
+                img.getAttribute('src')
+                    ? img.animate([{ opacity: 0, transform: offset(dir * -24) }], { duration: 160, easing: 'ease-in', fill: 'forwards' })
+                          .finished.catch(() => {})
+                    : Promise.resolve();
+            const enter = (dir: number) => {
+                img.getAnimations().forEach((a) => a.cancel());
+                img.animate([{ opacity: 0, transform: offset(dir * 24) }, { opacity: 1, transform: 'none' }], {
+                    duration: reduceMotion.matches ? 120 : 260,
+                    easing: 'cubic-bezier(0, 0, 0.2, 1)',
+                });
             };
 
-            tiles.forEach((tile, i) =>
+            const show = async (i: number, dir = 0) => {
+                index = (i + tiles.length) % tiles.length;
+                const step = ++latest;
+                const tile = at(index);
+                dialog.dataset.state = 'loading';
+                const [loaded] = await Promise.all([load(tile.href).then(() => true, () => false), leave(dir)]);
+                if (step !== latest) return;
+
+                caption.textContent = tile.dataset.caption ?? '';
+                if (!loaded) {
+                    dialog.dataset.state = 'failed';
+                    return;
+                }
+                img.src = tile.href;
+                img.alt = tile.querySelector('img')?.alt ?? '';
+                dialog.dataset.state = 'ready';
+                enter(dir);
+                for (const n of [index + 1, index - 1]) load(at(n).href).catch(() => {});
+            };
+
+            tiles.forEach((tile, i) => {
+                // Start loading on hover so the first open is usually instant.
+                tile.addEventListener('pointerenter', () => load(tile.href).catch(() => {}), { once: true });
                 tile.addEventListener('click', (e) => {
                     e.preventDefault();
-                    show(i);
+                    img.getAnimations().forEach((a) => a.cancel());
+                    img.removeAttribute('src');
+                    caption.textContent = '';
                     dialog.showModal();
-                }),
-            );
+                    show(i);
+                });
+            });
+            dialog.addEventListener('close', () => latest++);
             dialog.querySelector('.close')?.addEventListener('click', () => dialog.close());
-            dialog.querySelector('.prev')?.addEventListener('click', () => show(index - 1));
-            dialog.querySelector('.next')?.addEventListener('click', () => show(index + 1));
+            dialog.querySelector('.prev')?.addEventListener('click', () => show(index - 1, -1));
+            dialog.querySelector('.next')?.addEventListener('click', () => show(index + 1, 1));
+            dialog.querySelector('.retry')?.addEventListener('click', () => show(index));
             dialog.addEventListener('click', (e) => {
                 if (e.target === dialog) dialog.close();
             });
             dialog.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') show(index - 1);
-                if (e.key === 'ArrowRight') show(index + 1);
+                if (e.key === 'ArrowLeft') show(index - 1, -1);
+                if (e.key === 'ArrowRight') show(index + 1, 1);
+            });
+
+            // Swipe between photos on touch screens. Two-finger gestures are left to pinch-zoom.
+            let start: { x: number; y: number } | undefined;
+            dialog.addEventListener(
+                'touchstart',
+                (e) => (start = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : undefined),
+                { passive: true },
+            );
+            dialog.addEventListener('touchend', (e) => {
+                if (!start) return;
+                const dx = e.changedTouches[0].clientX - start.x;
+                const dy = e.changedTouches[0].clientY - start.y;
+                start = undefined;
+                if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
             });
         }
     }
@@ -215,7 +282,7 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 600ms var(--ease-out), filter 400ms var(--ease);
+        transition: opacity 500ms var(--ease), transform 600ms var(--ease-out), filter 400ms var(--ease);
     }
     .tile:hover :global(img) {
         transform: scale(1.03);
@@ -247,6 +314,8 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
     }
 
     dialog {
+        position: fixed;
+        inset: 0;
         width: 100vw;
         height: 100dvh;
         max-width: none;
@@ -254,13 +323,21 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         margin: 0;
         padding: 0;
         border: none;
+        /* Layout lives here rather than on [open], or the photo jumps aside while it fades out. */
+        align-items: center;
+        justify-content: center;
         background: rgba(8, 8, 8, 0.95);
         color: #fff;
+        /* Fades in and out; display and overlay hold until the fade-out finishes. */
+        opacity: 0;
+        transition:
+            opacity 260ms var(--ease),
+            display 260ms allow-discrete,
+            overlay 260ms allow-discrete;
     }
     dialog[open] {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        opacity: 1;
     }
     dialog::backdrop {
         background: rgba(0, 0, 0, 0.6);
@@ -271,6 +348,19 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         align-items: center;
         gap: 14px;
         max-width: calc(100vw - 140px);
+        transform: scale(0.97);
+        transition: transform 320ms var(--ease-out);
+    }
+    dialog[open] figure {
+        transform: none;
+    }
+    @starting-style {
+        dialog[open] {
+            opacity: 0;
+        }
+        dialog[open] figure {
+            transform: scale(0.97);
+        }
     }
     figure img {
         max-width: 100%;
@@ -284,8 +374,58 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         line-height: 1.6;
         text-align: center;
         color: rgba(255, 255, 255, 0.78);
+        transition: opacity 160ms var(--ease);
     }
-    dialog button {
+    /* While the next photo loads, the caption steps out with the old one. */
+    dialog[data-state='loading'] figcaption {
+        opacity: 0;
+    }
+
+    /* Only shows if a photo takes more than a moment. */
+    .spinner {
+        position: absolute;
+        inset: 0;
+        width: 28px;
+        height: 28px;
+        margin: auto;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        border-top-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms var(--ease);
+        animation: spin 800ms linear infinite;
+    }
+    dialog[data-state='loading'] .spinner {
+        opacity: 1;
+        transition-delay: 300ms;
+    }
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .failed {
+        display: none;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.78);
+    }
+    dialog[data-state='failed'] .failed {
+        display: block;
+    }
+    dialog[data-state='failed'] figure img {
+        display: none;
+    }
+    .retry {
+        padding: 0;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        background: none;
+        color: #fff;
+    }
+
+    dialog > button {
         position: absolute;
         display: flex;
         align-items: center;
@@ -297,7 +437,7 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         background: rgba(255, 255, 255, 0.08);
         color: rgba(255, 255, 255, 0.8);
     }
-    dialog button:hover {
+    dialog > button:hover {
         background: rgba(255, 255, 255, 0.16);
         color: #fff;
     }
