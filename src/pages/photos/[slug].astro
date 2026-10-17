@@ -35,7 +35,7 @@ const facts = [
     gear.lenses.length > 0 && { label: gear.lenses.length > 1 ? 'Lenses' : 'Lens', value: gear.lenses.join(', ') },
     data.place && { label: 'Place', value: data.place },
     { label: 'Date', value: dateLabel },
-    { label: photos.every((p) => p.film) ? 'Frames' : 'Photos', value: String(photos.length) },
+    photos.length > 1 && { label: photos.every((p) => p.film) ? 'Frames' : 'Photos', value: String(photos.length) },
 ].filter((f): f is { label: string; value: string } => !!f);
 
 // The lightbox opens a 2048px version rather than the original file.
@@ -46,6 +46,11 @@ const large = await Promise.all(
             : (await getImage({ src: p.src, width: Math.min(2048, p.src.width), format: 'webp' })).src,
     ),
 );
+
+// One or two photos get their own layout; a three-column grid would leave them stranded in a corner.
+const layout = photos.length === 1 ? 'single' : photos.length === 2 ? 'pair' : 'grid';
+const tileSizes = { single: '(max-width: 800px) 100vw, 80vw', pair: '(max-width: 800px) 100vw, 50vw', grid: '(max-width: 800px) 100vw, 33vw' }[layout];
+const tileWidths = layout === 'grid' ? [400, 800, 1200] : [800, 1200, 1600, 2048];
 
 const description = `${data.title}: ${[data.place, dateLabel].filter(Boolean).join(', ')}. Photography by Kush Shah.`;
 const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SITE.email}</a>`);
@@ -70,14 +75,14 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
     </header>
 
     <photo-lightbox>
-        <div class="grid">
+        <div class="grid" data-layout={layout}>
             {
                 photos.map((p, i) => {
                     const href = large[i];
                     const details = [p.caption, photoDetails(p)].filter(Boolean).join(' — ');
                     return (
                         <a class="tile" href={href} data-index={i} data-caption={details}>
-                            <Photo photo={p} sizes="(max-width: 800px) 100vw, 33vw" widths={[400, 800, 1200]} loading={i < 3 ? 'eager' : 'lazy'} />
+                            <Photo photo={p} sizes={tileSizes} widths={tileWidths} loading={i < 3 ? 'eager' : 'lazy'} />
                             {p.caption && <span class="tile-caption">{p.caption}</span>}
                         </a>
                     );
@@ -268,6 +273,37 @@ const note = data.note?.replace(SITE.email, `<a href="mailto:${SITE.email}">${SI
         .grid {
             grid-template-columns: 1fr;
         }
+    }
+    .grid[data-layout='pair'] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 800px) {
+        .grid[data-layout='pair'] {
+            grid-template-columns: 1fr;
+        }
+    }
+    /* A lone photo shows whole, at its own shape, rather than as a cropped thumbnail. */
+    .grid[data-layout='single'] {
+        display: flex;
+        justify-content: center;
+        /* Same column as the header above it. */
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+    }
+    .grid[data-layout='single'] .tile {
+        aspect-ratio: auto;
+        background: none;
+    }
+    .grid[data-layout='single'] .tile :global(picture) {
+        width: auto;
+        height: auto;
+    }
+    .grid[data-layout='single'] .tile :global(img) {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: min(85dvh, 1200px);
     }
     .tile {
         position: relative;
