@@ -25,7 +25,7 @@ const projects = (await getCollection('projects'))
     .filter((p) => p.data.featured)
     .sort((a, b) => a.data.order - b.data.order)
     .slice(0, 3);
-const stripCollections = collections.filter((c) => typeof c.cover.src !== 'string').slice(0, 10);
+const stripCollections = collections.slice(0, 10);
 ---
 
 <Base nav="overlay" image={typeof hero.src === 'string' ? undefined : hero.src}>

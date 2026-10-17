@@ -14,6 +14,10 @@
   too), filtering slides the collections into place, and pages fade into each other
 - Handle failures: a photo that won't load shows its description, the lightbox can retry, and the copy button says
   when the clipboard is blocked
+- Seven new collections: Bondi, Perhentian Islands, Nara, Fushimi Inari, Catalina Island, Salzburg and Montenegro
+- _Icebergs_, from Bondi, won the UNC Global Affairs Spotlight in the 2025–26 Carolina Global Photography Competition
+- Photos hosted on Cloudinary show their camera, lens and settings too
+- The home page shows the ten newest collections, wherever their photos are hosted
 
 ## August 12, 2026
 

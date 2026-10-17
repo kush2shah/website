@@ -61,24 +61,60 @@ type Exif = {
     FocalLength?: number;
 };
 
+const EXIF_TAGS = ['Make', 'Model', 'LensModel', 'DateTimeOriginal', 'FNumber', 'ExposureTime', 'ISO', 'FocalLength'];
+
 async function readExif(key: string): Promise<Exif | undefined> {
     try {
-        return await exifr.parse(path.join(process.cwd(), key), [
-            'Make',
-            'Model',
-            'LensModel',
-            'DateTimeOriginal',
-            'FNumber',
-            'ExposureTime',
-            'ISO',
-            'FocalLength',
-        ]);
+        return await exifr.parse(path.join(process.cwd(), key), EXIF_TAGS);
     } catch {
         return undefined;
     }
 }
 
+// Cloudinary keeps the uploaded original, EXIF and all, at the URL without transformations.
+// The tags sit at the start of the file, so only the first 64 KB is fetched. A photo that
+// can't be read is still published, just without camera details.
+async function readRemoteExif(src: string): Promise<Exif | undefined> {
+    if (!isCloudinary(src)) return undefined;
+    const original = src.replace(/\/image\/upload\/.*?(v\d+\/)/, '/image/upload/$1');
+    let head: Buffer;
+    try {
+        const res = await fetch(original, { headers: { Range: 'bytes=0-65535' }, signal: AbortSignal.timeout(15_000) });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        head = Buffer.from(await res.arrayBuffer());
+    } catch (err) {
+        console.warn(`[photos] couldn't fetch ${original} for EXIF: ${(err as Error).message}`);
+        return undefined;
+    }
+    // Formats exifr can't read (WebP) just have no details, like a local file without EXIF.
+    return exifr.parse(head, EXIF_TAGS).catch(() => undefined);
+}
+
 const enDash = (s: string) => s.replace(/(\d)-(\d)/g, '$1–$2');
+
+// Drones and phones name their built-in lens "24.0 mm f/2.8" or "iPhone 16 Pro Max back
+// triple camera…"; the camera name and settings already say as much.
+function lensName(exif: Exif): string | undefined {
+    const lens = exif.LensModel;
+    if (!lens || /^[\d.]+ ?mm f\/[\d.]+$/.test(lens) || (exif.Model && lens.startsWith(exif.Model))) return undefined;
+    return enDash(lens);
+}
+
+type Roll = { stock: string; camera?: string; lens?: string };
+
+// Camera, lens and settings for one photo. A film roll names the stock, camera and lens;
+// EXIF still supplies settings and date unless it came from a film scanner.
+function describe(exif: Exif | undefined, roll: Roll | undefined, fallbackCamera?: string) {
+    const scanned = !!exif?.Model && SCANNERS.some((re) => re.test(exif.Model!));
+    const digital = exif && !scanned ? exif : undefined;
+    return {
+        film: roll?.stock,
+        camera: roll?.camera ?? (digital?.Model ? (CAMERA_NAMES[digital.Model] ?? digital.Model) : fallbackCamera),
+        lens: roll ? roll.lens : digital && lensName(digital),
+        settings: digital && describeSettings(digital),
+        taken: digital?.DateTimeOriginal,
+    };
+}
 
 function describeSettings(exif: Exif): string | undefined {
     const parts: string[] = [];
@@ -115,30 +151,24 @@ async function buildCollection(entry: CollectionEntry<'photos'>): Promise<PhotoC
             const file = key.slice(prefix.length);
             if (!meta) console.warn(`[photos] ${entry.id}/${file} has no alt text; add it to index.md`);
 
-            const exif = await readExif(key);
-            const scanned = !!exif?.Model && SCANNERS.some((re) => re.test(exif.Model!));
-            const roll = meta?.film ?? data.film;
-            const camera = roll?.camera ?? (exif?.Model && !scanned ? CAMERA_NAMES[exif.Model] ?? exif.Model : data.camera);
-            const lens = roll ? roll.lens : exif?.LensModel ? enDash(exif.LensModel) : undefined;
-
             return {
                 src: files[key].default,
                 file,
                 alt: meta?.alt ?? `Photo from ${data.title}`,
                 caption: meta?.caption,
-                film: roll?.stock,
-                camera,
-                lens,
-                settings: exif && !scanned ? describeSettings(exif) : undefined,
-                taken: !scanned ? exif?.DateTimeOriginal : undefined,
+                ...describe(await readExif(key), meta?.film ?? data.film, data.camera),
             };
         }),
     );
 
-    const remote = data.remote.map((r): Photo => {
-        const roll = r.film ?? data.film;
-        return { src: r.src, alt: r.alt, caption: r.caption, film: roll?.stock, camera: roll?.camera ?? data.camera, lens: roll?.lens };
-    });
+    const remote = await Promise.all(
+        data.remote.map(async (r): Promise<Photo> => {
+            const roll = r.film ?? data.film;
+            // Film scans say nothing about the shot, so only digital photos are fetched.
+            const exif = roll ? undefined : await readRemoteExif(r.src);
+            return { src: r.src, alt: r.alt, caption: r.caption, ...describe(exif, roll, data.camera) };
+        }),
+    );
     const photos = [...local, ...remote];
     if (!photos.length) throw new Error(`[photos] ${entry.id} has no photos`);
 

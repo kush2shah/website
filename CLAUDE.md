@@ -46,7 +46,8 @@ Content lives in files, not components. Schemas are in `src/content.config.ts`.
   Film rolls set `film:` because scans carry the scanner's EXIF. `remote:` holds photos hosted
   elsewhere. Use Cloudinary (cloud `degt8oftq`, under `website/`, as
   `…/image/upload/f_auto,q_auto/v1/<public_id>`): `<Photo>` and the lightbox resize those through
-  the URL, while other hosts are served as-is. The free plan rejects uploads over 10 MB, so
+  the URL, while other hosts are served as-is. Their EXIF is read from the original upload at
+  build (so export with metadata kept); film frames skip it, and an unreachable one only warns. The free plan rejects uploads over 10 MB, so
   convert big PNGs to lossless WebP first. Tags drive the filter on `/photos/`.
 - **Writing** — `src/content/writing/*.md` with title, description, date, draft. The Writing nav
   link, home section and RSS link only appear once a non-draft post exists.
