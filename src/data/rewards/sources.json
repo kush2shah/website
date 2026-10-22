@@ -1,0 +1,212 @@
+{
+  "chase": {
+    "title": "Chase transfer partners",
+    "url": "https://www.chase.com/personal/credit-cards/education/rewards-benefits/transfer-credit-card-points-with-chase-ultimate-rewards",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "amex": {
+    "title": "Amex US live transfer directory",
+    "url": "https://global.americanexpress.com/rewards/transfer",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "capone": {
+    "title": "Capital One transfer directory",
+    "url": "https://www.capitalone.com/credit-cards/travel-partners",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "bilt": {
+    "title": "Bilt transfer partners",
+    "url": "https://support.biltrewards.com/hc/en-us/articles/19086448638989-Bilt-s-Transfer-Partners",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "citi": {
+    "title": "Citi transfer directory (dynamic; card-dependent)",
+    "url": "https://www.thankyou.com/partnerProgramsListing.htm",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "citi-list": {
+    "title": "Citi full list — secondary cross-check",
+    "url": "https://thepointsguy.com/loyalty-programs/citi-transfer-partners/",
+    "primary": false,
+    "verifiedAt": null
+  },
+  "citi-aa": {
+    "title": "Citi Strata: direct AAdvantage transfers",
+    "url": "https://www.citi.com/credit-cards/citi-strata-credit-card",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "wf": {
+    "title": "Wells Fargo list — secondary cross-check",
+    "url": "https://www.nerdwallet.com/travel/learn/wells-fargo-transfer-partners",
+    "primary": false,
+    "verifiedAt": null
+  },
+  "wf-cx": {
+    "title": "Wells Fargo adds Cathay",
+    "url": "https://newsroom.wf.com/news-releases/news-details/2026/Wells-Fargo-Adds-Cathay-Pacific-as-New-Rewards-Points-Transfer-Partner",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "wf-wy": {
+    "title": "Wells Fargo adds Wyndham",
+    "url": "https://newsroom.wf.com/news-releases/news-details/2026/Wells-Fargo-Welcomes-Wyndham-to-Rewards-Points-Transfer-Program/default.aspx",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "lyft": {
+    "title": "Lyft current rewards partnerships",
+    "url": "https://www.lyft.com/rider/rewards",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "uber-delta": {
+    "title": "Uber × Delta",
+    "url": "https://www.uber.com/us/en/u/delta/",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "uber-marriott": {
+    "title": "Uber × Marriott",
+    "url": "https://uber.marriott.com/en-us",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "amex-uber": {
+    "title": "Amex Platinum Uber benefits",
+    "url": "https://www.americanexpress.com/en-us/credit-cards/credit-intel/how-does-the-american-express-platinum-uber-credit-work/",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "chase-lyft": {
+    "title": "Sapphire Reserve Lyft terms",
+    "url": "https://www.chase.com/sapphire-cards/personal/reserve",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "chase-dd": {
+    "title": "Sapphire Reserve DoorDash terms",
+    "url": "https://www.chase.com/digital/resources/terms-of-use/csr-doordash",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "marriott": {
+    "title": "Marriott points → airline miles",
+    "url": "https://marriott.com/loyalty/redeem/travel/points-to-miles.mi",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "united-marriott": {
+    "title": "United / Marriott transfers and status",
+    "url": "https://www.united.com/en/us/fly/mileageplus/partners/hotel-resort-rewards-programs.html",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "avios": {
+    "title": "British Airways Combine Avios",
+    "url": "https://www.britishairways.com/content/the-british-airways-club/avios/combine-avios",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "finnair-avios": {
+    "title": "Finnair ↔ British Airways Avios",
+    "url": "https://www.finnair.com/en/finnair-plus/buy--transfer-or-exchange-avios/transfer-avios-between-finnair-and-british-airways",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "bilt-list": {
+    "title": "Bilt transfer rates / announced Hyatt change — secondary",
+    "url": "https://thepointsguy.com/loyalty-programs/bilt-transfer-partners/",
+    "primary": false,
+    "verifiedAt": null
+  },
+  "virgin": {
+    "title": "Virgin linked points balance",
+    "url": "https://membersupport.red.virgin.com/hc/en-gb/articles/29959455614993-How-do-I-Link-my-Virgin-Red-and-Virgin-Atlantic-Flying-Club-Accounts",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "rakuten-amex": {
+    "title": "Rakuten → Membership Rewards payouts",
+    "url": "https://www.rakuten.com/help/article/earning-american-express-membership-rewards-points-on-rakuten-360017609253",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "rakuten-bilt": {
+    "title": "Rakuten → Bilt payouts",
+    "url": "https://support.biltrewards.com/hc/en-us/articles/40835174496013-Bilt-x-Rakuten",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "walgreens": {
+    "title": "Bilt × Walgreens",
+    "url": "https://newsroom.biltrewards.com/bilt-rewards-expands-neighborhood-rewards-into-healthcare-with-walgreens-collaboration-launching-automatic-fsa-hsa-program",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "starbucks-delta": {
+    "title": "Delta × Starbucks current earning",
+    "url": "https://www.delta.com/us/en/skymiles/how-to-earn-miles/skymiles-partners-offers",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "starbucks-marriott": {
+    "title": "Marriott × Starbucks current program rules",
+    "url": "https://www.marriott.com/loyalty/terms/default.mi",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "mgm": {
+    "title": "Marriott ↔ MGM conversion rules",
+    "url": "https://help.marriott.com/s/article/mgm-collection-marriott-bonvoy",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "accor": {
+    "title": "Accor → Flying Blue",
+    "url": "https://all.accor.com/loyalty-program/partners/use/airfranceklm/index.en.shtml",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "hyatt-aa": {
+    "title": "Hyatt / American partnership wind-down",
+    "url": "https://newsroom.hyatt.com/AirlineUpdate",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "chase-cards": {
+    "title": "Chase co-branded cards",
+    "url": "https://creditcards.chase.com/travel-credit-cards",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "amex-hilton": {
+    "title": "Hilton co-branded Amex",
+    "url": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors/",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "amex-delta": {
+    "title": "Delta co-branded Amex",
+    "url": "https://www.americanexpress.com/us/credit-cards/category/delta-skymiles/",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "amex-marriott": {
+    "title": "Marriott Bonvoy Brilliant Amex",
+    "url": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-brilliant/",
+    "primary": true,
+    "verifiedAt": null
+  },
+  "aa-citi": {
+    "title": "American / Citi co-brand relationship",
+    "url": "https://news.aa.com/news/news-details/2024/AMERICAN-AIRLINES-AND-CITI-EXTEND-AND-EXPAND-CO-BRANDED-CARD-PARTNERSHIP-PAVING-THE-WAY-FOR-MORE-CUSTOMER-BENEFITS-AADV-12/default.aspx",
+    "primary": true,
+    "verifiedAt": null
+  }
+}

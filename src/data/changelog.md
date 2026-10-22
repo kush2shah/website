@@ -1,5 +1,6 @@
 ## October 2026
 
+- Add Friends: a shared-tools directory with an interactive rewards map, mobile program explorer and cited relationship details
 - Rebuild the site on Astro: every page is real HTML now, with its own link preview
 - New structure: Writing, Projects, Photos and About
 - Photos are grouped into collections, with camera details read from each file

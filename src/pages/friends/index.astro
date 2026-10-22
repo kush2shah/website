@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Friends" description="Useful little tools and field guides to share with friends.">
+    <div class="wrap">
+        <header class="page-head">
+            <h1 class="page-title">Friends</h1>
+            <p class="lede">Useful little tools and field guides. The things I keep sending people, in one place.</p>
+        </header>
+        <a class="tool" href="/friends/rewards-map/">
+            <span class="eyebrow">Travel &amp; everyday rewards</span>
+            <h2>The rewards network <span aria-hidden="true">↗</span></h2>
+            <p>Follow points transfers, everyday earning and linked benefits. Read the direction, ratio and fine print—not just the logos.</p>
+            <span class="arrow-link">Explore the map →</span>
+        </a>
+    </div>
+</Base>
+<style>
+    .tool { display: block; border-block: 1px solid var(--border); padding: 28px 0; margin-bottom: 120px; max-width: 760px; }
+    h2 { font-size: 28px; font-weight: 300; margin: 12px 0; }
+    h2 span { color: var(--text-3); }
+    p { max-width: 580px; color: var(--text-2); line-height: 1.8; }
+    .tool:hover h2 { text-decoration: underline; text-underline-offset: 6px; }
+</style>
