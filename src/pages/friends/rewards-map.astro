@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import RewardsMap from '../../components/RewardsMap.astro';
+---
+<Base title="Rewards map" description="An interactive field guide to points transfers, everyday earning, co-branded cards and linked rewards benefits.">
+    <div class="wrap breadcrumb"><a href="/friends/">← Friends</a></div>
+    <RewardsMap />
+</Base>
+<style>
+    .breadcrumb { padding-block: 16px; font-size: 12px; color: var(--text-2); }
+    .breadcrumb a:hover { text-decoration: underline; }
+</style>
