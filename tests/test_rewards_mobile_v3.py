@@ -11,7 +11,7 @@ async def main():
   page=await browser.new_page(viewport={'width':390,'height':844},device_scale_factor=2,is_mobile=True,has_touch=True)
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   await page.goto(BASE,wait_until='networkidle')
-  assert await page.locator('nav[aria-label="Primary"] a[href="/friends/"]').get_attribute('aria-current')=='page'
+  assert await page.locator('nav[aria-label="Primary"] a[href="/friends/"]').count()==0
   assert await page.locator('#mobile-explorer').is_visible()
   assert not await page.locator('.rewards-map .layout').is_visible()
   assert await page.locator('.mobile-hub [data-group]').count()==4

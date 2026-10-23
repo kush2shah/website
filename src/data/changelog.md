@@ -1,5 +1,6 @@
 ## October 2026
 
+- Keep Friends available by direct link, off the main navigation; align its tools and rewards map with the site’s light and dark design
 - Add Friends: a shared-tools directory with an interactive rewards map, mobile program explorer and cited relationship details
 - Rebuild the site on Astro: every page is real HTML now, with its own link preview
 - New structure: Writing, Projects, Photos and About
