@@ -12,6 +12,10 @@ class FriendsDesignTests(unittest.TestCase):
         self.assertIn('href="/friends/rewards-map/"', (ROOT / 'src/pages/friends/index.astro').read_text())
         self.assertIn('href="/friends/"', (ROOT / 'src/pages/friends/rewards-map.astro').read_text())
 
+    def test_credit_card_guide_keeps_existing_redirect(self):
+        self.assertIn('href="/cc"', (ROOT / 'src/pages/friends/rewards-map.astro').read_text())
+        self.assertIn('https://kushah.notion.site/cc', (ROOT / 'astro.config.mjs').read_text())
+
     def test_map_uses_site_theme_and_heading(self):
         source = (ROOT / 'src/components/RewardsMap.astro').read_text()
         self.assertIn('class="page-title"', source)

@@ -74,7 +74,12 @@ async def main():
                 assert await standalone.locator('.edge').first.evaluate('(e)=>getComputedStyle(e).fill') == 'none'
                 await standalone.close()
                 await page.screenshot(path=str(OUT / f'{theme}-{width}-network.png'))
-                await page.locator('.breadcrumb a').click()
+                guide = page.locator('.breadcrumb a[href="/cc"]')
+                assert await guide.is_visible()
+                redirect = await context.request.get(urljoin(BASE, '/cc'))
+                assert redirect.status == 200
+                assert 'https://kushah.notion.site/cc' in await redirect.text()
+                await page.locator('.breadcrumb a[href="/friends/"]').click()
                 assert page.url.endswith('/friends/')
                 await page.locator('a.tool').click()
                 assert page.url.endswith('/friends/rewards-map/')
