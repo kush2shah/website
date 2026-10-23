@@ -16,9 +16,10 @@ import Base from '../../layouts/Base.astro';
     </div>
 </Base>
 <style>
-    .tool { display: block; border-block: 1px solid var(--border); padding: 28px 0; margin-bottom: 120px; max-width: 760px; }
-    h2 { font-size: 28px; font-weight: 300; margin: 12px 0; }
+    .tool { display: block; border-top: 1px solid var(--border); padding: 36px 0 44px; margin-bottom: 120px; max-width: 760px; }
+    h2 { font-size: 26px; font-weight: 200; margin: 12px 0; }
     h2 span { color: var(--text-3); }
-    p { max-width: 580px; color: var(--text-2); line-height: 1.8; }
+    .tool p { max-width: 580px; color: var(--text-2); font-size: 15px; line-height: 1.75; }
     .tool:hover h2 { text-decoration: underline; text-underline-offset: 6px; }
+    @media (max-width: 640px) { h2 { font-size: 22px; font-weight: 300; } .tool { margin-bottom: 80px; } }
 </style>
